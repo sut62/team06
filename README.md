@@ -1,3 +1,3 @@
 # team06
 
-¹ÒÂ ¸¹¾Å ÀÙ¾Ø·¸Ò B5910168
+Thanaphon Puputta B5910168
