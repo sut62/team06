@@ -35,5 +35,5 @@ public class Receipt{
         public Receipt(Date receiptDate ){
             this.receiptDate = receiptDate;
             }
-
+//test
 }
