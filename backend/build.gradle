@@ -1,10 +1,11 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.2.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
 	id 'java'
 }
 
-group = 'com.sut.cpe'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.okta'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -25,11 +26,5 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-}
-
-test {
-	useJUnitPlatform()
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
