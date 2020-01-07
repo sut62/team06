@@ -36,13 +36,15 @@ public class AdminrepairindexController {
     @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
-    private FixRepository fixRepository;
+    private CustomerRepository customerRepository;
     @Autowired
     private StatusrepairRepository statusrepairRepository;
     @Autowired
-    private TypemachrepairRepository typemachrepairRepository;
+    private TypeRepository typeRepository;
     @Autowired
     private AddproductRepository addproductRepository;
+    @Autowired
+    private PartpiecesnumberforrepairRepository partpiecesnumberforrepairRepository;
     
     
         AdminrepairindexController(AdminrepairindexRepository adminrepairindexRepository){
@@ -54,34 +56,45 @@ public class AdminrepairindexController {
         public Collection<Adminrepairindex> Adminrepairindexs(){
             return adminrepairindexRepository.findAll().stream().collect(Collectors.toList());
         }
-        @PostMapping("/Adminrepairindex/{breakdown}/{addproduct_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{typemachrepair_id}")
+        @PostMapping("/Adminrepairindex/{breakdown}/{partn2}/{partn3}/{partn4}/{partn5}/{addproduct_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}/{partpiecesnumberforrepair_id}")
             public Adminrepairindex newAdminrepairindex(Adminrepairindex newAdminrepairindex,
             @PathVariable String breakdown,
+            @PathVariable String partn2,
+            @PathVariable String partn3,
+            @PathVariable String partn4,
+            @PathVariable String partn5,
             @PathVariable long addproduct_id,
             @PathVariable long branch_id,
             @PathVariable long brand_id,
             @PathVariable long employee_id,
             @PathVariable String identification,
             @PathVariable long statusrepair_id,
-            @PathVariable long typemachrepair_id){
+            @PathVariable long type_id,
+            @PathVariable long partpiecesnumberforrepair_id){
             
             Addproduct addproduct = addproductRepository.findById(addproduct_id);
             Branch branch = branchRepository.findById(branch_id);
             Brand brand = brandRepository.findById(brand_id);
             Employee createdBy = employeeRepository.findById(employee_id);
-            Fix fix = fixRepository.findByIdentification(identification);
+            Customer customer = customerRepository.findByIdentification(identification);
             Statusrepair statusrepair = statusrepairRepository.findById(statusrepair_id);
-            Typemachrepair typemachrepair = typemachrepairRepository.findById(typemachrepair_id);
+            Type type = typeRepository.findById(type_id);
+            Partpiecesnumberforrepair partpiecesnumberforrepair = partpiecesnumberforrepairRepository.findById(partpiecesnumberforrepair_id);
 
             newAdminrepairindex.setBreakdown(breakdown);
+            newAdminrepairindex.setPartn2(partn2);
+            newAdminrepairindex.setPartn3(partn3);
+            newAdminrepairindex.setPartn4(partn4);
+            newAdminrepairindex.setPartn5(partn5);
             newAdminrepairindex.setAddproduct(addproduct);
             newAdminrepairindex.setRepairDate(new Date());
             newAdminrepairindex.setBranch(branch);
             newAdminrepairindex.setBrand(brand);
             newAdminrepairindex.setCreatedBy(createdBy);
-            newAdminrepairindex.setFix(fix);
+            newAdminrepairindex.setCustomer(customer);
             newAdminrepairindex.setStatusrepair(statusrepair);
-            newAdminrepairindex.setTypemachrepair(typemachrepair);
+            newAdminrepairindex.setType(type);
+            newAdminrepairindex.setPartpiecesnumberforrepair(partpiecesnumberforrepair);
 
 
                 return adminrepairindexRepository.save(newAdminrepairindex);
