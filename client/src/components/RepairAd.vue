@@ -5,7 +5,7 @@
                     >
                       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-                      <v-toolbar-title>Page title</v-toolbar-title>
+                      <v-toolbar-title>ซ่อมคอมพิวเตอร์</v-toolbar-title>
 
                       <v-spacer></v-spacer>
 
@@ -69,13 +69,13 @@
        <b-col md=3>
          <v-text-field
             solo
-            label="เบอร์โทรศัพท์ของลูกค้า"
+            label="อีเมลล์ลูกค้า"
             v-model="repaircp.cmailp"
             :rules="[(v) => !!v || 'Item is required']"
             
           ></v-text-field></b-col>
        <b-col md=3>
-         <v-btn class="mb-7" @click="findCustomer" raised large color="accent">ค้นหาเบอร์โทรศัพท์</v-btn>
+         <v-btn class="mb-7" @click="findCustomer" raised large color="accent">ค้นหาอีเมลล์ลูกค้า</v-btn>
          </b-col> 
       <b-col md=3>
         <v-text-field
@@ -96,7 +96,7 @@
           required
           solo
         ></v-select></b-col>
-      <b-col md>
+      <b-col md=3>
         <v-select
           label="ยี่ห้อเครื่องที่รับซ่อม"
           v-model="repaircp.brand"
@@ -108,7 +108,7 @@
           solo
         ></v-select></b-col>
    
-      <b-col md>
+      <b-col md=3>
         <v-select
           label="สถานะการซ่อม"
           v-model="repaircp.status"
@@ -120,11 +120,71 @@
           solo
         ></v-select>
       </b-col>
-     
-      <b-col md>
+      <b-col md=3>
+        <v-select
+          label="จำนวนชิ้นอะไหล่ที่เปลี่ยน"
+          v-model="repaircp.piece"
+          :items="piece"
+          item-text="piece_number"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+      <b-col md=3>
         <v-select
           label="อะไหล่ที่เปลี่ยน"
           v-model="repaircp.part"
+          :items="parts"
+          item-text="part_name"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+       <b-col md=3>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่สอง"
+          v-model="repaircp.part2"
+          :items="parts"
+          item-text="part_name"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+        <b-col md=3>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่สาม"
+          v-model="repaircp.part3"
+          :items="parts"
+          item-text="part_name"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+        <b-col md=3>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่สี่"
+          v-model="repaircp.part4"
+          :items="parts"
+          item-text="part_name"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+        <b-col md=3>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่5"
+          v-model="repaircp.part5"
           :items="parts"
           item-text="part_name"
           item-value="id"
@@ -161,8 +221,13 @@
         employeeId: "",
         brand:"",
         part:"",
+        part2:"",
+        part3:"",
+        part4:"",
+        part5:"",
         status: "",
         typerp: "",
+        piece:""
       },
 
     };
@@ -241,6 +306,18 @@
         console.log(e);
       })
     },
+      getPieces(){
+      http
+      .get("/partpiece")
+      .then(response =>{
+        this.$forceUpdate();
+        this.piece = response.data;
+        console.log(response.data);
+      })
+      .catch(e =>{
+        console.log(e);
+      })
+    },
      findCustomer() {
           http
             .get("/fix/"+ this.repaircp.cmailp)
@@ -264,9 +341,17 @@
     saverepair(){
       http
       .post(
-        //"/Adminrepairindex/{breakbown}/{addproduct_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{typemachrepair_id}")
+        //"Adminrepairindex/{breakdown}/{partn2}/{partn3}/{part4}/{partn5}/{addproduct_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{typemachrepair_id}/{partpiecesnumberforrepair_id}")
         "/Adminrepairindex/"+
          this.repaircp.breakdown + 
+        "/" +
+        this.repaircp.part2 +
+        "/" +
+        this.repaircp.part3 +
+        "/" +
+        this.repaircp.part4 +
+        "/" +
+        this.repaircp.part5 +
         "/" +
         this.repaircp.part +
         "/" +
@@ -280,9 +365,12 @@
         "/" +
         this.repaircp.status +
         "/" +
-        this.repaircp.typerp,
+        this.repaircp.typerp +
+        "/" +
+        this.repaircp.piece,
         
-        this.repaircp
+        this.repaircp,
+        console.log(this.repaircp)
       )
       .then(response =>{
         console.log(response);
@@ -306,6 +394,7 @@
       this.getBrand();
       this.getStatus();
       this.getParts();
+      this.getPieces();
     }
   
   
