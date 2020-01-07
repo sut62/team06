@@ -17,22 +17,23 @@ import javax.persistence.GenerationType;
 @Setter
 @ToString
 @EqualsAndHashCode
-@Table(name="BRANCH")
-public class Branch {
+@Table(name="PART")
+public class Part {
 
     @Id
-    @SequenceGenerator(name="BRANCH_SEQ",sequenceName="BRANCH_SEQ")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="BRANCH_SEQ")
-    @Column(name="BRANCH_ID",unique = true, nullable = true)
+    @SequenceGenerator(name="PART_SEQ",sequenceName="PART_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="PART_SEQ")
+    @Column(name="PART_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String branchname;
+    private @NonNull String partname;
 
     @OneToMany(fetch = FetchType.EAGER)
     
     private Collection<Addproduct> data;
 
-	protected Branch(){}
-    public Branch(String branchname){
-        this.branchname = branchname;
-        }
+	
+    protected Part(){}
+    public Part(String partname ){
+        this.partname = partname;
+        }	
 }
