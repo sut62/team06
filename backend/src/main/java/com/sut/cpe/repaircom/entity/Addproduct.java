@@ -28,6 +28,10 @@ public class Addproduct{
     private String productname;
     private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
+    @JoinColumn(name = "TYPE_ID",insertable = true)
+    private Type type;
+
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
     @JoinColumn(name = "BRAND_ID",insertable = true)
     private Brand brand;
