@@ -32,42 +32,60 @@ public class Adminrepairindex{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="ADMINREPAIR_SEQ")
     @Column(name="ADMINREPAIR_ID",unique = true , nullable = true )
     private @NonNull Long id;
-    private @NonNull Date repairdate;
     private @NonNull String breakdown;
+    private @NonNull String partn2;
+    private @NonNull String partn3;
+    private @NonNull String partn4;
+    private @NonNull String partn5;
+
+
+    @Column(name="REPAIR_DATE",nullable = true)
+    private Date repairDate;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Statusrepair.class)
     @JoinColumn(name = "STATUSREPAIR_ID", insertable = true)
-    private @NonNull Statusrepair statusrepair;
+    private Statusrepair statusrepair;
 
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Typemachrepair.class)
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
     @JoinColumn(name = "TYPEMACHREPAIR_ID", insertable = true)
-    private @NonNull Typemachrepair typemachrepair;
+    private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Branch.class)
     @JoinColumn(name = "BRANCH_ID", insertable = true)
-    private @NonNull Branch branch;
+    private Branch branch;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID", insertable = true)
-    private @NonNull Employee employee;
+    private Employee createdBy;
 
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = fix.class)
-    @JoinColumn(name = "FIX_ID", insertable = true)
-    private @NonNull Fix fix;
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Customer.class)
+    @JoinColumn(name = "Customer_ID", insertable = true)
+    private Customer customer;
 
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = addproduct.class)
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Addproduct.class)
     @JoinColumn(name = "ADDPRODUCT_ID", insertable = true)
-    private @NonNull Addproduct addproduct;
+    private  Addproduct addproduct;
 	
 	@ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
-    @JoinColumn(name = "BRAND", insertable = true)
-    private @NonNull Brand brand;
+    @JoinColumn(name = "BRAND_ID", insertable = true)
+    private  Brand brand;
 
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Partpiecesnumberforrepair.class)
+    @JoinColumn(name = "PARTPIECESNUMBERFORREPAIR_ID", insertable = true)
+    private  Partpiecesnumberforrepair partpiecesnumberforrepair;
+    
     protected Adminrepairindex(){}
-    public Adminrepairindex(Date repairdate ){
-        this.repairdate = repairdate;
-        }
-    public Adminrepairindex(String breakdown){
+    public Adminrepairindex(Date repairDate,String breakdown,String partn2,String partn3,String partn4,String partn5){
+        this.repairDate = repairDate;
         this.breakdown = breakdown;
+        this.partn2 = partn2;
+        this.partn3 = partn3;
+        this.partn4 = partn4;
+        this.partn5 = partn5;
     }
+
+
+
+
+
 }
