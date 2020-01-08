@@ -42,7 +42,7 @@ public class AdminrepairindexController {
     @Autowired
     private TypeRepository typeRepository;
     @Autowired
-    private AddproductRepository addproductRepository;
+    private PartRepository partRepository;
     @Autowired
     private PartpiecesnumberforrepairRepository partpiecesnumberforrepairRepository;
     
@@ -56,14 +56,14 @@ public class AdminrepairindexController {
         public Collection<Adminrepairindex> Adminrepairindexs(){
             return adminrepairindexRepository.findAll().stream().collect(Collectors.toList());
         }
-        @PostMapping("/Adminrepairindex/{breakdown}/{partn2}/{partn3}/{partn4}/{partn5}/{addproduct_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}/{partpiecesnumberforrepair_id}")
+        @PostMapping("/Adminrepairindex/{breakdown}/{partn2}/{partn3}/{partn4}/{partn5}/{part1_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}/{partpiecesnumberforrepair_id}")
             public Adminrepairindex newAdminrepairindex(Adminrepairindex newAdminrepairindex,
             @PathVariable String breakdown,
             @PathVariable String partn2,
             @PathVariable String partn3,
             @PathVariable String partn4,
             @PathVariable String partn5,
-            @PathVariable long addproduct_id,
+            @PathVariable long part1_id,
             @PathVariable long branch_id,
             @PathVariable long brand_id,
             @PathVariable long employee_id,
@@ -72,7 +72,7 @@ public class AdminrepairindexController {
             @PathVariable long type_id,
             @PathVariable long partpiecesnumberforrepair_id){
             
-            Addproduct addproduct = addproductRepository.findById(addproduct_id);
+            Part parts = partRepository.findById(part1_id);
             Branch branch = branchRepository.findById(branch_id);
             Brand brand = brandRepository.findById(brand_id);
             Employee createdBy = employeeRepository.findById(employee_id);
@@ -86,7 +86,7 @@ public class AdminrepairindexController {
             newAdminrepairindex.setPartn3(partn3);
             newAdminrepairindex.setPartn4(partn4);
             newAdminrepairindex.setPartn5(partn5);
-            newAdminrepairindex.setAddproduct(addproduct);
+            newAdminrepairindex.setPart(parts);
             newAdminrepairindex.setRepairDate(new Date());
             newAdminrepairindex.setBranch(branch);
             newAdminrepairindex.setBrand(brand);
