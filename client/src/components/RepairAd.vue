@@ -3,52 +3,35 @@
       <div class="bn bg-dark">
                 <v-app-bar color="deep-purple accent-4" dense dark :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }"
                     >
-                      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+                      
 
-                      <v-toolbar-title>ซ่อมคอมพิวเตอร์</v-toolbar-title>
+                      <v-toolbar-title>บันทึกการซ่อมคอมพิวเตอร์ของพนักงาน</v-toolbar-title>
 
                       <v-spacer></v-spacer>
 
-                      <v-btn icon>
-                        <v-icon>mdi-heart</v-icon>
+                      <v-btn >
+                      ออกจากระบบ
                       </v-btn>
 
-                      <v-btn icon>
-                        <v-icon>mdi-magnify</v-icon>
-                      </v-btn>
+                  
 
-                      <v-menu left bottom
-                      >
-                        <template v-slot:activator="{ on }">
-                          <v-btn icon v-on="on">
-                            <v-icon>mdi-dots-vertical</v-icon>
-                          </v-btn>
-                        </template>
-
-                        <v-list>
-                          <v-list-item
-                            v-for="n in 5"
-                            :key="n"
-                            @click="() => {}"
-                          >
-                            <v-list-item-title>Option {{ n }}</v-list-item-title>
-                          </v-list-item>
-                        </v-list>
-                      </v-menu>
+                  
                     </v-app-bar>
         </div>
+    <v-form v-model="valid" ref="form">
  <b-container class=" my-0 align-items-center d-flex justify-content-center" >   <!-- edit to mx-auto for biggerscreen -->
   <b-container wrap class=" my-0 align-items-center d-flex justify-content-center">
     <b-container  wrap class="bg-dark my-0 align-items-center d-flex justify-content-center" align-v="center" align-h="center" >
   <div class="ccc">
     <b-card dark nowrap fill-height class=" my-2 mx-0 bg-secondary align-items-stretch d-flex justify-content-center " align-v="center" align-h="center" >
-    <b-row nowrap  class="bg align-items-center d-flex justify-content-center"  align-v="center" align-h="center">
+    <b-row ref="form" nowrap  class="bg align-items-center d-flex justify-content-center"  align-v="center" align-h="center">
+     
       <b-col md=6>
          <v-select
           label="สาขาที่รับงาน"
           v-model="repaircp.branchId"
           :items="branch"
-          item-text="branch_name"
+          item-text="branchname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -60,7 +43,7 @@
           label="พนักงานที่ซ่อม"
           v-model="repaircp.employeeId"
           :items="employee"
-          item-text="employee_name"
+          item-text="empName"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -90,7 +73,7 @@
           label="ประเภทเครื่องที่ซ่อม"
           v-model="repaircp.typerp"
           :items="typemachrepair"
-          item-text="typerp"
+          item-text="typename"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -101,7 +84,7 @@
           label="ยี่ห้อเครื่องที่รับซ่อม"
           v-model="repaircp.brand"
           :items="brand"
-          item-text="brand_name"
+          item-text="brandname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -138,7 +121,7 @@
           label="อะไหล่ที่เปลี่ยน"
           v-model="repaircp.part"
           :items="parts"
-          item-text="part_name"
+          item-text="partname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -150,7 +133,7 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่สอง"
           v-model="repaircp.part2"
           :items="parts"
-          item-text="part_name"
+          item-text="partname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -162,7 +145,7 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่สาม"
           v-model="repaircp.part3"
           :items="parts"
-          item-text="part_name"
+          item-text="partname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -174,7 +157,7 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่สี่"
           v-model="repaircp.part4"
           :items="parts"
-          item-text="part_name"
+          item-text="partname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -186,13 +169,14 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่5"
           v-model="repaircp.part5"
           :items="parts"
-          item-text="part_name"
+          item-text="partname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
           solo
         ></v-select>
       </b-col>
+     
     </b-row>
     <b-col md=12 class="text-center">
        <v-btn  @click="saverepair" raised large color="primary">บันทึกข้อมูล</v-btn>
@@ -202,6 +186,7 @@
     </b-container>
 </b-container>
 </b-container>
+    </v-form>
 
    
 </v-app>
@@ -229,7 +214,7 @@
         typerp: "",
         piece:""
       },
-
+        valid: false,
     };
   },
   methods:{
@@ -260,7 +245,7 @@
     },
     getTypemachs(){
       http
-      .get("/typemachrepair")
+      .get("/type")
       .then(response =>{
         this.$forceUpdate();
         this.typemachrepair = response.data;
@@ -296,7 +281,7 @@
     },
     getParts(){
       http
-      .get("/addproduct")
+      .get("/part")
       .then(response =>{
         this.$forceUpdate();
         this.parts = response.data;
@@ -320,11 +305,11 @@
     },
      findCustomer() {
           http
-            .get("/fix/"+ this.repaircp.cmailp)
+            .get("/customer/"+ this.repaircp.cmailp)
             .then(response => {
               console.log(response);
-              if (response.data.name_cus != null) {
-                this.customerName = response.data.name_cus;
+              if (response.data.cusName != null) {
+                this.customerName = response.data.cusName;
                 this.customerCheck = response.status;
                 alert('ค้นหาสำเร็จด้วยหมายเลข'+ this.repaircp.cmailp)
                 
@@ -376,6 +361,7 @@
         console.log(response);
         if(response = true){
           alert('บันทึกข้อมูลเสร็จสิ้น')
+          this.$ref.form.reset();
         }
       })
       .catch(e=>{
@@ -385,7 +371,9 @@
           
         }
       })
-    }
+
+    },
+
   },
    mounted(){
       this.getBranchs();
