@@ -34,5 +34,12 @@ export default new Router({
       component: Fix
   },
 
+  {
+    path: 'contact',
+    name: 'contact',
+    component: Contact
+  },
+  
+
   ]
 })
