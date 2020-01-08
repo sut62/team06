@@ -22,6 +22,11 @@ public class RepaircomApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RepaircomApplication.class, args);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		String strDate = formatter.format(date);
+		System.out.println("Date Format with MM/dd/yyyy : "+strDate);
+		System.out.println(date);
 	}
 
 	@Bean
