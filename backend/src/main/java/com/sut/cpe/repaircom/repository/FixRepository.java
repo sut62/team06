@@ -1,6 +1,6 @@
-package com.okta.springbootvue.repository;
+package com.sut.cpe.repaircom.repository;
 
-import com.okta.springbootvue.entity.Fix;
+import com.sut.cpe.repaircom.entity.Fix;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
