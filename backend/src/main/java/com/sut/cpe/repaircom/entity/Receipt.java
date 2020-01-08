@@ -27,6 +27,11 @@ public class Receipt{
     @Column(name="RECEIPT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
     private @NonNull String receiptPrice;
+    private @NonNull String partR2;
+    private @NonNull String partR3;
+    private @NonNull String partR4;
+    private @NonNull String partR5;
+  
 
     @Column(name="RECEIPT_DATE")
     private @NonNull Date receiptDate;
@@ -47,10 +52,19 @@ public class Receipt{
     @JoinColumn(name ="TYPE_ID",insertable = true)
     private @NonNull Type type;
 
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Part.class)
+    @JoinColumn(name ="PART_ID",insertable = true)
+    private @NonNull Part part;
+
     protected Receipt(){}
-        public Receipt(Date receiptDate,String receiptPrice ){
+        public Receipt(Date receiptDate,String receiptPrice,String partR2,String partR3,String partR4,String partR5 ){
             this.receiptDate = receiptDate;
             this.receiptPrice = receiptPrice;
+            this.partR2 = partR2;
+            this.partR3 = partR3;
+            this.partR4 = partR4;
+            this.partR5 = partR5;
+
             }
 
 }
