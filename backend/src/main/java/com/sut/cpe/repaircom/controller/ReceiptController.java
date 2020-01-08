@@ -38,6 +38,8 @@ public class ReceiptController {
     private EmployeeRepository employeeRepository;
     @Autowired
     private TypeRepository typeRepository;
+    @Autowired
+    private PartRepository partRepository;
    
    
     
@@ -51,25 +53,38 @@ public class ReceiptController {
         public Collection<Receipt> Receipts(){
             return receiptRepository.findAll().stream().collect(Collectors.toList());
         }
-        @PostMapping("/receipt/{identification}/{type_id}/{employee_id}/{branch_id}/{receiptPrice}")
+
+        @PostMapping("/receipt/{identification}/{type_id}/{part_id}/{partR2}/{partR3}/{partR4}/{partR5}/{employee_id}/{branch_id}/{receiptPrice}")
             public Receipt newReceipt(Receipt newReceipt,
             @PathVariable String identification,
             @PathVariable long type_id,
+            @PathVariable long part_id,
+            @PathVariable String partR2,
+            @PathVariable String partR3,
+            @PathVariable String partR4,
+            @PathVariable String partR5,
             @PathVariable long employee_id,
             @PathVariable long branch_id,
             @PathVariable String receiptPrice){
             
             Customer customer = customerRepository.findByIdentification(identification);
             Type type = typeRepository.findById(type_id);
+            Part part = partRepository.findById(part_id);
             Employee employee = employeeRepository.findById(employee_id);
             Branch branch = branchRepository.findById(branch_id);
+            
            
 
             newReceipt.setCustomer(customer);
             newReceipt.setType(type);
+            newReceipt.setPart(part);
             newReceipt.setEmployee(employee);
             newReceipt.setBranch(branch);
             newReceipt.setReceiptPrice(receiptPrice);
+            newReceipt.setPartR2(partR2);
+            newReceipt.setPartR3(partR3);
+            newReceipt.setPartR4(partR4);
+            newReceipt.setPartR5(partR5);
             newReceipt.setReceiptDate(new Date());
            
 
