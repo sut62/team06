@@ -1,4 +1,4 @@
-package com.okta.springbootvue.controller;
+package com.sut.cpe.repaircom.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,8 +20,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.net.URLDecoder;
 
-import com.okta.springbootvue.entity.*;
-import com.okta.springbootvue.repository.*;
+import com.sut.cpe.repaircom.entity.*;
+import com.sut.cpe.repaircom.repository.*;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 

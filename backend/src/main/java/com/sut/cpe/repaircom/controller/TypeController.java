@@ -1,6 +1,6 @@
-package com.okta.springbootvue.controller;
-import com.okta.springbootvue.repository.TypeRepository;
-import com.okta.springbootvue.entity.Type;
+package com.sut.cpe.repaircom.controller;
+import com.sut.cpe.repaircom.repository.TypeRepository;
+import com.sut.cpe.repaircom.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

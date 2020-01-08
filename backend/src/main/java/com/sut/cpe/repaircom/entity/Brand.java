@@ -1,4 +1,4 @@
-package com.okta.springbootvue.entity;
+package com.sut.cpe.repaircom.entity;
 import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
