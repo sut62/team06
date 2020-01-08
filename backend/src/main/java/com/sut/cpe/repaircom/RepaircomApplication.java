@@ -1,4 +1,4 @@
-package com.sut.cpe.repaircom;
+﻿package com.sut.cpe.repaircom;
 
 import com.sut.cpe.repaircom.entity.*;
 import com.sut.cpe.repaircom.entity.Province;
@@ -89,15 +89,28 @@ public class RepaircomApplication {
 			partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(3));
 			partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(4));
 			partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(5));
+
+          			communicationRepository.save(new Communication("ติดต่อกลับทาง อีเมล"));//ระบบติดต่อสอบถาม
+			communicationRepository.save(new Communication("ติดต่อกลับทาง โทรศัพท์"));//ระบบติดต่อสอบถาม
+			headingRepository.save(new Heading("สอบถามข้อมูลเกี่ยวการแจ้งซ่อม"));//ระบบติดต่อสอบถาม
+			headingRepository.save(new Heading("สอบถามข้อมูลอาการและปัญหาคอมพิวเตอร์"));//ระบบติดต่อสอบถาม	
+			headingRepository.save(new Heading("แจ้งเรื่องร้องเรียน"));//ระบบติดต่อสอบถาม
+			headingRepository.save(new Heading("สอบถามเรื่องอื่นๆ"));//ระบบติดต่อสอบถาม
+
+
+
 			
 			addproductRepository.findAll().forEach(System.out::println);
 			typeRepository.findAll().forEach(System.out::println);
 			brandRepository.findAll().forEach(System.out::println);
 			partRepository.findAll().forEach(System.out::println);
-            branchRepository.findAll().forEach(System.out::println);
+                                                      branchRepository.findAll().forEach(System.out::println);
 			provinceRepository.findAll().forEach(System.out::println); // แสดง ข้อมูลทั้งหมดใน Entity Province บน Terminal
 			employeeRepository.findAll().forEach(System.out::println); // แสดง ข้อมูลทั้งหมดใน Entity Employee บน Terminal
 			sexRepository.findAll().forEach(System.out::println); // แสดง ข้อมูลทั้งหมดใน Entity Sex บน Termina
+                                                      communicationRepository.findAll().forEach(System.out::println);//ระบบติดต่อสอบถาม
+			headingRepository.findAll().forEach(System.out::println);//ระบบติดต่อสอบถาม
+
 		};
 	}
 }

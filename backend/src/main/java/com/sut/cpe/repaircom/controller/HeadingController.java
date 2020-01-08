@@ -1,6 +1,6 @@
 package com.sut.cpe.repaircom.controller;
-import com.okta.springbootvue.repository.HeadingRepository;
-import com.okta.springbootvue.entity.Heading;
+import com.sut.cpe.repaircom.repository.HeadingRepository;
+import com.sut.cpe.repaircom.entity.Heading;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
