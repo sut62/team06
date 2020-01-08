@@ -1,6 +1,6 @@
-package com.okta.springbootvue.controller;
-import com.okta.springbootvue.repository.BrandRepository;
-import com.okta.springbootvue.entity.Brand;
+package com.sut.cpe.repaircom.controller;
+import com.sut.cpe.repaircom.repository.BrandRepository;
+import com.sut.cpe.repaircom.entity.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

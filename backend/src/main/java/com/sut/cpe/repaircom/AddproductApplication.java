@@ -1,12 +1,12 @@
-package com.okta.springbootvue;
+package com.sut.cpe.repaircom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
-import com.okta.springbootvue.entity.*;
-import com.okta.springbootvue.repository.*;
+import com.sut.cpe.repaircom.entity.*;
+import com.sut.cpe.repaircom.repository.*;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
