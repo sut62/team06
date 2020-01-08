@@ -1,4 +1,4 @@
-package com.okta.springbootvue.repository;
+package com.sut.cpe.repaircom.repository;
 
 import com.okta.springbootvue.entity.Heading;
 
