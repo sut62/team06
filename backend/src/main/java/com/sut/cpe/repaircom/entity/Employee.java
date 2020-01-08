@@ -30,5 +30,15 @@ public class Employee {
     @OneToMany(fetch = FetchType.EAGER)
     // mappedBy  = "createdBy"
     private Collection<Customer> data;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Adminrepairindex> adminrepairindexs;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    
+    private Collection<Fix> fixs;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Receipt> receipts;
 
 }

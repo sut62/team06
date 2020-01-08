@@ -31,6 +31,13 @@ public class Part {
     
     private Collection<Addproduct> data;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Adminrepairindex> adminrepairindexs;
+
+
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Receipt> receipts;
 	
     protected Part(){}
     public Part(String partname ){

@@ -31,6 +31,12 @@ public class Type {
     
     private Collection<Addproduct> data;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Adminrepairindex> adminrepairindexs;
+
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Receipt> receipts;
 	
     protected Type(){}
     public Type(String typename ){
