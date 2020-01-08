@@ -1,6 +1,6 @@
 package com.sut.cpe.repaircom.controller;
-import com.okta.springbootvue.repository.CommunicationRepository;
-import com.okta.springbootvue.entity.Communication;
+import com.sut.cpe.repaircom.repository.CommunicationRepository;
+import com.sut.cpe.repaircom.entity.Communication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
