@@ -1,12 +1,26 @@
 <template>
   <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }">
+  <v-app-bar app color="blue darken-2">
+      <v-toolbar-title class="headline text-uppercase">
+        <span>ADD</span>
+        <span class="font-weight-light"> PRODUCT</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn color="grey lighten-5">
+        <router-link class="mr-1" to="/">ADD PRODUCT </router-link>
+      </v-btn>
+      <v-btn color="grey lighten-5">
+        <router-link class="mr-1" to="/view">INFORMATION</router-link>
+      </v-btn>
+    </v-app-bar>
     <div class='bgn'>                   
     <br>
     <div class="text-center">
     <v-avatar>
-      <img src="http://cdn.onlinewebfonts.com/svg/img_316596.png" alt="avatar">
+      <img src="https://image.flaticon.com/icons/png/512/187/187503.png" alt="avatar">
     </v-avatar>
   </div>
+  
       <h1 align='center'>เพิ่มอะไหล่คอมพิวเตอร์</h1>
     
     <v-container nowrap  class="justify-center">
@@ -276,15 +290,14 @@ import http from "../http-common";
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 800px;
-    width: 800px; 
-    background-color: #ebecf7;
-    opacity: 5;
+    height: 1050px;
+    width: 850px; 
+    background-color: #00B8D4;
+    opacity: 0.9;
     -moz-box-shadow:inset 0 0 10px #000000;
    -webkit-box-shadow:inset 0 0 10px #000000;
    box-shadow:inset 0 0 10px #000000;
 }
-
 </style>
 
 
