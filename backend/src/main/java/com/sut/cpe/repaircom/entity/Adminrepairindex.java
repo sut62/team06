@@ -47,7 +47,7 @@ public class Adminrepairindex{
     private Statusrepair statusrepair;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
-    @JoinColumn(name = "TYPEMACHREPAIR_ID", insertable = true)
+    @JoinColumn(name = "TYPE_ID", insertable = true)
     private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Branch.class)
@@ -62,9 +62,9 @@ public class Adminrepairindex{
     @JoinColumn(name = "Customer_ID", insertable = true)
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Addproduct.class)
-    @JoinColumn(name = "ADDPRODUCT_ID", insertable = true)
-    private  Addproduct addproduct;
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Part.class)
+    @JoinColumn(name = "PART_ID", insertable = true)
+    private  Part part;
 	
 	@ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
     @JoinColumn(name = "BRAND_ID", insertable = true)
