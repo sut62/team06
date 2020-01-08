@@ -30,6 +30,13 @@ public class Branch {
     @OneToMany(fetch = FetchType.EAGER)
     
     private Collection<Addproduct> data;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Adminrepairindex> adminrepairindexs;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Contact> contact;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Receipt> receipts;
 
 	protected Branch(){}
     public Branch(String branchname){

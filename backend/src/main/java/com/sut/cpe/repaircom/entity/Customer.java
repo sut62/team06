@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.FetchType;
 
 import com.sut.cpe.repaircom.entity.*;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Data
@@ -48,6 +50,17 @@ public class Customer {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Province.class)
     @JoinColumn(name = "PROVINCE_ID", insertable = true)
 	private Province customerProvince;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+    private Collection<Adminrepairindex> adminrepairindexs;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Contact> contact;
+    @OneToMany(fetch = FetchType.EAGER)
+	private Collection<Receipt> receipts;
+	@OneToMany(fetch = FetchType.EAGER)
+    
+    private Collection<Fix> fixs;
 	
 	public void setCusName(String cusName) {
         this.cusName = cusName;
