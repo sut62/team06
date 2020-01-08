@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import RepairAd from '@/components/RepairAd.vue'
 import Customer from '@/components/Customer.vue'
 import Addproduct from '@/components/Addproduct.vue'
+import Fix from '@/components/Fix.vue'
 
 
 Vue.use(Router)
@@ -27,6 +28,11 @@ export default new Router({
       name: 'addproduct',
       component: Addproduct
     },
+    {
+      path: '/fix',
+      name: 'fix',
+      component: Fix
+  },
 
   ]
 })
