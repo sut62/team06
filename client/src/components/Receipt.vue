@@ -1,269 +1,251 @@
 <template>
-    <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/receipt.jpeg') + ')' }">
+<v-app id="test" class="my-auto" :style="{ backgroundImage: 'url(' + require('@/assets/receipt.jpeg') + ')' }" >
+      <div class="bn bg-dark">
+                <v-app-bar icon="wrench" color="deep-purple accent-4" dense dark :style="{ backgroundImage: 'url(' + require('@/assets/receipt.jpeg') + ')' }"
+                    >
+                      
 
-     <v-app-bar app color="blue darken-2">
-         <v-btn color="grey lighten-5">
-          <router-link class="mr-1" to="/viewreceipt">View Receipt</router-link>
-        </v-btn>  
-          <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/">Logout</router-link>
-      </v-btn>
-   </v-app-bar>
-  
+                      <v-toolbar-title icons="wrench" class="fond">Receipt System</v-toolbar-title>
 
+                      <v-spacer></v-spacer>
 
-
-    <div class="receipt">
-    <v-container nowrap  class="justify-center">
-      <v-form v-model="valid" ref="form">
-      <v-layout  row nowrap class="justify-center">
-        
-          <v-flex md12 xs12 lg12 xl3>
-              <v-layout text-center wrap>
-               <v-flex mb-4>
-         <br />
-              <h1 class="display-2 font-weight-bold mb-3">Repair Receipt</h1>
-         </v-flex>
-            </v-layout>
-        </v-flex> 
-         
-         <div class="btncenter">
-            <div class="justify-center">
-              <v-flex md12 xs12 lg12 xl3>
-                  <v-text-field
-                      class="justify-center"
-                      label="ค้นหาIDลูกค้า"
-                      style="width:300px"
-                      solo
-                      v-model="receipt.customerIdent"
-                  ></v-text-field>
-              </v-flex>
-            </div>
-
-              
-             <v-flex md12 xs12 lg12 xl3>
-              <p align = 'center' v-if="customerCheck != ''" >Customer Name : {{customerName}}</p>
-              </v-flex>
-              
-            
-             <div class="btncenter">
-              <v-flex md12 xs12 lg12 xl3>
-                  <v-btn class="justify-center" @click="findCustomer" depressed large color="primary">Search</v-btn>
-              </v-flex>
-              <br>
-              </div>
-
-            
-           
-               <b-col md=6>
-                  <v-select
-                    label="Repair Type"
-                    solo
-                    v-model="receipt.typeId"
-                    :items="type"
-                    item-text="typename"
-                    item-value="id"
-                    :rules="[(v) => !!v || 'Item is required']"
-                  ></v-select>
-               </b-col>
-            
-
-                 <v-flex md6 xs12 lg12 xl3>
-                 <v-select
-                 style="width: 300px"
-                  label="Part1"
-                  solo
-                  v-model="receipt.partId"
-                  :items="part"
-                  item-text="partname"
-                  item-value="id"
-                  :rules="[(v) => !!v || 'Item is required']"
-                  required
-                ></v-select>
-                </v-flex>
+                      <v-btn class="fond">
+                           <router-link to="/viewreceipt">View Receipt</router-link>
+                       </v-btn> 
+                      <v-btn class="fond">
+                          <router-link to="/home">Log out</router-link>
+                      </v-btn>
+                       
 
                   
-             <v-flex md12 xs12 lg12 xl3>
-              <p align = 'center' v-if="pCheck != ''" >Part Price : {{pPrice}}</p>
-              </v-flex>
-              
-            
-             <div class="btncenter">
-              <v-flex md12 xs12 lg12 xl3>
-                  <v-btn class="justify-center" @click="findPrice" depressed large color="primary">ตรวจสอบราคา</v-btn>
-              </v-flex>
-              <br>
-              </div>
-
-                <v-flex md6 xs12 lg12 xl3>
-                 <v-select
-                 style="width: 300px"
-                  label="Part2"
-                  solo
-                  v-model="receipt.partId2"
-                  :items="part"
-                  item-text="partname"
-                  item-value="id"
-                  :rules="[(v) => !!v || 'Item is required']"
-                  required
-                ></v-select>
-                </v-flex>
 
                   
-             <v-flex md12 xs12 lg12 xl3>
-              <p align = 'center' v-if="p2Check != ''" >Part Price : {{p2Price}}</p>
-              </v-flex>
-              
+                    </v-app-bar>
+        </div>
+
+ <b-container class=" h-100 my-0 align-items-center d-flex justify-content-center" >   <!-- edit to mx-auto for biggerscreen -->
+  <b-container wrap class=" h-100 my-0 align-items-center d-flex justify-content-center">
+    
+  <div class="ccc">
+    <b-card dark nowrap fill-height class=" my-2 mx-0 bg-info align-items-stretch d-flex justify-content-center " align-v="center" align-h="center" >
+    <b-row ref="form" nowrap  class="bg align-items-center d-flex justify-content-center"  align-v="center" align-h="center">
+     
+     
+       <b-col md=4>
+         <v-text-field
+            solo
+            label="ค้นหาIDลูกค้า"
+            v-model="receipt.customerIdent"
+            :rules="[(v) => !!v || 'Item is required']"
             
-             <div class="btncenter">
-              <v-flex md12 xs12 lg12 xl3>
-                  <v-btn class="justify-center" @click="findPrice2" depressed large color="primary">ตรวจสอบราคา</v-btn>
+          ></v-text-field></b-col>
+
+
+       <b-col md=4>
+         <v-btn class="ml-12 mb-7" @click="findCustomer" raised large color="primary">SEARCH</v-btn>
+         </b-col> 
+
+          <b-col md=4>
+           <v-flex md12 xs12 lg12 xl3>
+              <p class="font-weight-bold" align = 'center' v-if="customerCheck != ''" >Customer Name : {{customerName}}</p>
               </v-flex>
-              <br>
-              </div>
+      </b-col>
+      
 
-                <v-flex md6 xs12 lg12 xl3>
-                 <v-select
-                 style="width: 300px"
-                  label="Part3"
-                  solo
-                  v-model="receipt.partId3"
-                  :items="part"
-                  item-text="partname"
-                  item-value="id"
-                  :rules="[(v) => !!v || 'Item is required']"
-                  required
-                ></v-select>
-                </v-flex>
+       <b-col md=4>
+        <v-select
+          label="ประเภทอุปกรณ์"
+          v-model="receipt.typeId"
+          :items="type"
+          item-text="typename"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
 
-                 <v-flex md12 xs12 lg12 xl3>
-              <p align = 'center' v-if="p3Check != ''" >Part Price : {{p3Price}}</p>
+      <b-col md=4>
+        <v-select
+          label="พนักงาน"
+          v-model="receipt.employeeId"
+          :items="employee"
+          item-text="empName"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+      <b-col md=4>
+        <v-select
+          label="สาขา"
+          v-model="receipt.branchId"
+          :items="branch"
+          item-text="branchname"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+
+
+      <b-col md=4>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่1"
+          v-model="receipt.partId"
+          :items="part"
+          item-text="partname"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+
+       <b-col md=4>
+         <v-btn class="ml-12 mb-7" @click="findPrice" depressed large color="primary">ตรวจสอบราคา</v-btn>
+         </b-col> 
+
+           <b-col md=4>
+           <v-flex md12 xs12 lg12 xl3>
+              <p class="font-weight-bold" align = 'center' v-if="pCheck != ''" >Part Price : {{pPrice}}</p>
               </v-flex>
-              
-            
-             <div class="btncenter">
-              <v-flex md12 xs12 lg12 xl3>
-                  <v-btn class="justify-center" @click="findPrice3" depressed large color="primary">ตรวจสอบราคา</v-btn>
+             </b-col>
+
+
+
+       <b-col md=4>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่2"
+          v-model="receipt.partId2"
+          :items="part"
+          item-text="partname"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+
+       <b-col md=4>
+         <v-btn class="ml-12 mb-7" @click="findPrice2" depressed large color="primary">ตรวจสอบราคา</v-btn>
+         </b-col> 
+
+          <b-col md=4>
+      <v-flex md12 xs12 lg12 xl3>
+              <p class="font-weight-bold" align = 'center' v-if="p2Check != ''" >Part Price : {{p2Price}}</p>
               </v-flex>
-              <br>
-              </div>
+      </b-col>
 
-                <v-flex md6 xs12 lg12 xl3>
-                 <v-select
-                 style="width: 300px"
-                  label="Part4"
-                  solo
-                  v-model="receipt.partId4"
-                  :items="part"
-                  item-text="partname"
-                  item-value="id"
-                  :rules="[(v) => !!v || 'Item is required']"
-                  required
-                ></v-select>
-                </v-flex>
 
-                 <v-flex md12 xs12 lg12 xl3>
-              <p align = 'center' v-if="p4Check != ''" >Part Price : {{p4Price}}</p>
+        <b-col md=4>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่3"
+          v-model="receipt.partId3"
+          :items="part"
+          item-text="partname"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+
+       <b-col md=4>
+         <v-btn class="ml-12 mb-7" @click="findPrice3" depressed large color="primary">ตรวจสอบราคา</v-btn>
+         </b-col> 
+
+          <b-col md=4>
+       <v-flex md12 xs12 lg12 xl3>
+              <p class="font-weight-bold" align = 'center' v-if="p3Check != ''" >Part Price : {{p3Price}}</p>
               </v-flex>
-              
-            
-             <div class="btncenter">
-              <v-flex md12 xs12 lg12 xl3>
-                  <v-btn class="justify-center" @click="findPrice4" depressed large color="primary">ตรวจสอบราคา</v-btn>
+        </b-col>
+
+
+        <b-col md=4>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้น4"
+          v-model="receipt.partId4"
+          :items="part"
+          item-text="partname"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+
+       <b-col md=4>
+         <v-btn class="ml-12 mb-7" @click="findPrice4" depressed large color="primary">ตรวจสอบราคา</v-btn>
+         </b-col> 
+
+           <b-col md=4>
+      <v-flex md12 xs12 lg12 xl3>
+              <p class="font-weight-bold" align = 'center' v-if="p4Check != ''" >Part Price : {{p4Price}}</p>
               </v-flex>
-              <br>
-              </div>
+      </b-col>
 
-                <v-flex md6 xs12 lg12 xl3>
-                 <v-select
-                 style="width: 300px"
-                  label="Part5"
-                  solo
-                  v-model="receipt.partId5"
-                  :items="part"
-                  item-text="partname"
-                  item-value="id"
-                  :rules="[(v) => !!v || 'Item is required']"
-                  required
-                ></v-select>
-                </v-flex>
 
-                 <v-flex md12 xs12 lg12 xl3>
-              <p align = 'center' v-if="p5Check != ''" >Part Price : {{p5Price}}</p>
+        <b-col md=4>
+        <v-select
+          label="อะไหล่ที่เปลี่ยนชิ้นที่5"
+          v-model="receipt.partId5"
+          :items="part"
+          item-text="partname"
+          item-value="id"
+          :rules="[(v) => !!v || 'Item is required']"
+          required
+          solo
+        ></v-select>
+      </b-col>
+
+
+
+       <b-col md=4>
+         <v-btn class="ml-12 mb-7" @click="findPrice5" depressed large color="primary">ตรวจสอบราคา</v-btn>
+         </b-col> 
+
+         <b-col md=4>
+         <v-flex md12 xs12 lg12 xl3>
+              <p class="font-weight-bold" align = 'center' v-if="p5Check != ''" >Part Price : {{p5Price}}</p>
               </v-flex>
-              
-            
-             <div class="btncenter">
-              <v-flex md12 xs12 lg12 xl3>
-                  <v-btn class="justify-center" @click="findPrice5" depressed large color="primary">ตรวจสอบราคา</v-btn>
-              </v-flex>
-              <br>
-              </div>
-
-            
-
+        </b-col>
 
        
-               <v-flex md6 xs12 lg12 xl3>
-                 <v-select
-                  style="width: 300px"
-                  label="Employee"
-                  solo
-                  v-model="receipt.employeeId"
-                  :items="employee"
-                  item-text="empName"
-                  item-value="id"
-                  :rules="[(v) => !!v || 'Item is required']"
-                  required
-                ></v-select>
-               </v-flex>
-          
-                <v-flex md6 xs12 lg12 xl3>
-                 <v-select
-                 style="width: 300px"
-                  label="Branch"
-                  solo
-                  v-model="receipt.branchId"
-                  :items="branch"
-                  item-text="branchname"
-                  item-value="id"
-                  :rules="[(v) => !!v || 'Item is required']"
-                  required
-                ></v-select>
-                </v-flex>
+         <b-col md=4>
+         <v-flex md12 xs12 lg12 xl3>
+              <p class="font-weight-bold" align = 'center' v-if="p4Check != ''" >Total Price : {{result}}</p>
+              </v-flex>
+        </b-col>
+        
 
-                 
-               
-               <v-col cols="17">
-              <v-text-field
-                solo
-                label= "กรุณาระบุยอดเงิน"
-                v-model="receipt.receiptPrice"
-                :rules="[(v) => !!v || 'Item is required']"
-                required
-              ></v-text-field>
-            </v-col>
+    </b-row>
 
-                <v-row justify="center">
-              <v-col cols="12">  
-                <v-btn @click="saveReceipts" :class="{ red: !valid, green: valid }">save</v-btn>
-                <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
-              </v-col>
-            </v-row>
-         </div>
-              
-             
-      </v-layout>
-     </v-form>
-           
-           
-    </v-container>
-    </div>  
-  </v-app>
+    <b-col md=12 class="text-center"> 
+               <v-btn @click="saveReceipts" depressed large color="green darken-2">save</v-btn>
+      </b-col>
+      
+   </b-card>
+  </div>
+    </b-container>
+</b-container>
+
+    
+
+   
+</v-app>
 </template>
-
 <script>
-import http from "../http-common";
+/* eslint-disable */ 
+ import http from "../http-common";
   export default {
     props: {
       source: String,
@@ -272,20 +254,19 @@ import http from "../http-common";
    data() {
     return {
       receipt: {
-       
         customerIdent: "",
-        typeId:"",
-        employeeId: "",
+        typeId: "",
+        partId:"",
+        partId2:"",
+        partId3:"",
+        partId4:"",
+        partId5:"",
+        employeeId:"",
         branchId: "",
-        partId: "",
-        partId2: "",
-        partId3: "",
-        partId4: "",
-        partId5: "",
-
-        
+        receiptPrice: "",
+  
       },
-      valid: false,
+        valid: false,
       customerCheck: false,
       customerName: "",
       pCheck: false,
@@ -301,9 +282,13 @@ import http from "../http-common";
       drawer: false
     };
   },
+  computed: {
+    result(){
+      return parseInt(this.pPrice)+parseInt(this.p2Price)+parseInt(this.p3Price)+parseInt(this.p4Price)+parseInt(this.p5Price)
+    }
+  },
   methods:{
-   /* eslint-disable */
-      getTypes(){
+    getTypes(){
         http
         .get("/type")
         .then(response =>{
@@ -315,7 +300,7 @@ import http from "../http-common";
           console.log(e);
         });
       },
-      getEmployees(){
+     getEmployees(){
         http
         .get("/employee")
         .then(response =>{
@@ -327,7 +312,7 @@ import http from "../http-common";
           console.log(e);
         })
       },
-      getBranchs(){
+    getBranchs(){
         http
         .get("/branch")
         .then(response =>{
@@ -338,7 +323,7 @@ import http from "../http-common";
           console.log(e);
         })
       },
-      getParts(){
+    getParts(){
         http
         .get("/part")
         .then(response =>{
@@ -351,6 +336,7 @@ import http from "../http-common";
         })
       },
       
+    
      findCustomer() {
           http
             .get("/customer/"+ this.receipt.customerIdent)
@@ -376,8 +362,8 @@ import http from "../http-common";
       this.$refs.form.reset();
       this.customerCheck = false;
     },
-    
-    findPrice() {
+
+     findPrice() {
           http
             .get("/part/"+ this.receipt.partId)         
             .then(response => {
@@ -486,7 +472,7 @@ import http from "../http-common";
                 this.p5Check = response.status;
                 console.log(response.data.partId5);
                 console.log(response.status);
-                
+                console.log(this.result)
               
               } else {
                 alert('ไม่พบข้อมูล')
@@ -503,8 +489,8 @@ import http from "../http-common";
       this.p5Check = false;
     },
 
-
-    saveReceipts() {
+    
+     saveReceipts() {
           http
         .post(
           // {identification}/{type_id}/{part_id}/{partR2}/{partR3}/{partR4}/{partR5}/{employee_id}/{branch_id}/{receiptPrice}
@@ -527,10 +513,11 @@ import http from "../http-common";
             "/" +
             this.receipt.branchId +
             "/" +
-            this.receipt.receiptPrice ,
+            this.result ,
            
           this.receipt,
           console.log(this.receipt),
+           
         )
        .then(response => {
           console.log(response);
@@ -547,7 +534,8 @@ import http from "../http-common";
       this.$refs.form.reset();
       this.customerCheck = false;
     },
-  
+
+ 
     refreshList() {
       this.getTypes();
       this.getEmployees();
@@ -569,22 +557,29 @@ import http from "../http-common";
 </script>
 
 <style>
-.btncenter{
-    
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+
+.bn{
+  max-height: 1090px;
+  background-color: #161717;
+  display: block;
 }
-.receipt{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 1080px;
-    width: 1000px; 
-    background-color: #00B0FF;
-    opacity: 0.9;
-    -moz-box-shadow:inset 0 0 10px #000000;
-   -webkit-box-shadow:inset 0 0 10px #000000;
-   box-shadow:inset 0 0 10px #000000;
+.container{
+  height: 599px;
+}
+.ccc{
+  width: 1920px;
+}
+.card{
+  max-height: 100%;
+}
+.card-body {
+  max-width: 100%;
+}
+.fond{
+    font-family: Kulachat ;
+}
+@font-face {
+    font-family: 'Kulachat'; /*a name to be used later*/
+    src: url('../assets/Kulachat.ttf'); /*URL to font*/
 }
 </style>
