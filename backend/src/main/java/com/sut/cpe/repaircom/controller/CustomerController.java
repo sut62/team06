@@ -66,7 +66,12 @@ public class CustomerController {
 		customerRepository.deleteById(customer_id);
 
 		return new ResponseEntity<>("Customer has been deleted!", HttpStatus.OK);
-	}
+    }
+    @GetMapping("/customer/{identification}")
+    public Customer Customers(@PathVariable String identification) {
+        Customer customer = customerRepository.findByIdentification(identification);
+        return customer;
+    }
     //สร้างข้อมูล
     @PostMapping("/customer/{sex_id}/{subDistrict}/{district}/{province_id}/{employee_id}/{cusName}/{identification}/{age}/{address}/{tel}/{birth}")
     public Customer newCustomer(
