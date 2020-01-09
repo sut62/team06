@@ -9,6 +9,7 @@ import fp from  '@/components/fp.vue'
 import Receipt from  '@/components/Receipt.vue'
 import Login from '@/components/Loginform.vue'
 import Register from '@/components/Registerform.vue'
+import Home from '@/components/Home.vue'
 
 
 Vue.use(Router)
@@ -58,7 +59,11 @@ export default new Router({
       name: 'register',
       component: Register
     },
-
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
+    },
 
   ]
 })
