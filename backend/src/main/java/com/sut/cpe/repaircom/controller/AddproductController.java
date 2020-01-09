@@ -47,6 +47,11 @@ public class AddproductController {
     public Collection<Addproduct> addproducts() {
         return addproductRepository.findAll().stream().collect(Collectors.toList());
     }
+    @GetMapping("/addproduct/{id}")
+    public Addproduct addproduct(@PathVariable long id) {
+        Addproduct addproduct = addproductRepository.findById(id);
+        return addproduct;
+    }
 
     @PostMapping("/addproduct/{productname}/{description}/{type_id}/{brand_id}/{part_id}/{branch_id}/{price}")
     public Addproduct newAddproduct(
