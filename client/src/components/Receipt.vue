@@ -13,7 +13,7 @@
 
 
 
-    <div class="bgn">
+    <div class="receipt">
     <v-container nowrap  class="justify-center">
       <v-form v-model="valid" ref="form">
       <v-layout  row nowrap class="justify-center">
@@ -575,7 +575,7 @@ import http from "../http-common";
     margin-left: auto;
     margin-right: auto;
 }
-.bgn{
+.receipt{
     display: block;
     margin-left: auto;
     margin-right: auto;
