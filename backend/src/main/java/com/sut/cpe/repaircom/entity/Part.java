@@ -26,16 +26,12 @@ public class Part {
     @Column(name="PART_ID",unique = true, nullable = true)
     private @NonNull Long id;
     private @NonNull String partname;
-    private @NonNull int partprice;
+    
 
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Addproduct> data;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Adminrepairindex> adminrepairindexs;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Receipt> receipts;
+    
 
 
 	
@@ -43,8 +39,6 @@ public class Part {
     public Part(String partname ){
         this.partname = partname;
         }
-        public Part(int partprice ){
-        this.partprice = partprice;
-        }
+        
         	
 }

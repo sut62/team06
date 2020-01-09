@@ -118,6 +118,20 @@
                   ></v-select>
             </v-col>
             </v-layout>
+
+            <v-layout  row  class="justify-center">
+             <v-col cols="5">
+            <v-text-field
+            solo
+            label="Price"
+            v-model="addproduct.price"
+            :items="price"
+            :rules="[(v) => !!v || 'Price']"
+            required
+            ></v-text-field>
+              </v-col>
+           </v-layout>
+            
               
               
               <v-layout  row  class="justify-center">
@@ -156,6 +170,7 @@ import http from "../http-common";
         brandId: "",
         partId: "",
         branchId: "",
+        price: "",
 
         
       },
@@ -242,7 +257,9 @@ import http from "../http-common";
             "/" +
             this.addproduct.partId +
             "/" +
-            this.addproduct.branchId ,
+            this.addproduct.branchId +
+            "/" +
+            this.addproduct.price ,
            
           this.addproduct
         )
@@ -297,7 +314,7 @@ import http from "../http-common";
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 900px;
+    height: 1000px;
     width: 800px; 
     background-color: #E0E0E0;
     opacity: 0.9;

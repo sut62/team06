@@ -48,14 +48,15 @@ public class AddproductController {
         return addproductRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/addproduct/{productname}/{description}/{type_id}/{brand_id}/{part_id}/{branch_id}")
+    @PostMapping("/addproduct/{productname}/{description}/{type_id}/{brand_id}/{part_id}/{branch_id}/{price}")
     public Addproduct newAddproduct(
     @PathVariable String productname,
     @PathVariable String description,
     @PathVariable long type_id,
     @PathVariable long brand_id,
     @PathVariable long part_id,
-    @PathVariable long branch_id) 
+    @PathVariable long branch_id,
+    @PathVariable int price) 
     
     {
         Addproduct newAddproduct = new Addproduct();
@@ -69,6 +70,7 @@ public class AddproductController {
     newAddproduct.setBrand(brand);
     newAddproduct.setPart(part);
     newAddproduct.setBranch(branch);
+    newAddproduct.setPrice(price);
     
     return addproductRepository.save(newAddproduct); 
     
