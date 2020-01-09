@@ -6,6 +6,7 @@ import Customer from '@/components/Customer.vue'
 import Addproduct from '@/components/Addproduct.vue'
 import Fix from '@/components/Fix.vue'
 import Contact from '@/components/Contact.vue'
+import fp from  '@/components/fp.vue'
 
 
 Vue.use(Router)
@@ -36,10 +37,15 @@ export default new Router({
   },
 
   {
-    path: 'contact',
+    path: '/contact',
     name: 'contact',
     component: Contact
   },
+    {
+      path: '/',
+      name:'firstpage',
+      components: fp
+    },
   
 
   ]
