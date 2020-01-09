@@ -264,13 +264,20 @@ import http from "../http-common";
         )
         .then(response => {
           console.log(response);
+          alert("บันทึกเรียบร้อย");
+          this.$router.push("/contact");
           //this.$router.push("/appointment");
         })
         .catch(e => {
           console.log(e);
+          alert("ไม่สามารถบันทึกข้อมูลได้");
         });
+      
       this.submitted = true;
-      window.location.reload(); 
+     
+
+
+
 
     },
     refreshList() {
