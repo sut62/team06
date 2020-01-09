@@ -49,7 +49,7 @@ export default new Router({
   {
     path: '/viewreceipt',
     name: 'viewreceipt',
-    component: Receipt
+    component: ViewReceipt
   },
     {
       path: '/',
