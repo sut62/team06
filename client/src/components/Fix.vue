@@ -6,7 +6,7 @@
      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/">LOGOUT</router-link>
+        <router-link class="mr-1" to="/home">LOGOUT</router-link>
       </v-btn>
     </v-app-bar>
 
