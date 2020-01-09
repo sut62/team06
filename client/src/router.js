@@ -5,8 +5,8 @@ import RepairAd from '@/components/RepairAd.vue'
 import Customer from '@/components/Customer.vue'
 import Addproduct from '@/components/Addproduct.vue'
 import Fix from '@/components/Fix.vue'
-import Contact from '@/components/Contact.vue'
 import fp from  '@/components/fp.vue'
+import Receipt from  '@/components/Receipt.vue'
 
 
 Vue.use(Router)
@@ -37,15 +37,17 @@ export default new Router({
   },
 
   {
-    path: '/contact',
-    name: 'contact',
-    component: Contact
+    path: '/receipt',
+    name: 'receipt',
+    component: Receipt
   },
     {
       path: '/',
       name:'firstpage',
       components: fp
     },
+    
+  
   
 
   ]
