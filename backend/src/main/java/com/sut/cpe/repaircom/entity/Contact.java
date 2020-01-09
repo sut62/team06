@@ -43,7 +43,7 @@ public class Contact {
     @JoinColumn(name = "BRANCH_ID", insertable = true, nullable = true)
     private Branch branch;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Contact.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Communication.class)
     @JoinColumn(name = "COMMUNICATION_ID", insertable = true, nullable = true)
     private Communication communication;
 
@@ -51,7 +51,7 @@ public class Contact {
     @JoinColumn(name = "CUSTOMER_ID", insertable = true, nullable = true)
     private Customer createdBy;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Customer.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Heading.class)
     @JoinColumn(name = "HEADING_ID", insertable = true, nullable = true)
     private Heading heading;
 
