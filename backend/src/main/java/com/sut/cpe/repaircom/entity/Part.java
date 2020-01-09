@@ -29,8 +29,14 @@ public class Part {
     private @NonNull int partprice;
 
     @OneToMany(fetch = FetchType.EAGER)
-    
     private Collection<Addproduct> data;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Adminrepairindex> adminrepairindexs;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Receipt> receipts;
+
 
 	
     protected Part(){}
