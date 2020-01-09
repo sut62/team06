@@ -13,8 +13,11 @@
     <div class='bgn'>                   
     <br>
     <div class="text-center">
-      
+      <br>
+      <br>
+      <br>
     <v-avatar>
+
       <img src="https://cdn.icon-icons.com/icons2/1090/PNG/512/settings_78352.png" alt="avatar">
     </v-avatar>
   </div>
@@ -89,11 +92,11 @@
               
               
               <v-layout  row  class="justify-center">
-            <v-col cols="3">   
+            <v-col cols="2">   
                 <v-row justify="center">
               <v-col cols="12">  
                 <v-btn @click="saveFixs" :class="{ red: !valid, green: valid }">save</v-btn>
-                <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
+                
               </v-col>
             </v-row>
             </v-col>
@@ -250,8 +253,8 @@ import http from "../http-common";
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 800px;
-    width: 800px; 
+    height: 300px;
+    width: 400px; 
     background-color: #ebecf7;
     opacity: 5;
     -moz-box-shadow:inset 0 0 10px #000000;
