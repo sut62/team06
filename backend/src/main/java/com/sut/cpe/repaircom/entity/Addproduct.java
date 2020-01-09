@@ -3,6 +3,8 @@ import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.Collection;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Column;
@@ -25,8 +27,9 @@ public class Addproduct{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="ADDPRODUCT_SEQ")
     @Column(name="ADDPRODUCT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
-    private String productname;
-    private String description;
+    private @NonNull String productname;
+    private @NonNull String description;
+    private @NonNull int price;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
     @JoinColumn(name = "TYPE_ID",insertable = true)
@@ -44,5 +47,11 @@ public class Addproduct{
     @JoinColumn(name = "BRANCH_ID",insertable = true)
     private Branch branch;
 
-	
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Adminrepairindex> adminrepairindexs;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Receipt> receipts;
+
+    
 }
