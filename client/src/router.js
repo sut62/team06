@@ -10,6 +10,7 @@ import Receipt from  '@/components/Receipt.vue'
 import Login from '@/components/Loginform.vue'
 import Register from '@/components/Registerform.vue'
 import Home from '@/components/Home.vue'
+import Contact from '@/components/Contact.vue'
 
 
 Vue.use(Router)
@@ -63,6 +64,11 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/Contact',
+      name: 'Contact',
+      component: Contact
     },
 
   ]
