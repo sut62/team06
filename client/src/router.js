@@ -7,6 +7,7 @@ import Addproduct from '@/components/Addproduct.vue'
 import Fix from '@/components/Fix.vue'
 import fp from  '@/components/fp.vue'
 import Receipt from  '@/components/Receipt.vue'
+import ViewReceipt from  '@/components/ViewReceiptData.vue'
 import Login from '@/components/Loginform.vue'
 import Register from '@/components/Registerform.vue'
 import Home from '@/components/Home.vue'
@@ -43,6 +44,11 @@ export default new Router({
   {
     path: '/receipt',
     name: 'receipt',
+    component: Receipt
+  },
+  {
+    path: '/viewreceipt',
+    name: 'viewreceipt',
     component: Receipt
   },
     {
