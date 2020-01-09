@@ -14,7 +14,7 @@
         <router-link class="mr-1" to="/viewCustomer">Information</router-link>
       </v-btn>-->&nbsp;
       <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/">Logout</router-link>
+        <router-link class="mr-1" to="/home">Logout</router-link>
       </v-btn>
     </v-app-bar>  
     <div class='bcus'>

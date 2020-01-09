@@ -1,16 +1,16 @@
 <template>
 <v-app id="test" class="my-auto" :style="{ backgroundImage: 'url(' + require('@/assets/b.jpg') + ')' }" >
       <div class="bn bg-dark">
-                <v-app-bar color="deep-purple accent-4" dense dark :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }"
+                <v-app-bar icon="wrench" color="deep-purple accent-4" dense dark :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }"
                     >
                       
 
-                      <v-toolbar-title>บันทึกการซ่อมคอมพิวเตอร์ของพนักงาน</v-toolbar-title>
+                      <v-toolbar-title icons="wrench" class="fond">บันทึกการซ่อมคอมพิวเตอร์ของพนักงาน</v-toolbar-title>
 
                       <v-spacer></v-spacer>
 
-                      <v-btn >
-                      ออกจากระบบ
+                      <v-btn class="fond">
+                          <router-link to="/home">ออกจากระบบ</router-link>
                       </v-btn>
 
                   
@@ -18,10 +18,10 @@
                   
                     </v-app-bar>
         </div>
-    <v-form v-model="valid" ref="form">
- <b-container class=" my-0 align-items-center d-flex justify-content-center" >   <!-- edit to mx-auto for biggerscreen -->
-  <b-container wrap class=" my-0 align-items-center d-flex justify-content-center">
-    <b-container  wrap class="bg-dark my-0 align-items-center d-flex justify-content-center" align-v="center" align-h="center" >
+
+ <b-container class=" h-100 my-0 align-items-center d-flex justify-content-center" >   <!-- edit to mx-auto for biggerscreen -->
+  <b-container wrap class=" h-100 my-0 align-items-center d-flex justify-content-center">
+    <b-container  wrap class="  bg-dark my-0 align-items-center d-flex justify-content-center" align-v="center" align-h="center" >
   <div class="ccc">
     <b-card dark nowrap fill-height class=" my-2 mx-0 bg-secondary align-items-stretch d-flex justify-content-center " align-v="center" align-h="center" >
     <b-row ref="form" nowrap  class="bg align-items-center d-flex justify-content-center"  align-v="center" align-h="center">
@@ -35,6 +35,7 @@
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
+          class="fond"
           solo
         ></v-select>
       </b-col>
@@ -47,18 +48,19 @@
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
+          class="fond"
           solo
         ></v-select></b-col>
        <b-col md=3>
          <v-text-field
             solo
-            label="อีเมลล์ลูกค้า"
+            label="เลขบัตรลูกค้า"
             v-model="repaircp.cmailp"
             :rules="[(v) => !!v || 'Item is required']"
-            
+            class="fond"
           ></v-text-field></b-col>
        <b-col md=3>
-         <v-btn class="mb-7" @click="findCustomer" raised large color="accent">ค้นหาอีเมลล์ลูกค้า</v-btn>
+         <v-btn class="mb-7 fond" @click="findCustomer" rounded large color="accent">เลขบัตรลูกค้า</v-btn>
          </b-col> 
       <b-col md=3>
         <v-text-field
@@ -67,6 +69,7 @@
             v-model="repaircp.breakdown"
             :rules="[(v) => !!v || 'Item is required']"
             required
+            class="fond"
           ></v-text-field></b-col>
        <b-col md=3>
          <v-select
@@ -77,6 +80,7 @@
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
+          class="fond"
           solo
         ></v-select></b-col>
       <b-col md=3>
@@ -88,6 +92,7 @@
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
+          class="fond"
           solo
         ></v-select></b-col>
    
@@ -100,6 +105,7 @@
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
+          class="fond"
           solo
         ></v-select>
       </b-col>
@@ -112,6 +118,7 @@
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
+          class="fond"
           solo
         ></v-select>
       </b-col>
@@ -126,6 +133,7 @@
           :rules="[(v) => !!v || 'Item is required']"
           required
           solo
+          class="fond"
         ></v-select>
       </b-col>
        <b-col md=3>
@@ -138,6 +146,7 @@
           :rules="[(v) => !!v || 'Item is required']"
           required
           solo
+          class="fond"
         ></v-select>
       </b-col>
         <b-col md=3>
@@ -150,6 +159,7 @@
           :rules="[(v) => !!v || 'Item is required']"
           required
           solo
+          class="fond"
         ></v-select>
       </b-col>
         <b-col md=3>
@@ -162,6 +172,7 @@
           :rules="[(v) => !!v || 'Item is required']"
           required
           solo
+          class="fond"
         ></v-select>
       </b-col>
         <b-col md=3>
@@ -174,19 +185,20 @@
           :rules="[(v) => !!v || 'Item is required']"
           required
           solo
+          class="fond"
         ></v-select>
       </b-col>
      
     </b-row>
     <b-col md=12 class="text-center">
-       <v-btn  @click="saverepair" raised large color="primary">บันทึกข้อมูล</v-btn>
+       <v-btn class="fond" rounded large @click="saverepair"  color="primary">บันทึกข้อมูล</v-btn>
       </b-col>
   </b-card>
   </div>
     </b-container>
 </b-container>
 </b-container>
-    </v-form>
+
 
    
 </v-app>
@@ -389,7 +401,7 @@
 };
 </script>
 
-<style>
+<style scoped>
 
 .bn{
   max-height: 1090px;
@@ -407,5 +419,13 @@
 }
 .card-body {
   max-width: 100%;
+}
+.fond{
+    font-family: Kulachat ;
+}
+
+@font-face {
+    font-family: 'Kulachat'; /*a name to be used later*/
+    src: url('../assets/Kulachat.ttf'); /*URL to font*/
 }
 </style>
