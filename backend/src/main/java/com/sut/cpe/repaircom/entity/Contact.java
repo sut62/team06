@@ -41,19 +41,19 @@ public class Contact {
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Branch.class)
     @JoinColumn(name = "BRANCH_ID", insertable = true, nullable = true)
-    private Branch branch;
+    private @NonNull Branch branch;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Communication.class)
     @JoinColumn(name = "COMMUNICATION_ID", insertable = true, nullable = true)
-    private Communication communication;
+    private @NonNull Communication communication;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMER_ID", insertable = true, nullable = true)
-    private Customer createdBy;
+    private @NonNull Customer createdBy;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Heading.class)
     @JoinColumn(name = "HEADING_ID", insertable = true, nullable = true)
-    private Heading heading;
+    private @NonNull Heading heading;
 
     
     public String getDetail() {
