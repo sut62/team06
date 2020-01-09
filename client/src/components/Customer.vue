@@ -1,5 +1,5 @@
 <template >
-  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/customer.png') + ')' }">
+  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/bg10.jpg') + ')' }">
   <v-app-bar app color="deep-purple darken-1">
       <v-toolbar-title class="headline text-uppercase">
         <span>Repair</span>
@@ -278,7 +278,7 @@ import http from "../http-common";
         .then(response => {
           console.log(response);
           alert("บันทึกเรียบร้อยแล้ว");
-          this.$router.push("/viewCustomer");
+          this.$router.push("/customer");
         })
         .catch(e => {
           console.log(e);
