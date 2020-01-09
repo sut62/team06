@@ -7,6 +7,8 @@ import Addproduct from '@/components/Addproduct.vue'
 import Fix from '@/components/Fix.vue'
 import fp from  '@/components/fp.vue'
 import Receipt from  '@/components/Receipt.vue'
+import Login from '@/components/Loginform.vue'
+import Register from '@/components/Registerform.vue'
 
 
 Vue.use(Router)
@@ -46,9 +48,17 @@ export default new Router({
       name:'firstpage',
       components: fp
     },
-    
-  
-  
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
+
 
   ]
 })
