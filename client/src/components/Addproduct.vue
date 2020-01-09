@@ -14,7 +14,7 @@
         <router-link class="mr-1" to="/view">INFORMATION</router-link>
       </v-btn>
       <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/view">LOGOUT</router-link>
+        <router-link class="mr-1" to="/">LOGOUT</router-link>
       </v-btn>
     </v-app-bar>
     <div class='bgn'>                   
