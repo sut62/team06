@@ -17,7 +17,6 @@ import javax.persistence.GenerationType;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @EqualsAndHashCode
 @Table(name="ADDPRODUCT")
 
@@ -52,6 +51,15 @@ public class Addproduct{
 
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Receipt> receipts;
+
+    protected Addproduct(){}
+    public Addproduct(String productname,String  description,int price){
+        this.productname = productname;
+        this.description = description;
+        this.price = price;
+       
+        }
+
 
     
 }

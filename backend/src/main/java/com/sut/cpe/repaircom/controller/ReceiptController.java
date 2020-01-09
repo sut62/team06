@@ -39,7 +39,7 @@ public class ReceiptController {
     @Autowired
     private TypeRepository typeRepository;
     @Autowired
-    private PartRepository partRepository;
+    private AddproductRepository addproductRepository;
    
    
     
@@ -54,22 +54,22 @@ public class ReceiptController {
             return receiptRepository.findAll().stream().collect(Collectors.toList());
         }
 
-        @PostMapping("/receipt/{identification}/{type_id}/{part_id}/{partR2}/{partR3}/{partR4}/{partR5}/{employee_id}/{branch_id}/{receiptPrice}")
+        @PostMapping("/receipt/{identification}/{type_id}/{pro_id}/{proR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
             public Receipt newReceipt(Receipt newReceipt,
             @PathVariable String identification,
             @PathVariable long type_id,
-            @PathVariable long part_id,
-            @PathVariable String partR2,
-            @PathVariable String partR3,
-            @PathVariable String partR4,
-            @PathVariable String partR5,
+            @PathVariable long pro_id,
+            @PathVariable String proR2,
+            @PathVariable String proR3,
+            @PathVariable String proR4,
+            @PathVariable String proR5,
             @PathVariable long employee_id,
             @PathVariable long branch_id,
             @PathVariable String receiptPrice){
             
             Customer customer = customerRepository.findByIdentification(identification);
             Type type = typeRepository.findById(type_id);
-            Part part = partRepository.findById(part_id);
+            Addproduct addproduct = addproductRepository.findById(pro_id);
             Employee employee = employeeRepository.findById(employee_id);
             Branch branch = branchRepository.findById(branch_id);
             
@@ -77,14 +77,14 @@ public class ReceiptController {
 
             newReceipt.setCustomer(customer);
             newReceipt.setType(type);
-            newReceipt.setPart(part);
+            newReceipt.setAddproduct(addproduct);
             newReceipt.setEmployee(employee);
             newReceipt.setBranch(branch);
             newReceipt.setReceiptPrice(receiptPrice);
-            newReceipt.setPartR2(partR2);
-            newReceipt.setPartR3(partR3);
-            newReceipt.setPartR4(partR4);
-            newReceipt.setPartR5(partR5);
+            newReceipt.setProR2(proR2);
+            newReceipt.setProR3(proR3);
+            newReceipt.setProR4(proR4);
+            newReceipt.setProR5(proR5);
             newReceipt.setReceiptDate(new Date());
            
 

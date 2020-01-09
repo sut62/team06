@@ -58,6 +58,8 @@ public class RepaircomApplication {
             partRepository.save(new Part("MOUSE"));
             partRepository.save(new Part("CPU"));
             partRepository.save(new Part("RAM"));
+            partRepository.save(new Part("no repair"));
+
 
 
             branchRepository.save(new Branch("สาขาจังหวัดกรุงเทพมหานคร"));
@@ -92,6 +94,12 @@ public class RepaircomApplication {
             headingRepository.save(new Heading("แจ้งเรื่องร้องเรียน"));//ระบบติดต่อสอบถาม
             headingRepository.save(new Heading("สอบถามเรื่องอื่นๆ"));//ระบบติดต่อสอบถาม
 
+            addproductRepository.save(new Addproduct("RAM","8gb",320));
+			addproductRepository.save(new Addproduct("Card","sdfs",840));
+			addproductRepository.save(new Addproduct("cpu","64bit",1500));
+            addproductRepository.save(new Addproduct("on repair","-",0));
+            
+            
 
 
 

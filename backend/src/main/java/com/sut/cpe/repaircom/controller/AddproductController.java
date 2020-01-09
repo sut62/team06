@@ -54,7 +54,7 @@ public class AddproductController {
     }
 
     @PostMapping("/addproduct/{productname}/{description}/{type_id}/{brand_id}/{part_id}/{branch_id}/{price}")
-    public Addproduct newAddproduct(
+    public Addproduct newAddproduct(Addproduct newAddproduct,
     @PathVariable String productname,
     @PathVariable String description,
     @PathVariable long type_id,
@@ -64,7 +64,7 @@ public class AddproductController {
     @PathVariable int price) 
     
     {
-        Addproduct newAddproduct = new Addproduct();
+         
     Type type = typeRepository.findById(type_id);
     Brand brand = brandRepository.findById(brand_id);
     Part part = partRepository.findById(part_id);
