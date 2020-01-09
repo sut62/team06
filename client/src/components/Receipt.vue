@@ -96,9 +96,9 @@
       <b-col md=4>
         <v-select
           label="อะไหล่ที่เปลี่ยนชิ้นที่1"
-          v-model="receipt.partId"
-          :items="part"
-          item-text="partname"
+          v-model="receipt.proId"
+          :items="addproduct"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -122,9 +122,9 @@
        <b-col md=4>
         <v-select
           label="อะไหล่ที่เปลี่ยนชิ้นที่2"
-          v-model="receipt.partId2"
-          :items="part"
-          item-text="partname"
+          v-model="receipt.proId2"
+          :items="addproduct"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -147,9 +147,9 @@
         <b-col md=4>
         <v-select
           label="อะไหล่ที่เปลี่ยนชิ้นที่3"
-          v-model="receipt.partId3"
-          :items="part"
-          item-text="partname"
+          v-model="receipt.proId3"
+          :items="addproduct"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -172,9 +172,9 @@
         <b-col md=4>
         <v-select
           label="อะไหล่ที่เปลี่ยนชิ้น4"
-          v-model="receipt.partId4"
-          :items="part"
-          item-text="partname"
+          v-model="receipt.proId4"
+          :items="addproduct"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -197,9 +197,9 @@
         <b-col md=4>
         <v-select
           label="อะไหล่ที่เปลี่ยนชิ้นที่5"
-          v-model="receipt.partId5"
-          :items="part"
-          item-text="partname"
+          v-model="receipt.proId5"
+          :items="addproduct"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -256,11 +256,11 @@
       receipt: {
         customerIdent: "",
         typeId: "",
-        partId:"",
-        partId2:"",
-        partId3:"",
-        partId4:"",
-        partId5:"",
+        proId:"",
+        proId2:"",
+        proId3:"",
+        proId4:"",
+        proId5:"",
         employeeId:"",
         branchId: "",
         receiptPrice: "",
@@ -323,12 +323,12 @@
           console.log(e);
         })
       },
-    getParts(){
+    getProducts(){
         http
-        .get("/part")
+        .get("/addproduct")
         .then(response =>{
           this.$forceUpdate();
-          this.part = response.data;
+          this.addproduct = response.data;
           console.log(response.data);
         })
         .catch(e =>{
@@ -365,12 +365,12 @@
 
      findPrice() {
           http
-            .get("/part/"+ this.receipt.partId)         
+            .get("/addproduct/"+ this.receipt.proId)         
             .then(response => {
               if (response.data.id != null) {
-                this.pPrice = response.data.partprice;
+                this.pPrice = response.data.price;
                 this.pCheck = response.status;
-                console.log(response.data.partId);
+                console.log(response.data.proId);
                 console.log(response.status);
                 
               
@@ -390,12 +390,12 @@
     },
     findPrice2() {
           http
-            .get("/part/"+ this.receipt.partId2)         
+            .get("/addproduct/"+ this.receipt.proId2)         
             .then(response => {
               if (response.data.id != null) {
-                this.p2Price = response.data.partprice;
+                this.p2Price = response.data.price;
                 this.p2Check = response.status;
-                console.log(response.data.partId2);
+                console.log(response.data.proId2);
                 console.log(response.status);
                 
               
@@ -415,12 +415,12 @@
     },
     findPrice3() {
           http
-            .get("/part/"+ this.receipt.partId3)         
+            .get("/addproduct/"+ this.receipt.proId3)         
             .then(response => {
               if (response.data.id != null) {
-                this.p3Price = response.data.partprice;
+                this.p3Price = response.data.price;
                 this.p3Check = response.status;
-                console.log(response.data.partId3);
+                console.log(response.data.proId3);
                 console.log(response.status);
                 
               
@@ -440,12 +440,12 @@
     },
     findPrice4() {
           http
-            .get("/part/"+ this.receipt.partId4)         
+            .get("/addproduct/"+ this.receipt.proId4)         
             .then(response => {
               if (response.data.id != null) {
-                this.p4Price = response.data.partprice;
+                this.p4Price = response.data.price;
                 this.p4Check = response.status;
-                console.log(response.data.partId4);
+                console.log(response.data.proId4);
                 console.log(response.status);
                 
               
@@ -465,12 +465,12 @@
     },
     findPrice5() {
           http
-            .get("/part/"+ this.receipt.partId5)         
+            .get("/addproduct/"+ this.receipt.proId5)         
             .then(response => {
               if (response.data.id != null) {
-                this.p5Price = response.data.partprice;
+                this.p5Price = response.data.price;
                 this.p5Check = response.status;
-                console.log(response.data.partId5);
+                console.log(response.data.proId5);
                 console.log(response.status);
                 console.log(this.result)
               
@@ -493,21 +493,21 @@
      saveReceipts() {
           http
         .post(
-          // {identification}/{type_id}/{part_id}/{partR2}/{partR3}/{partR4}/{partR5}/{employee_id}/{branch_id}/{receiptPrice}
+        // /receipt/{identification}/{type_id}/{pro_id}/{proeR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
           "/receipt/" +
             this.receipt.customerIdent +
             "/" +
             this.receipt.typeId +
             "/" +
-            this.receipt.partId +
+            this.receipt.proId +
             "/" +
-            this.receipt.partId2 +
+            this.receipt.proId2 +
             "/" +
-            this.receipt.partId3 +
+            this.receipt.proId3 +
             "/" +
-            this.receipt.partId4 +
+            this.receipt.proId4 +
             "/" +
-            this.receipt.partId5 +
+            this.receipt.proId5 +
             "/" +
             this.receipt.employeeId +
             "/" +
@@ -540,7 +540,7 @@
       this.getTypes();
       this.getEmployees();
       this.getBranchs();
-      this.getParts();
+      this.getProducts();
       this.saveReceipts();
     },
     
@@ -549,7 +549,7 @@
       this.getTypes();
       this.getEmployees();
       this.getBranchs();
-      this.getParts();
+      this.getProducts();
       this.saveReceipts();
       }
   

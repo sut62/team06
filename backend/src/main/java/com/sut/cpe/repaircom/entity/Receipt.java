@@ -27,10 +27,10 @@ public class Receipt{
     @Column(name="RECEIPT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
     private @NonNull String receiptPrice;
-    private @NonNull String partR2;
-    private @NonNull String partR3;
-    private @NonNull String partR4;
-    private @NonNull String partR5;
+    private @NonNull String proR2;
+    private @NonNull String proR3;
+    private @NonNull String proR4;
+    private @NonNull String proR5;
   
 
     @Column(name="RECEIPT_DATE")
@@ -52,18 +52,19 @@ public class Receipt{
     @JoinColumn(name ="TYPE_ID",insertable = true)
     private @NonNull Type type;
 
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Part.class)
-    @JoinColumn(name ="PART_ID",insertable = true)
-    private @NonNull Part part;
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Addproduct.class)
+    @JoinColumn(name ="ADDPRODUCT_ID",insertable = true)
+    private @NonNull Addproduct addproduct;
+
 
     protected Receipt(){}
-        public Receipt(Date receiptDate,String receiptPrice,String partR2,String partR3,String partR4,String partR5 ){
+        public Receipt(Date receiptDate,String receiptPrice,String proR2,String proR3,String proR4,String proR5 ){
             this.receiptDate = receiptDate;
             this.receiptPrice = receiptPrice;
-            this.partR2 = partR2;
-            this.partR3 = partR3;
-            this.partR4 = partR4;
-            this.partR5 = partR5;
+            this.proR2 = proR2;
+            this.proR3 = proR3;
+            this.proR4 = proR4;
+            this.proR5 = proR5;
 
             }
 
