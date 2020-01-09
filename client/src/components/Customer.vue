@@ -1,23 +1,27 @@
 <template >
-  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }"> 
-  <v-app-bar app color="blue darken-2">
+  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/customer.png') + ')' }">
+  <v-app-bar app color="deep-purple darken-1">
       <v-toolbar-title class="headline text-uppercase">
-        <span>Reapair</span>
+        <span>Repair</span>
         <span class="font-weight-light"> Computer</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn color="grey lighten-5">
+    <!-- Comment -->
+    <!--<v-btn color="grey lighten-5">
         <router-link class="mr-1" to="/customer">Add Customer</router-link>
       </v-btn>&nbsp;
       <v-btn color="grey lighten-5">
         <router-link class="mr-1" to="/viewCustomer">Information</router-link>
-      </v-btn>&nbsp;
+      </v-btn>-->&nbsp;
       <v-btn color="grey lighten-5">
         <router-link class="mr-1" to="/">Logout</router-link>
       </v-btn>
     </v-app-bar>  
-    <div class='bgn'>          
-    <br/>
+    <div class='bcus'>
+      <br />
+      <br />
+      <br />
+      <br />
       <div class="text-center">
         <v-avatar>
           <img src="https://mpng.pngfly.com/20180920/ibe/kisspng-businessman-customer-logo-customer-service-compute-boss-svg-png-icon-free-download-455498-online-5ba3be8626cc57.5571033115374577981589.jpg" alt="avatar">
@@ -309,7 +313,7 @@ import http from "../http-common";
     margin-left: auto;
     margin-right: auto;
 }
-.bgn{
+.bcus{
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -317,8 +321,6 @@ import http from "../http-common";
     width: 1000px; 
     background-color: #ebecf7;
     opacity: 0.9;
-    -moz-box-shadow:inset 0 0 10px #000000;
-   -webkit-box-shadow:inset 0 0 10px #000000;
-   box-shadow:inset 0 0 10px #000000;
+
 }
 </style>
