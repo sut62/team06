@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }">
+  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/addpro.jpeg') + ')' }">
   <v-app-bar app color="#C62828">
       <v-toolbar-title class="headline text-uppercase">
         <span >ADD</span>
