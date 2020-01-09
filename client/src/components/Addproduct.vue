@@ -17,9 +17,12 @@
         <router-link class="mr-1" to="/home">LOGOUT</router-link>
       </v-btn>
     </v-app-bar>
-    <div class='bgn'>                   
+    <div class='addpro'>                   
     <br>
     <div class="text-center">
+    <br>
+<br>
+<br>
     <v-avatar>
       <img src="https://image.flaticon.com/icons/png/512/187/187503.png" alt="avatar">
     </v-avatar>
@@ -290,7 +293,7 @@ import http from "../http-common";
     margin-left: auto;
     margin-right: auto;
 }
-.bgn{
+.addpro{
     display: block;
     margin-left: auto;
     margin-right: auto;
