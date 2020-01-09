@@ -128,7 +128,7 @@
           label="อะไหล่ที่เปลี่ยน"
           v-model="repaircp.part"
           :items="parts"
-          item-text="partname"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -141,7 +141,7 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่สอง"
           v-model="repaircp.part2"
           :items="parts"
-          item-text="partname"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -154,7 +154,7 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่สาม"
           v-model="repaircp.part3"
           :items="parts"
-          item-text="partname"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -167,7 +167,7 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่สี่"
           v-model="repaircp.part4"
           :items="parts"
-          item-text="partname"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -180,7 +180,7 @@
           label="อะไหล่ที่เปลี่ยนชิ้นที่5"
           v-model="repaircp.part5"
           :items="parts"
-          item-text="partname"
+          item-text="productname"
           item-value="id"
           :rules="[(v) => !!v || 'Item is required']"
           required
@@ -293,7 +293,7 @@
     },
     getParts(){
       http
-      .get("/part")
+      .get("/addproduct")
       .then(response =>{
         this.$forceUpdate();
         this.parts = response.data;
@@ -373,7 +373,6 @@
         console.log(response);
         if(response = true){
           alert('บันทึกข้อมูลเสร็จสิ้น')
-          this.$ref.form.reset();
         }
       })
       .catch(e=>{
