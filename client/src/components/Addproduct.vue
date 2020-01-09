@@ -1,16 +1,20 @@
 <template>
   <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }">
-  <v-app-bar app color="blue darken-2">
+  <v-app-bar app color="#C62828">
       <v-toolbar-title class="headline text-uppercase">
-        <span>ADD</span>
+        <span >ADD</span>
         <span class="font-weight-light"> PRODUCT</span>
       </v-toolbar-title>
+      
       <v-spacer></v-spacer>
       <v-btn color="grey lighten-5">
         <router-link class="mr-1" to="/">ADD PRODUCT </router-link>
       </v-btn>
       <v-btn color="grey lighten-5">
         <router-link class="mr-1" to="/view">INFORMATION</router-link>
+      </v-btn>
+      <v-btn color="grey lighten-5">
+        <router-link class="mr-1" to="/view">LOGOUT</router-link>
       </v-btn>
     </v-app-bar>
     <div class='bgn'>                   
@@ -290,9 +294,9 @@ import http from "../http-common";
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 1050px;
-    width: 850px; 
-    background-color: #00B8D4;
+    height: 900px;
+    width: 800px; 
+    background-color: #E0E0E0;
     opacity: 0.9;
     -moz-box-shadow:inset 0 0 10px #000000;
    -webkit-box-shadow:inset 0 0 10px #000000;
