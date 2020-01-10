@@ -12,11 +12,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
 @Data
 @Entity
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @EqualsAndHashCode
 @Table(name="ADDPRODUCT")
 
@@ -52,7 +54,7 @@ public class Addproduct{
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Receipt> receipts;
 
-    protected Addproduct(){}
+   
     public Addproduct(String productname,String  description,int price){
         this.productname = productname;
         this.description = description;
