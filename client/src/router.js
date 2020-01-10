@@ -5,7 +5,7 @@ import RepairAd from '@/components/RepairAd.vue'
 import Customer from '@/components/Customer.vue'
 import Addproduct from '@/components/Addproduct.vue'
 import Fix from '@/components/Fix.vue'
-import fp from  '@/components/fp.vue'
+import Cushome from '@/components/Cushome.vue'
 import Receipt from  '@/components/Receipt.vue'
 import ViewReceipt from  '@/components/ViewReceiptData.vue'
 import Login from '@/components/Loginform.vue'
@@ -53,8 +53,7 @@ export default new Router({
   },
     {
       path: '/',
-      name:'firstpage',
-      components: fp
+      redirect: '/home'
     },
     {
       path: '/login',
@@ -76,6 +75,10 @@ export default new Router({
       name: 'Contact',
       component: Contact
     },
-
+    {
+      path: '/cushome',
+      name: 'customerhome',
+      component: Cushome
+    },
   ]
 })
