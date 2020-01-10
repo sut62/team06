@@ -105,7 +105,7 @@ import http from "../http-common";
           }
           else if(this.message == '{"p3":"true"}'){
                 alert('login success')
-                this.$router.push({ path: `/contact` })
+                this.$router.push({ path: `/cushome` })
           }
           else if(this.message == '{"p4":"true"}'){
                 alert('login success')

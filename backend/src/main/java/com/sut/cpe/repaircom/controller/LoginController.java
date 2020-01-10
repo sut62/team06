@@ -87,6 +87,14 @@ String username;
                 map.put("p6","false");
             }
         }
+        else if(profilelogin.getUsername().equals(username)) {
+            if(profilelogin.getPassword().equals(password)) {
+                map.put("p3","true");
+                }
+            else {
+                map.put("p3","false");
+            }
+        }
         else
             map.put("massage","false");
         
