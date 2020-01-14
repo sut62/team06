@@ -57,7 +57,7 @@ public class Receipt{
     private @NonNull Addproduct addproduct;
 
 
-    protected Receipt(){}
+        public Receipt(){}
         public Receipt(Date receiptDate,String receiptPrice,String proR2,String proR3,String proR4,String proR5 ){
             this.receiptDate = receiptDate;
             this.receiptPrice = receiptPrice;
