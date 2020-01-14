@@ -40,9 +40,15 @@ public class Adminrepairindex{
     @Size(min = 3,max = 50)
     @Column(unique = true)
     private String breakdown;
-    private @NonNull String partn2;
-    private @NonNull String partn3;
-    private @NonNull String partn4;
+
+    @NotNull
+    private String partn2;
+
+    @NotNull
+    private String partn3;
+    @NotNull
+    private String partn4;
+    @NotNull
     private @NonNull String partn5;
 
 
