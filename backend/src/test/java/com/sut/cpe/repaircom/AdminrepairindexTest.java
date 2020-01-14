@@ -50,7 +50,7 @@ public class AdminrepairindexTest {
         adminrepairindex = adminrepairindexRepository.saveAndFlush(adminrepairindex);
         final Optional<Adminrepairindex> found = adminrepairindexRepository.findById(adminrepairindex.getId());
 
-        assertEquals("เปิดติดแต่จอไม่แสดงภาพ", found.get().getBreakdown());
+        assertEquals("เปิดไม่ติด", found.get().getBreakdown());
         assertEquals("cpu", found.get().getPartn2());
         assertEquals("gpu", found.get().getPartn3());
         assertEquals("ram", found.get().getPartn4());
