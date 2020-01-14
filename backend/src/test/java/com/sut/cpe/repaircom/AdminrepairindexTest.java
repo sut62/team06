@@ -40,7 +40,7 @@ public class AdminrepairindexTest {
     @Test
     void b5910168_testAdminrepairSuccess(){
         Adminrepairindex adminrepairindex = new Adminrepairindex();
-      
+
         adminrepairindex.setBreakdown("เปิดไม่ติด");
         adminrepairindex.setPartn2("cpu");
         adminrepairindex.setPartn3("gpu");
@@ -49,8 +49,8 @@ public class AdminrepairindexTest {
 
         adminrepairindex = adminrepairindexRepository.saveAndFlush(adminrepairindex);
         final Optional<Adminrepairindex> found = adminrepairindexRepository.findById(adminrepairindex.getId());
-      
-        assertEquals("เปิดไม่ติด", found.get().getBreakdown());
+
+        assertEquals("เปิดติดแต่จอไม่แสดงภาพ", found.get().getBreakdown());
         assertEquals("cpu", found.get().getPartn2());
         assertEquals("gpu", found.get().getPartn3());
         assertEquals("ram", found.get().getPartn4());
