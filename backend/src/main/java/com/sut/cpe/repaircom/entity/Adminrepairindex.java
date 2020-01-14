@@ -17,6 +17,9 @@ import javax.persistence.GenerationType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -32,7 +35,11 @@ public class Adminrepairindex{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="ADMINREPAIR_SEQ")
     @Column(name="ADMINREPAIR_ID",unique = true , nullable = true )
     private @NonNull Long id;
-    private @NonNull String breakdown;
+
+    @NotNull
+    @Size(min = 3,max = 50)
+    @Column(unique = true)
+    private String breakdown;
     private @NonNull String partn2;
     private @NonNull String partn3;
     private @NonNull String partn4;
@@ -74,7 +81,7 @@ public class Adminrepairindex{
     @JoinColumn(name = "PARTPIECESNUMBERFORREPAIR_ID", insertable = true)
     private  Partpiecesnumberforrepair partpiecesnumberforrepair;
     
-    protected Adminrepairindex(){}
+    public Adminrepairindex(){}
     public Adminrepairindex(Date repairDate,String breakdown,String partn2,String partn3,String partn4,String partn5){
         this.repairDate = repairDate;
         this.breakdown = breakdown;
