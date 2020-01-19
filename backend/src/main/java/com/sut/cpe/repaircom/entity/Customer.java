@@ -14,10 +14,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import com.sut.cpe.repaircom.entity.*;
 
 import java.util.Collection;
 import java.util.Date;
+
+
 
 @Data
 @Entity
@@ -31,7 +36,11 @@ public class Customer {
 	@Column(name="CUSTOMER_ID",unique = true, nullable = true)
 	private @NonNull Long id;
 	private @NonNull String cusName;
-	private @NonNull String identification;
+
+	@NotNull
+	@Pattern(regexp = "\\d{13}")
+	private String identification;
+
 	private @NonNull int age;
 	private @NonNull Date birth;
 	private @NonNull String address;
