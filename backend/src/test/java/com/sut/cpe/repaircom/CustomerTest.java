@@ -86,7 +86,7 @@ public class CustomerTest {
     }
 
     @Test
-    void b5915040_testPersonIdMustNotBe12Digits() {
+    void b5915040_testIdentificationMustNotBe12Digits() {
         Customer customer = new Customer();
 
         customer.setCusName("parin boorapa");
@@ -110,10 +110,10 @@ public class CustomerTest {
     }
 
     @Test
-    void b5915040_testPersonIdMustNotBe14Digits() {
+    void b5915040_testIdentificationMustNotBe14Digits() {
         Customer customer = new Customer();
 
-         customer.setCusName("parin boorapa");
+        customer.setCusName("parin boorapa");
         customer.setIdentification("12345678901234"); // 14 digits
         customer.setAge(21);
         customer.setBirth(null);
@@ -133,6 +133,24 @@ public class CustomerTest {
         assertEquals("identification", v.getPropertyPath().toString());
     }
 
+    @Test
+    void b5915040_testIdentificationPattern() {
+        Customer customer = new Customer();
+
+        customer.setCusName("parin boorapa");
+        customer.setIdentification("1234567890123");
+        customer.setAge(21);
+        customer.setBirth(null);
+        customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
+        customer.setSubDistrict("ห้วยหิน");
+        customer.setDistrict("หนองหงส์");
+        customer.setTel("0939898774");
+
+        customer = customerRepository.saveAndFlush(customer);
+
+        Optional<Customer> found = customerRepository.findById(customer.getId());
+        assertEquals("1234567890123", found.get().getIdentification());
+    }
 }
 
 
