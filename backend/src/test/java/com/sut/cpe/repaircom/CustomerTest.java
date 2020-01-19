@@ -86,55 +86,7 @@ public class CustomerTest {
     }
 
     @Test
-    void b5915040_testIdentificationMustNotBe12Digits() {
-        Customer customer = new Customer();
-
-        customer.setCusName("parin boorapa");
-        customer.setIdentification("123456789012"); // 12 digits
-        customer.setAge(21);
-        customer.setBirth(null);
-        customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
-        customer.setSubDistrict("ห้วยหิน");
-        customer.setDistrict("หนองหงส์");
-        customer.setTel("0939898774");
-
-        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
-
-        // result ต้องมี error 1 ค่าเท่านั้น
-        assertEquals(1, result.size());
-
-        // error message ตรงชนิด และถูก field
-        ConstraintViolation<Customer> v = result.iterator().next();
-        assertEquals("must match \"\\d{13}\"", v.getMessage());
-        assertEquals("identification", v.getPropertyPath().toString());
-    }
-
-    @Test
-    void b5915040_testIdentificationMustNotBe14Digits() {
-        Customer customer = new Customer();
-
-        customer.setCusName("parin boorapa");
-        customer.setIdentification("12345678901234"); // 14 digits
-        customer.setAge(21);
-        customer.setBirth(null);
-        customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
-        customer.setSubDistrict("ห้วยหิน");
-        customer.setDistrict("หนองหงส์");
-        customer.setTel("0939898774");
-
-        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
-
-        // result ต้องมี error 1 ค่าเท่านั้น
-        assertEquals(1, result.size());
-
-        // error message ตรงชนิด และถูก field
-        ConstraintViolation<Customer> v = result.iterator().next();
-        assertEquals("must match \"\\d{13}\"", v.getMessage());
-        assertEquals("identification", v.getPropertyPath().toString());
-    }
-
-    @Test
-    void b5915040_testIdentificationPattern() {
+    void b5915040_testIdentificationSize() {
         Customer customer = new Customer();
 
         customer.setCusName("parin boorapa");
@@ -150,6 +102,25 @@ public class CustomerTest {
 
         Optional<Customer> found = customerRepository.findById(customer.getId());
         assertEquals("1234567890123", found.get().getIdentification());
+    }
+
+    @Test
+    void b5915040_testTelPattern() {
+        Customer customer = new Customer();
+
+        customer.setCusName("parin boorapa");
+        customer.setIdentification("1215422512455");
+        customer.setAge(21);
+        customer.setBirth(null);
+        customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
+        customer.setSubDistrict("ห้วยหิน");
+        customer.setDistrict("หนองหงส์");
+        customer.setTel("0939898774");
+
+        customer = customerRepository.saveAndFlush(customer);
+
+        Optional<Customer> found = customerRepository.findById(customer.getId());
+        assertEquals("0939898774", found.get().getTel());
     }
 }
 

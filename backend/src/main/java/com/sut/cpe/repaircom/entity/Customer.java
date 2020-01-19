@@ -16,6 +16,7 @@ import javax.persistence.FetchType;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.sut.cpe.repaircom.entity.*;
 
@@ -38,7 +39,7 @@ public class Customer {
 	private @NonNull String cusName;
 
 	@NotNull
-	@Pattern(regexp = "\\d{13}")
+	@Size(max = 13,min = 13)
 	private String identification;
 
 	private @NonNull int age;
@@ -46,7 +47,10 @@ public class Customer {
 	private @NonNull String address;
 	private @NonNull String subDistrict;
 	private @NonNull String district;
-	private @NonNull String tel;
+
+	@NotNull
+	@Pattern(regexp = "\\d{10}")
+	private String tel;
 	
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID", insertable = true)

@@ -55,7 +55,7 @@ public class RepaircomApplication {
 				customer.setAddress("หัวเห็ด"); // set ชื่อ (name) ให้ Object ชื่อ address
 				customer.setSubDistrict("บางนา"); // set ชื่อ (name) ให้ Object ชื่อ subDistrict
 				customer.setDistrict("บางพลี"); // set ชื่อ (name) ให้ Object ชื่อ district
-				customer.setTel("0215489547"); // set ชื่อ (name) ให้ Object ชื่อ tel
+				customer.setTel("0321254551"); // set ชื่อ (name) ให้ Object ชื่อ tel
 				customerRepository.save(customer); // บันทึก Objcet ชื่อ Customer
 			});
 
@@ -68,7 +68,7 @@ public class RepaircomApplication {
 				customer.setAddress("หัวเห็ด"); // set ชื่อ (name) ให้ Object ชื่อ address
 				customer.setSubDistrict("บางนา"); // set ชื่อ (name) ให้ Object ชื่อ subDistrict
 				customer.setDistrict("บางพลี"); // set ชื่อ (name) ให้ Object ชื่อ district
-				customer.setTel("012454878"); // set ชื่อ (name) ให้ Object ชื่อ tel
+				customer.setTel("0212549548"); // set ชื่อ (name) ให้ Object ชื่อ tel
 				customerRepository.save(customer); // บันทึก Objcet ชื่อ Customer
 			});
 
