@@ -60,62 +60,37 @@ public class CustomerTest {
         assertEquals("หนองหงส์", found.get().getDistrict());
         assertEquals("0939898774", found.get().getTel());
     }
-    /*@Test
-    void b5915040_testCustomerNull(){
-        Customer customer = new Customer();
-
-        customer.setCusName(null);
-        customer.setIdentification("1319800218977");
-        customer.setAge(21);
-        customer.setBirth(null);
-        customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
-        customer.setSubDistrict("ห้วยหิน");
-        customer.setDistrict("หนองหงส์");
-        customer.setTel("0939898774");
-
-        customer = customerRepository.saveAndFlush(customer);
-        final Optional<Customer> found = customerRepository.findById(customer.getId());
-
-        assertEquals("Must Not Be Null", v.getMessage());
-        assertEquals("1319800218977", found.get().getIdentification());
-        assertEquals(21, found.get().getAge());
-        assertEquals(null, found.get().getBirth());
-        assertEquals("63 หมู่่ 14 บ้านหัวเห็ด", found.get().getAddress());
-        assertEquals("ห้วยหิน", found.get().getSubDistrict());
-        assertEquals("หนองหงส์", found.get().getDistrict());
-        assertEquals("0939898774", found.get().getTel());
-    }
+    
     @Test
-    void b5915040_testCustomerSize(){
+    void b5915040_testIdentificationMustNotBeNull() {
         Customer customer = new Customer();
-
-        customer.setCusName(null);
-        customer.setIdentification("1319800218977");
+        
+        customer.setCusName("parin boorapa");
+        customer.setIdentification(null);
         customer.setAge(21);
         customer.setBirth(null);
         customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
         customer.setSubDistrict("ห้วยหิน");
         customer.setDistrict("หนองหงส์");
         customer.setTel("0939898774");
+      
+        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
 
-        customer = customerRepository.saveAndFlush(customer);
-        final Optional<Customer> found = customerRepository.findById(customer.getId());
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
 
-        assertEquals(null, found.get().getCusName());
-        assertEquals("1319800218977", found.get().getIdentification());
-        assertEquals(21, found.get().getAge());
-        assertEquals(null, found.get().getBirth());
-        assertEquals("63 หมู่่ 14 บ้านหัวเห็ด", found.get().getAddress());
-        assertEquals("ห้วยหิน", found.get().getSubDistrict());
-        assertEquals("หนองหงส์", found.get().getDistrict());
-        assertEquals("0939898774", found.get().getTel());
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Customer> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("identification", v.getPropertyPath().toString());
     }
+
     @Test
-    void b5915040_testCustomerPattern(){
+    void b5915040_testPersonIdMustNotBe12Digits() {
         Customer customer = new Customer();
 
-        customer.setCusName(null);
-        customer.setIdentification("1319800218977");
+        customer.setCusName("parin boorapa");
+        customer.setIdentification("123456789012"); // 12 digits
         customer.setAge(21);
         customer.setBirth(null);
         customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
@@ -123,18 +98,40 @@ public class CustomerTest {
         customer.setDistrict("หนองหงส์");
         customer.setTel("0939898774");
 
-        customer = customerRepository.saveAndFlush(customer);
-        final Optional<Customer> found = customerRepository.findById(customer.getId());
+        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
 
-        assertEquals(null, found.get().getCusName());
-        assertEquals("1319800218977", found.get().getIdentification());
-        assertEquals(21, found.get().getAge());
-        assertEquals(null, found.get().getBirth());
-        assertEquals("63 หมู่่ 14 บ้านหัวเห็ด", found.get().getAddress());
-        assertEquals("ห้วยหิน", found.get().getSubDistrict());
-        assertEquals("หนองหงส์", found.get().getDistrict());
-        assertEquals("0939898774", found.get().getTel());
-    }*/
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Customer> v = result.iterator().next();
+        assertEquals("must match \"\\d{13}\"", v.getMessage());
+        assertEquals("identification", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void b5915040_testPersonIdMustNotBe14Digits() {
+        Customer customer = new Customer();
+
+         customer.setCusName("parin boorapa");
+        customer.setIdentification("12345678901234"); // 14 digits
+        customer.setAge(21);
+        customer.setBirth(null);
+        customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
+        customer.setSubDistrict("ห้วยหิน");
+        customer.setDistrict("หนองหงส์");
+        customer.setTel("0939898774");
+
+        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Customer> v = result.iterator().next();
+        assertEquals("must match \"\\d{13}\"", v.getMessage());
+        assertEquals("identification", v.getPropertyPath().toString());
+    }
 
 }
 
