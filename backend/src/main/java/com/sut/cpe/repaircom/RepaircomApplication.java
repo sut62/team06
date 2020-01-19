@@ -22,10 +22,11 @@ public class RepaircomApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RepaircomApplication.class, args);
+
     }
 
     @Bean
-    ApplicationRunner init(EmployeeRepository employeeRepository, ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerrepository,PartpiecesnumberforrepairRepository partpiecesnumberforrepairRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository) {
+    ApplicationRunner init(EmployeeRepository employeeRepository, ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,PartpiecesnumberforrepairRepository partpiecesnumberforrepairRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository) {
         return args -> {
             Stream.of("Takoonkan  Bunjan", "Natalee Satong", "Sawadee Yambai").forEach(name -> {
                 Employee employee = new Employee(); // สร้าง Object Employee
@@ -44,6 +45,33 @@ public class RepaircomApplication {
                 province.setProvince(name); // set ชื่อ (name) ให้ Object ชื่อ Province
                 provinceRepository.save(province); // บันทึก Objcet ชื่อ Province
             });
+
+            Stream.of("Cherprang").forEach(name -> {
+				Customer customer = new Customer(); // สร้าง Object Customer
+				customer.setCusName("aloha baboon"); // set ชื่อ (name) ให้ Object ชื่อ cusName
+				customer.setIdentification("1319800215244"); // set ชื่อ (name) ให้ Object ชื่อ idetification
+				customer.setBirth(null);// set ชื่อ (name) ให้ Object ชื่อ birth
+				customer.setAge(12); // set ชื่อ (name) ให้ Object ชื่อ age
+				customer.setAddress("หัวเห็ด"); // set ชื่อ (name) ให้ Object ชื่อ address
+				customer.setSubDistrict("บางนา"); // set ชื่อ (name) ให้ Object ชื่อ subDistrict
+				customer.setDistrict("บางพลี"); // set ชื่อ (name) ให้ Object ชื่อ district
+				customer.setTel("0215489547"); // set ชื่อ (name) ให้ Object ชื่อ tel
+				customerRepository.save(customer); // บันทึก Objcet ชื่อ Customer
+			});
+
+            Stream.of("Cherprang").forEach(name -> {
+				Customer customer = new Customer(); // สร้าง Object Customer
+				customer.setCusName("namo tadsa"); // set ชื่อ (name) ให้ Object ชื่อ cusName
+				customer.setIdentification("1234567890123"); // set ชื่อ (name) ให้ Object ชื่อ idetification
+				customer.setBirth(null);// set ชื่อ (name) ให้ Object ชื่อ birth
+				customer.setAge(50); // set ชื่อ (name) ให้ Object ชื่อ age
+				customer.setAddress("หัวเห็ด"); // set ชื่อ (name) ให้ Object ชื่อ address
+				customer.setSubDistrict("บางนา"); // set ชื่อ (name) ให้ Object ชื่อ subDistrict
+				customer.setDistrict("บางพลี"); // set ชื่อ (name) ให้ Object ชื่อ district
+				customer.setTel("012454878"); // set ชื่อ (name) ให้ Object ชื่อ tel
+				customerRepository.save(customer); // บันทึก Objcet ชื่อ Customer
+			});
+
             typeRepository.save(new Type("PC"));
             typeRepository.save(new Type("Notebook"));
 
