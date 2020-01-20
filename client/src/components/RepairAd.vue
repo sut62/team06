@@ -83,7 +83,7 @@
           class="fond"
           solo
         ></v-select></b-col>
-      <b-col md=3>
+      <b-col md=6>
         <v-select
           label="ยี่ห้อเครื่องที่รับซ่อม"
           v-model="repaircp.brand"
@@ -96,7 +96,7 @@
           solo
         ></v-select></b-col>
    
-      <b-col md=3>
+      <b-col md=6>
         <v-select
           label="สถานะการซ่อม"
           v-model="repaircp.status"
@@ -109,85 +109,7 @@
           solo
         ></v-select>
       </b-col>
-      <b-col md=3>
-        <v-select
-          label="จำนวนชิ้นอะไหล่ที่เปลี่ยน"
-          v-model="repaircp.piece"
-          :items="piece"
-          item-text="piece_number"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          class="fond"
-          solo
-        ></v-select>
-      </b-col>
 
-      <b-col md=3>
-        <v-select
-          label="อะไหล่ที่เปลี่ยน"
-          v-model="repaircp.part"
-          :items="parts"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-          class="fond"
-        ></v-select>
-      </b-col>
-       <b-col md=3>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่สอง"
-          v-model="repaircp.part2"
-          :items="parts"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-          class="fond"
-        ></v-select>
-      </b-col>
-        <b-col md=3>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่สาม"
-          v-model="repaircp.part3"
-          :items="parts"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-          class="fond"
-        ></v-select>
-      </b-col>
-        <b-col md=3>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่สี่"
-          v-model="repaircp.part4"
-          :items="parts"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-          class="fond"
-        ></v-select>
-      </b-col>
-        <b-col md=3>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่5"
-          v-model="repaircp.part5"
-          :items="parts"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-          class="fond"
-        ></v-select>
-      </b-col>
      
     </b-row>
     <b-col md=12 class="text-center">
@@ -217,14 +139,8 @@
         branchId: "",
         employeeId: "",
         brand:"",
-        part:"",
-        part2:"",
-        part3:"",
-        part4:"",
-        part5:"",
         status: "",
-        typerp: "",
-        piece:""
+        typerp: ""
       },
         valid: false,
     };
@@ -303,18 +219,7 @@
         console.log(e);
       })
     },
-      getPieces(){
-      http
-      .get("/partpiece")
-      .then(response =>{
-        this.$forceUpdate();
-        this.piece = response.data;
-        console.log(response.data);
-      })
-      .catch(e =>{
-        console.log(e);
-      })
-    },
+
      findCustomer() {
           http
             .get("/customer/"+ this.repaircp.cmailp)
@@ -338,19 +243,9 @@
     saverepair(){
       http
       .post(
-        //"Adminrepairindex/{breakdown}/{partn2}/{partn3}/{part4}/{partn5}/{addproduct_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{typemachrepair_id}/{partpiecesnumberforrepair_id}")
+        //"Adminrepairindex/{breakdown}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{typemachrepair_id}")
         "/Adminrepairindex/"+
          this.repaircp.breakdown + 
-        "/" +
-        this.repaircp.part2 +
-        "/" +
-        this.repaircp.part3 +
-        "/" +
-        this.repaircp.part4 +
-        "/" +
-        this.repaircp.part5 +
-        "/" +
-        this.repaircp.part +
         "/" +
         this.repaircp.branchId +
         "/" +
@@ -362,9 +257,7 @@
         "/" +
         this.repaircp.status +
         "/" +
-        this.repaircp.typerp +
-        "/" +
-        this.repaircp.piece,
+        this.repaircp.typerp,
         
         this.repaircp,
         console.log(this.repaircp)

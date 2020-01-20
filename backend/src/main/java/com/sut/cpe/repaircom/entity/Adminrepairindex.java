@@ -37,22 +37,14 @@ public class Adminrepairindex{
     private @NonNull Long id;
 
     @NotNull
-    @Size(min = 3,max = 50)
     @Column(unique = true)
+    @Pattern(regexp = "[ก-์|A-z|\\s].+")
     private String breakdown;
 
-    @NotNull
-    private String partn2;
-
-    @NotNull
-    private String partn3;
-    @NotNull
-    private String partn4;
-    @NotNull
-    private @NonNull String partn5;
 
 
-    @Column(name="REPAIR_DATE",nullable = true)
+
+    @Column(name="REPAIR_DATE")
     private Date repairDate;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Statusrepair.class)
@@ -74,27 +66,16 @@ public class Adminrepairindex{
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Customer.class)
     @JoinColumn(name = "Customer_ID", insertable = true)
     private Customer customer;
-
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Addproduct.class)
-    @JoinColumn(name = "PART_ID", insertable = true)
-    private  Addproduct addproduct;
 	
 	@ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
     @JoinColumn(name = "BRAND_ID", insertable = true)
     private  Brand brand;
 
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Partpiecesnumberforrepair.class)
-    @JoinColumn(name = "PARTPIECESNUMBERFORREPAIR_ID", insertable = true)
-    private  Partpiecesnumberforrepair partpiecesnumberforrepair;
     
     public Adminrepairindex(){}
-    public Adminrepairindex(Date repairDate,String breakdown,String partn2,String partn3,String partn4,String partn5){
+    public Adminrepairindex(Date repairDate,String breakdown){
         this.repairDate = repairDate;
         this.breakdown = breakdown;
-        this.partn2 = partn2;
-        this.partn3 = partn3;
-        this.partn4 = partn4;
-        this.partn5 = partn5;
     }
 
 
