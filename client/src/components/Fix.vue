@@ -10,14 +10,12 @@
       </v-btn>
     </v-app-bar>
 
-    <div class='bgn'>                   
+    <div class='fix'>                   
     <br>
     <div class="text-center">
       <br>
       <br>
-      <br>
     <v-avatar>
-
       <img src="https://cdn.icon-icons.com/icons2/1090/PNG/512/settings_78352.png" alt="avatar">
     </v-avatar>
   </div>
@@ -26,19 +24,6 @@
     <v-container nowrap  class="justify-center">
       <v-form v-model="valid" ref="form">
           
-
-      <v-layout  row  class="justify-center">
-      <v-col cols="5">
-          <v-text-field
-            solo
-            label="กรอกปัญหาที่พบ"
-            v-model="fix.fixname"
-            :items="fixname"
-            :rules="[(v) => !!v || 'กรอกรายละเอียดเกี่ยวกับปัญหา']"
-            required
-          ></v-text-field>
-        </v-col>
-        </v-layout>
 
         
 
@@ -86,6 +71,67 @@
                   ></v-select>
             </v-col>
             </v-layout>
+
+            <v-layout  row  class="justify-center">
+            <v-col cols="5">               
+                  <v-select
+                  solo
+                    style="width: 300px"
+                    label="Machinecolor"
+                    v-model="fix.machinecolorId"
+                    :items="machinecolor"
+                    item-text="machinecolor"
+                    item-value="id"
+                    :rules="[(v) => !!v || 'เลือกสีเครื่อง']"
+                  ></v-select>
+            </v-col>
+            </v-layout>
+            
+
+            <v-layout  row  class="justify-center">
+            <v-col cols="5">             
+                  <v-select
+                  solo
+                    style="width: 300px"
+                    label="Brand"
+                    v-model="fix.brandId"
+                    :items="brand"
+                    item-text="brandname"
+                    item-value="id"
+                    :rules="[(v) => !!v || 'Item is required']"
+                  ></v-select>
+               </v-col>
+            </v-layout>
+
+            <v-layout  row  class="justify-center">
+             <v-col cols="5">
+               <v-text-field
+               solo
+               style="width: 300px"
+               label="Queue"
+               v-model="fix.queue"
+               :items="queue"
+               :rules="[(v) => !!v || 'กรุณากรอกคิวงาน']"
+                required
+               ></v-text-field>
+               </v-col>
+             </v-layout>
+
+             <v-layout  row  class="justify-center">
+      <v-row justify="center">
+                          <v-col cols="5">
+                            <v-textarea
+                              solo
+                              style="width: 300px"
+                              v-model="fix.fixname"
+                              
+                              name="input-7-4"
+                              label="กรุณากรอกปัญหาที่พบ.."
+                              value=""
+                            ></v-textarea>
+                          </v-col>
+                        </v-row>
+        </v-layout>
                
       
              
@@ -93,8 +139,9 @@
               
               <v-layout  row  class="justify-center">
             <v-col cols="2">   
-                <v-row justify="center">
+                <v-row justify="center">             
               <v-col cols="12">  
+                
                 <v-btn @click="saveFixs" :class="{ red: !valid, green: valid }">save</v-btn>
                 
               </v-col>
@@ -119,12 +166,14 @@ import http from "../http-common";
     name: "fix",
    data() {
     return {
-      fix: {
-       
-        fixname: "",
+      fix: {      
         employeeId: "",
         customerId: "",
         fixtypeId: "",
+        machinecolorId: "",
+        brandId: "",
+        queue: "",
+        fixname: "",
         
 
         
@@ -135,18 +184,7 @@ import http from "../http-common";
   },
   methods:{
    /* eslint-disable */
-      getFixs(){
-        http
-        .get("/fix")
-        .then(response =>{
-          this.$forceUpdate();
-          this.fix = response.data;
-          console.log(response.data);
-        })
-        .catch(e =>{
-          console.log(e);
-        });
-      },
+  
       getEmployees(){
         http
         .get("/employee")
@@ -183,22 +221,62 @@ import http from "../http-common";
           console.log(e);
         })
       },
-      
-      
+      getMachinecolors(){
+        http
+        .get("/machinecolor")
+        .then(response =>{
+          this.$forceUpdate();
+          this.machinecolor = response.data;
+          console.log(response.data);
+        })
+        .catch(e =>{
+          console.log(e);
+        });
+      },
+      getBrands(){
+        http
+        .get("/brand")
+        .then(response =>{
+          this.$forceUpdate();
+          this.brand = response.data;
+          console.log(response.data);
+        })
+        .catch(e =>{
+          console.log(e);
+        });
+      },
+          getFixs(){
+        http
+        .get("/fix")
+        .then(response =>{
+          this.$forceUpdate();
+          this.fix = response.data;
+          console.log(response.data);
+        })
+        .catch(e =>{
+          console.log(e);
+        });
+      },
       
     saveFixs() {
           http
         .post(
           // ("/addproduct/{productname}/{description}/{brand_id}/{part_id}/{branch_id}")
           "http://localhost:9000/fix/" +
-            this.fix.fixname +
-            "/" +
             this.fix.employeeId +
-            "/" +
+            "/" +      
             this.fix.customerId +
             "/" +
             this.fix.fixtypeId +
-            
+            "/" +
+            this.fix.machinecolorId +
+            "/" +
+            this.fix.brandId +
+            "/" +
+            this.fix.queue +
+            "/" +
+            this.fix.fixname ,
+
            
           this.fix
         )
@@ -221,20 +299,24 @@ import http from "../http-common";
         });
       this.submitted = true;
     },
-    refreshList() {
-      this.getFixs();
+    refreshList() {      
       this.getEmployees();
       this.getCustomers();
       this.getFixtypes();
+      this.getMachinecolors();
+      this.getBrands();
+      this.getFixs();
       
     },
     
   },
       mounted() {
-      this.getFixs();
       this.getEmployees();
       this.getCustomers();
       this.getFixtypes();
+      this.getMachinecolors();
+      this.getBrands();
+      this.getFixs();
       
       }
   
@@ -249,12 +331,12 @@ import http from "../http-common";
     margin-left: auto;
     margin-right: auto;
 }
-.bgn{
+.fix{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 300px;
-    width: 400px; 
+    height: 1075px;
+    width: 800px; 
     background-color: #ebecf7;
     opacity: 5;
     -moz-box-shadow:inset 0 0 10px #000000;
