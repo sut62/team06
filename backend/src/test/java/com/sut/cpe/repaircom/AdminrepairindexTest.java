@@ -15,6 +15,7 @@ import javax.validation.ValidatorFactory;
 import java.util.Optional;
 import java.util.Set;
 
+import static org.junit.Assert.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -42,21 +43,60 @@ public class AdminrepairindexTest {
         Adminrepairindex adminrepairindex = new Adminrepairindex();
 
         adminrepairindex.setBreakdown("เปิดไม่ติด");
-        adminrepairindex.setPartn2("cpu");
-        adminrepairindex.setPartn3("gpu");
-        adminrepairindex.setPartn4("ram");
-        adminrepairindex.setPartn5("psu");
+
 
         adminrepairindex = adminrepairindexRepository.saveAndFlush(adminrepairindex);
         final Optional<Adminrepairindex> found = adminrepairindexRepository.findById(adminrepairindex.getId());
 
         assertEquals("เปิดไม่ติด", found.get().getBreakdown());
-        assertEquals("cpu", found.get().getPartn2());
-        assertEquals("gpu", found.get().getPartn3());
-        assertEquals("ram", found.get().getPartn4());
-        assertEquals("psu", found.get().getPartn5());
+
     }
 
+    @Test 
+    void b5910168_testAdminrepairBreakdownMustnotBenull(){
+        Adminrepairindex adminrepairindex = new Adminrepairindex();
+
+        adminrepairindex.setBreakdown(null);
+
+        Set<ConstraintViolation<Adminrepairindex>> result = validator.validate(adminrepairindex);
+
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Adminrepairindex> v = result.iterator().next();
+        assertEquals("must not be null",v.getMessage());
+        assertEquals("breakdown", v.getPropertyPath().toString());
+      }
+
+     @Test
+     void b5910168_testAdminrepairTestPattern(){
+         Adminrepairindex adminrepairindex = new Adminrepairindex();
+         adminrepairindex.setBreakdown("@#123$%^!@#$_");
+
+    
+        Set<ConstraintViolation<Adminrepairindex>> result = validator.validate(adminrepairindex);
+
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Adminrepairindex> v = result.iterator().next();
+        assertEquals("must match \"[ก-์|A-z|\\s].+\"",v.getMessage());
+        assertEquals("breakdown", v.getPropertyPath().toString());
+     } 
+
+     @Test
+     void b5910168_testAdminrepairTestUniqueBreakdown() {
+         
+         Adminrepairindex adminrepairindex1 = new Adminrepairindex();
+         adminrepairindex1.setBreakdown("เปิดไม่ติด");
+         adminrepairindexRepository.saveAndFlush(adminrepairindex1);
+ 
+     
+         assertThrows(DataIntegrityViolationException.class, () -> {
+
+         Adminrepairindex adminrepairindex2 = new Adminrepairindex();
+         adminrepairindex2.setBreakdown("เปิดไม่ติด");
+         adminrepairindexRepository.saveAndFlush(adminrepairindex2);
+         });
+     }
 }
 
 

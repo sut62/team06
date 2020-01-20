@@ -26,7 +26,7 @@ public class RepaircomApplication {
     }
 
     @Bean
-    ApplicationRunner init(EmployeeRepository employeeRepository,ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,PartpiecesnumberforrepairRepository partpiecesnumberforrepairRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository,MachinecolorRepository machinecolorRepository) {
+    ApplicationRunner init(EmployeeRepository employeeRepository,ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository,MachinecolorRepository machinecolorRepository) {
         return args -> {
             Stream.of("Takoonkan  Bunjan", "Natalee Satong", "Sawadee Yambai").forEach(name -> {
                 Employee employee = new Employee(); // สร้าง Object Employee
@@ -109,11 +109,6 @@ public class RepaircomApplication {
             statusrepairRepository.save(new Statusrepair("กำลังดำเนินการ"));
             statusrepairRepository.save(new Statusrepair("รออะไหล่"));
             statusrepairRepository.save(new Statusrepair("ดำเนินการเสร็จสิ้น"));
-            partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(1));
-            partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(2));
-            partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(3));
-            partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(4));
-            partpiecesnumberforrepairRepository.save(new Partpiecesnumberforrepair(5));
 
             communicationRepository.save(new Communication("ติดต่อกลับทาง อีเมล"));//ระบบติดต่อสอบถาม
             communicationRepository.save(new Communication("ติดต่อกลับทาง โทรศัพท์"));//ระบบติดต่อสอบถาม
