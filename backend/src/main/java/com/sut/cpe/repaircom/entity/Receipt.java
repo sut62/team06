@@ -12,6 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+
 @Data
 @Entity
 @Getter
@@ -26,11 +30,21 @@ public class Receipt{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="RECEIPT_SEQ")
     @Column(name="RECEIPT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
-    private @NonNull String receiptPrice;
-    private @NonNull String proR2;
-    private @NonNull String proR3;
-    private @NonNull String proR4;
-    private @NonNull String proR5;
+
+    @NotNull
+    private String receiptPrice;
+
+    @NotNull
+    private  String proR2;
+
+    @NotNull
+    private  String proR3;
+
+    @NotNull
+    private  String proR4;
+
+    @NotNull
+    private  String proR5;
   
 
     @Column(name="RECEIPT_DATE")
@@ -40,6 +54,7 @@ public class Receipt{
     @JoinColumn(name = "BRANCH_ID", insertable = true)
     private @NonNull Branch branch;
 
+   
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMERE_ID",insertable = true)
     private @NonNull Customer customer;

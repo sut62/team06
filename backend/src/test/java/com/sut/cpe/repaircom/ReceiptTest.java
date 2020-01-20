@@ -52,18 +52,18 @@ public class ReceiptTest {
         assertEquals("ram", found.get().getProR4());
         assertEquals("psu", found.get().getProR5());
     }
-}
 
-/*
-        @Test
-        void b5914760_testReceiptNotBeNull() {
+    @Test
+    void b5914760_testProR2MustNotBeNull() {
         Receipt receipt = new Receipt();
-        receipt.setReceiptPrice(null);
-        receipt.setProR2("cpu");
+        
+        receipt.setReceiptPrice("1580");
+        receipt.setProR2(null);
         receipt.setProR3("gpu");
         receipt.setProR4("ram");
         receipt.setProR5("psu");
 
+      
         Set<ConstraintViolation<Receipt>> result = validator.validate(receipt);
 
         // result ต้องมี error 1 ค่าเท่านั้น
@@ -72,45 +72,10 @@ public class ReceiptTest {
         // error message ตรงชนิด และถูก field
         ConstraintViolation<Receipt> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
-        assertEquals("receiptPrice", v.getPropertyPath().toString());
+        assertEquals("proR2", v.getPropertyPath().toString());
     }
 
-
-  /*  @Test
-    void testStudentIdIdMustNotBeAChar() {
-        Person person = new Person();
-        person.setStudentId("A1234567"); // 12 digits
-        person.setStudentName("thanaphon");
-        person.setStudentLastn("puputta");
-        Set<ConstraintViolation<Person>> result = validator.validate(person);
-
-        // result ต้องมี error 1 ค่าเท่านั้น
-        assertEquals(1, result.size());
-
-        // error message ตรงชนิด และถูก field
-        ConstraintViolation<Person> v = result.iterator().next();
-        assertEquals("must match \"\\d{7}\"", v.getMessage());
-        assertEquals("studentId", v.getPropertyPath().toString());
-    }
-
-    @Test
-    void testStudentIdIdMustNotBeCChar() {
-        Person person = new Person();
-        person.setStudentId("C1234567"); // 12 digits
-        person.setStudentName("thanaphon");
-        person.setStudentLastn("puputta");
-        Set<ConstraintViolation<Person>> result = validator.validate(person);
-
-        // result ต้องมี error 1 ค่าเท่านั้น
-        assertEquals(1, result.size());
-
-        // error message ตรงชนิด และถูก field
-        ConstraintViolation<Person> v = result.iterator().next();
-        assertEquals("must match \"\\d{7}\"", v.getMessage());
-        assertEquals("studentId", v.getPropertyPath().toString());
-    }
 
 
 }
 
-*/
