@@ -36,6 +36,11 @@ public class FixController {
     private CustomerRepository customerRepository;
     @Autowired
     private FixtypeRepository fixtypeRepository;
+    @Autowired
+    private BrandRepository brandRepository;
+    @Autowired
+    private MachinecolorRepository machinecolorRepository;
+
   
     FixController(FixRepository fixRepository) {
         this.fixRepository = fixRepository;
@@ -46,24 +51,34 @@ public class FixController {
         return fixRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/fix/{fixname}/{employee_id}/{customer_id}/{fixtype_id}")
-    public Fix newFix(
-    @PathVariable String fixname,
+    @PostMapping("/fix/{employee_id}/{customer_id}/{fixtype_id}/{machinecolor_id}/{brand_id}/{queue}/{fixname}")
+    public Fix newFix(Fix newFix,
     @PathVariable long employee_id,
     @PathVariable long customer_id,
-    @PathVariable long fixtype_id)
+    @PathVariable long fixtype_id,
+    @PathVariable long machinecolor_id,
+    @PathVariable long brand_id,
+    @PathVariable String queue,
+    @PathVariable String fixname)
     
     
     {
-        Fix newFix = new Fix();
+    //Fix newFix = new Fix();
     Employee employee = employeeRepository.findById(employee_id);
     Customer customer = customerRepository.findById(customer_id);
     Fixtype fixtype = fixtypeRepository.findById(fixtype_id);
+    Machinecolor machinecolor = machinecolorRepository.findById(machinecolor_id);
+    Brand brand = brandRepository.findById(brand_id);
     
-    newFix.setFixname(fixname);
+    
     newFix.setEmployee(employee);
     newFix.setCustomer(customer);
     newFix.setFixtype(fixtype);
+    newFix.setMachinecolor(machinecolor);
+    newFix.setBrand(brand);
+    newFix.setQueue(queue);
+    newFix.setFixname(fixname);
+    
     
     
     return fixRepository.save(newFix); 
