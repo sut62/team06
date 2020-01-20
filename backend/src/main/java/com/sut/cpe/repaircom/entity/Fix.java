@@ -15,7 +15,7 @@ import javax.persistence.GenerationType;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
+//@NoArgsConstructor
 @EqualsAndHashCode
 @Table(name="FIX")
 
@@ -25,7 +25,9 @@ public class Fix{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="FIX_SEQ")
     @Column(name="FIX_ID ",unique = true , nullable = true )
     private @NonNull Long id;
-    private String fixname;
+    private @NonNull String fixname;
+    private @NonNull String queue;
+        
     
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Employee.class)
@@ -40,7 +42,20 @@ public class Fix{
     @JoinColumn(name = "FIXTYPE_ID", insertable = true)
     private Fixtype fixtype;
 
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
+    @JoinColumn(name = "BRAND_ID", insertable = true)
+    private Brand brand;
+
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Machinecolor.class)
+    @JoinColumn(name = "MACCHINECOLOR_ID", insertable = true)
+    private Machinecolor Machinecolor;
     
+    public Fix(){}
+    public Fix(String fixname,String queue){
+this.fixname =fixname;
+this.queue =queue;
+
+    }
 
 	
 }
