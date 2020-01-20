@@ -26,7 +26,7 @@ public class RepaircomApplication {
     }
 
     @Bean
-    ApplicationRunner init(EmployeeRepository employeeRepository, ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,PartpiecesnumberforrepairRepository partpiecesnumberforrepairRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository) {
+    ApplicationRunner init(EmployeeRepository employeeRepository,ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,PartpiecesnumberforrepairRepository partpiecesnumberforrepairRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository,MachinecolorRepository machinecolorRepository) {
         return args -> {
             Stream.of("Takoonkan  Bunjan", "Natalee Satong", "Sawadee Yambai").forEach(name -> {
                 Employee employee = new Employee(); // สร้าง Object Employee
@@ -126,6 +126,15 @@ public class RepaircomApplication {
 			addproductRepository.save(new Addproduct("Card","sdfs",840));
 			addproductRepository.save(new Addproduct("cpu","64bit",1500));
             addproductRepository.save(new Addproduct("on repair","-",0));
+
+            machinecolorRepository.save(new Machinecolor("Red"));
+            machinecolorRepository.save(new Machinecolor("Green"));
+            machinecolorRepository.save(new Machinecolor("Blue"));
+            machinecolorRepository.save(new Machinecolor("White"));
+            machinecolorRepository.save(new Machinecolor("Pink"));
+            machinecolorRepository.save(new Machinecolor("Black"));
+            machinecolorRepository.save(new Machinecolor("Gray"));
+            machinecolorRepository.save(new Machinecolor("Silver"));
             
             
 
@@ -141,6 +150,7 @@ public class RepaircomApplication {
             sexRepository.findAll().forEach(System.out::println); // แสดง ข้อมูลทั้งหมดใน Entity Sex บน Termina
             communicationRepository.findAll().forEach(System.out::println);//ระบบติดต่อสอบถาม
             headingRepository.findAll().forEach(System.out::println);//ระบบติดต่อสอบถาม
+            machinecolorRepository.findAll().forEach(System.out::println);
 
         };
     }
