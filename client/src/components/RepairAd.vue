@@ -18,9 +18,11 @@
                   
                     </v-app-bar>
         </div>
-
+   
  <b-container class=" h-100 my-0 align-items-center d-flex justify-content-center" >   <!-- edit to mx-auto for biggerscreen -->
+  
   <b-container wrap class=" h-100 my-0 align-items-center d-flex justify-content-center">
+   
     <b-container  wrap class="  bg-dark my-0 align-items-center d-flex justify-content-center" align-v="center" align-h="center" >
   <div class="ccc">
     <b-card dark nowrap fill-height class=" my-2 mx-0 bg-secondary align-items-stretch d-flex justify-content-center " align-v="center" align-h="center" >
@@ -120,7 +122,9 @@
     </b-container>
 </b-container>
 </b-container>
-
+ <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
+   <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+ </v-snackbar>
 
    
 </v-app>
@@ -134,6 +138,7 @@
     },
     name: "RepairCP",
    data() {
+    
     return {
       repaircp: {
         branchId: "",
@@ -142,10 +147,13 @@
         status: "",
         typerp: ""
       },
-        valid: false,
+       snaktr: false,
+
+       snactexttrue: ""
     };
   },
   methods:{
+
     getBranchs(){
       http
       .get("/branch")
@@ -228,11 +236,14 @@
               if (response.data.cusName != null) {
                 this.customerName = response.data.cusName;
                 this.customerCheck = response.status;
-                alert('ค้นหาสำเร็จด้วยหมายเลข'+ this.repaircp.cmailp)
+                 this.snaktr = true;
+                 this.snactexttrue =('ค้นหาสำเร็จ'+this.repaircp.cmailp ) 
+                
                 
               
               } else {
-                alert('ไม่พบ ID ที่ค้นหา')
+                this.snaktr = true;
+                 this.snactexttrue =('ไม่พบ ID ที่ค้นหา' ) 
            
               }          
             })
@@ -265,13 +276,15 @@
       .then(response =>{
         console.log(response);
         if(response = true){
-          alert('บันทึกข้อมูลเสร็จสิ้น')
+          this.snaktr = true;
+          this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
         }
       })
       .catch(e=>{
         console.log(e);
         if(e = true){
-          alert('การบันทึกข้อมูลผิดพลาด')
+           this.snaktr = true;
+           this.snactexttrue ="บันทึกข้อมูลไม่สำเร็จ"
           
         }
       })
