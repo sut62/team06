@@ -12,13 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Entity
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @EqualsAndHashCode
 @Table(name="ADDPRODUCT")
 
@@ -28,7 +29,9 @@ public class Addproduct{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="ADDPRODUCT_SEQ")
     @Column(name="ADDPRODUCT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
-    private @NonNull String productname;
+    
+    @NotNull 
+    private String productname;
     private @NonNull String description;
     private @NonNull int price;
 
@@ -54,13 +57,16 @@ public class Addproduct{
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Receipt> receipts;
 
-   
+    public Addproduct(){}
     public Addproduct(String productname,String  description,int price){
         this.productname = productname;
         this.description = description;
         this.price = price;
        
         }
+
+
+	
 
 
     
