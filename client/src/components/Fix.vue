@@ -138,20 +138,24 @@
               
               
               <v-layout  row  class="justify-center">
-            <v-col cols="2">   
+              
                 <v-row justify="center">             
-              <v-col cols="12">  
-                
-                <v-btn @click="saveFixs" :class="{ red: !valid, green: valid }">save</v-btn>
-                
-              </v-col>
+                 <v-layout  row nowrap class="justify-center">
+              <v-btn  @click="saveFixs" x-large color="success" dark>SAVE</v-btn>&nbsp;  
+              <v-btn  @click="clear" x-large color="blue-grey darken-2" dark>CLEAR</v-btn>
+          </v-layout>
             </v-row>
-            </v-col>
+           
             </v-layout>
 
             
       </v-form>   
+
     </v-container>
+    <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
+        <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+      </v-snackbar>
+      
     </div>  
   </v-app>
 </template>
@@ -178,8 +182,8 @@ import http from "../http-common";
 
         
       },
-      valid: false,
-      drawer: false
+       snaktr: false,
+        snactexttrue: ""
     };
   },
   methods:{
@@ -280,24 +284,24 @@ import http from "../http-common";
            
           this.fix
         )
-        .then(response => {
-          console.log(response);
-          if(response = true){
-            alert('บันทึกข้อมูลเสร็จสิ้น')
-          } 
-          this.$refs.form.reset();
-          
-        })
-        .catch(e => {
-          console.log(e);
-           if(e = true){
-            alert('กรุณากรอกข้อมูลให้ครบถ้วน')
-
-            
-            
-          }
-        });
-      this.submitted = true;
+         .then(response => {
+                  console.log(response);
+                  this.snaktr = true;
+                  this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
+                  this.$refs.form.reset();
+                  this.$router.push("/fix");
+                })
+                .catch(e => {
+                  console.log(e);
+                  this.snaktr = true;
+                  this.snactexttrue ="กรุณากรอกข้อมูลให้ครบถ้วน"
+                });
+        this.submitted = true;
+      },
+      clear() {
+        this.$refs.form.reset();
+        this.fixCheck = false;
+      
     },
     refreshList() {      
       this.getEmployees();

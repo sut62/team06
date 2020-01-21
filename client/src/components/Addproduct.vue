@@ -177,8 +177,8 @@ import http from "../http-common";
 
         
       },
-      valid: false,
-      drawer: false
+      snaktr: false,
+        snactexttrue: ""
     };
   },
   methods:{
@@ -282,7 +282,7 @@ import http from "../http-common";
       },
       clear() {
         this.$refs.form.reset();
-        this.customerCheck = false;
+        this.addproductCheck = false;
       },
     refreshList() {
       this.getAddproducts();
