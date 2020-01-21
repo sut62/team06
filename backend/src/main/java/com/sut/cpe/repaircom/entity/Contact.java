@@ -8,6 +8,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +21,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import java.util.Date;
+
 
 @Data
 @Entity
@@ -34,9 +38,17 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CONTACT_SEQ")
     @Column(name = "CONTACT_ID ", unique = true, nullable = true)
     private Long id;
-    private @NonNull String detail;
-    private @NonNull String email;
-    private @NonNull String phone;
+
+    @NotNull
+	@Size(max = 2000,min = 1)
+    private String detail;
+
+    @NotNull
+    private String email;
+   
+    @NotNull
+	@Pattern(regexp = "\\d{10}")
+	private String phone;
    
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Branch.class)
@@ -55,25 +67,30 @@ public class Contact {
     @JoinColumn(name = "HEADING_ID", insertable = true, nullable = true)
     private @NonNull Heading heading;
 
-    
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
+        public void setDetail(String detail) {
         this.detail = detail;
-    }
+        }
 
-    public String getEmail() {
-        return email;
-    }
+        public String getDetail() {
+             return detail;
+        }
 
-    public void setEmail(String email) {
+        public void setEmail(String email) {
         this.email = email;
-    }
+        }
 
-    public Contact(String phone){
+        public String getEmail() {
+        return email;
+        }
+
+        public void setPhone(String phone) {
         this.phone = phone;
-    } 
-	
+        }
+
+        public String getPhone() {
+        return phone;
+        }
+
+
+
 }
