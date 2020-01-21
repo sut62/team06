@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 @Data
 @Entity
 @Getter
@@ -24,9 +27,12 @@ public class Fix{
     @SequenceGenerator(name="FIX_SEQ",sequenceName="FIX_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="FIX_SEQ")
     @Column(name="FIX_ID ",unique = true , nullable = true )
-    private @NonNull Long id;
+    private @NonNull Long id;  
+    @NotNull
     private @NonNull String fixname;
-    private @NonNull String queue;
+    @NotNull
+    @Size(max = 8,min = 8)
+    private String queue;
         
     
 
