@@ -142,6 +142,11 @@
                   <br>
                   </v-row>
                 </v-container>
+                
+                      <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
+                      <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+                     </v-snackbar>
+
               </div>
                   <br>
                   <br>
@@ -173,9 +178,9 @@ import http from "../http-common";
 
         
       },
-      valid: false,
-      customerCheck: false,
-      customerName: ""
+        snaktr: false,
+
+        snactexttrue: ""
     };
   },
   methods: {
@@ -262,23 +267,20 @@ import http from "../http-common";
         this.contact,
            console.log(this.contact),
         )
-        .then(response => {
-          console.log(response);
-          alert("บันทึกเรียบร้อย");
-          this.$router.push("/contact");
-          //this.$router.push("/appointment");
-        })
-        .catch(e => {
-          console.log(e);
-          alert("ไม่สามารถบันทึกข้อมูลได้");
-        });
-      
-      this.submitted = true;
+                .then(response => {
+                  console.log(response);
+                  this.snaktr = true;
+                  this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
+                  this.$refs.form.reset();
+                  this.$router.push("/contact");
+                })
+                .catch(e => {
+                  console.log(e);
+                  this.snaktr = true;
+                  this.snactexttrue ="กรุณากรอกข้อมูลให้ครบถ้วน"
+                });
+        this.submitted = true;
      
-
-
-
-
     },
     refreshList() {
       this.getCommunication();
