@@ -148,6 +148,9 @@
             
       </v-form>   
     </v-container>
+    <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
+        <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+      </v-snackbar>
     </div>  
   </v-app>
 </template>
@@ -264,24 +267,23 @@ import http from "../http-common";
           this.addproduct
         )
         .then(response => {
-          console.log(response);
-          if(response = true){
-            alert('บันทึกข้อมูลเสร็จสิ้น')
-          } 
-          this.$refs.form.reset();
-          
-        })
-        .catch(e => {
-          console.log(e);
-           if(e = true){
-            alert('กรุณากรอกข้อมูลให้ครบถ้วน')
-
-            
-            
-          }
-        });
-      this.submitted = true;
-    },
+                  console.log(response);
+                  this.snaktr = true;
+                  this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
+                  this.$refs.form.reset();
+                  this.$router.push("/addproduct");
+                })
+                .catch(e => {
+                  console.log(e);
+                  this.snaktr = true;
+                  this.snactexttrue ="กรุณากรอกข้อมูลให้ครบถ้วน"
+                });
+        this.submitted = true;
+      },
+      clear() {
+        this.$refs.form.reset();
+        this.customerCheck = false;
+      },
     refreshList() {
       this.getAddproducts();
       this.getTypes();
