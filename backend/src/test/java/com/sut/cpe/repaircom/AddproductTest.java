@@ -73,6 +73,21 @@ public class AddproductTest {
         assertEquals("must not be null", v.getMessage());
         assertEquals("productname", v.getPropertyPath().toString());
     }
+    @Test
+    void b5916962_testDescriptionSize() {
+        Addproduct addproduct = new Addproduct();
+        
+        addproduct.setProductname("MSI RAM");
+        addproduct.setDescription("8GB");
+        addproduct.setPrice(800);
+
+        addproduct = addproductRepository.saveAndFlush(addproduct);
+
+        Optional<Addproduct> found = addproductRepository.findById(addproduct.getId());
+        assertEquals("8GB", found.get().getDescription());
+    }
+
+
     
 
 }
