@@ -36,17 +36,17 @@ public class Customer {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_seq")
 	@Column(name="CUSTOMER_ID",unique = true, nullable = true)
 	private @NonNull Long id;
-	private @NonNull String cusName;
+	private @NotNull String cusName;
 
 	@NotNull
 	@Size(max = 13,min = 13)
 	private String identification;
 
-	private @NonNull int age;
+	private @NotNull int age;
 	private @NonNull Date birth;
-	private @NonNull String address;
-	private @NonNull String subDistrict;
-	private @NonNull String district;
+	private @NotNull String address;
+	private @NotNull String subDistrict;
+	private @NotNull String district;
 
 	@NotNull
 	@Pattern(regexp = "\\d{10}")
