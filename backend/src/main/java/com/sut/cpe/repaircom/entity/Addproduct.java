@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -32,8 +33,10 @@ public class Addproduct{
     
     @NotNull 
     private String productname;
-    private @NonNull String description;
-    private @NonNull int price;
+    @NotNull
+    @Size(max = 2000,min = 1)
+    private  String description;
+    private int price;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
     @JoinColumn(name = "TYPE_ID",insertable = true)
@@ -59,6 +62,7 @@ public class Addproduct{
 
     public Addproduct(){}
     public Addproduct(String productname,String  description,int price){
+        
         this.productname = productname;
         this.description = description;
         this.price = price;
