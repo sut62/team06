@@ -171,7 +171,7 @@
 
         <b-col md=4>
         <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้น4"
+          label="อะไหล่ที่เปลี่ยนชิ้นที่4"
           v-model="receipt.proId4"
           :items="addproduct"
           item-text="productname"
@@ -237,7 +237,9 @@
   </div>
     </b-container>
 </b-container>
-
+<v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
+   <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+ </v-snackbar>
     
 
    
@@ -345,12 +347,14 @@
               if (response.data.cusName != null) {
                 this.customerName = response.data.cusName;
                 this.customerCheck = response.status;
-                alert('ค้นหาสำเร็จ')
+                this.snaktr = true;
+                 this.snactexttrue =('ค้นหาสำเร็จ'+this.receipt.customerIdent )
+               
                 
               
               } else {
-                alert('ไม่พบข้อมูล')
-                this.clear()
+                 this.snaktr = true;
+                 this.snactexttrue =('ไม่พบข้อมูล') 
               }          
             })
             .catch(e => {
@@ -375,7 +379,8 @@
                 
               
               } else {
-                alert('ไม่พบข้อมูล')
+                 this.snaktr = true;
+                 this.snactexttrue =('ไม่พบข้อมูล') 
                 this.clear()
               }          
             })
@@ -400,7 +405,8 @@
                 
               
               } else {
-                alert('ไม่พบข้อมูล')
+                this.snaktr = true;
+                this.snactexttrue =('ไม่พบข้อมูล') 
                 this.clear()
               }          
             })
@@ -425,7 +431,8 @@
                 
               
               } else {
-                alert('ไม่พบข้อมูล')
+                this.snaktr = true;
+                this.snactexttrue =('ไม่พบข้อมูล')
                 this.clear()
               }          
             })
@@ -450,7 +457,8 @@
                 
               
               } else {
-                alert('ไม่พบข้อมูล')
+                this.snaktr = true;
+                this.snactexttrue =('ไม่พบข้อมูล')
                 this.clear()
               }          
             })
@@ -475,7 +483,8 @@
                 console.log(this.result)
               
               } else {
-                alert('ไม่พบข้อมูล')
+                this.snaktr = true;
+                this.snactexttrue =('ไม่พบข้อมูล')
                 this.clear()
               }          
             })
@@ -522,7 +531,8 @@
        .then(response => {
           console.log(response);
           this.$router.push("/viewreceipt");
-          alert('บันทึกข้อมูลเสร็จสิ้น')
+          this.snaktr = true;
+          this.snactexttrue =('บันทึกข้อมูลเสร็จสิ้น')
         })
         .catch(e => {
           console.log(e);
