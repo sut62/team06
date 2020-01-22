@@ -1,7 +1,7 @@
 package com.sut.cpe.repaircom;
 
 import com.sut.cpe.repaircom.entity.Fix;
-import com.sut.cpe.repaircom.repository.FixRepository;
+import com.sut.cpe.repaircom.repository.FixRepository;;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Optional;
 import java.util.Set;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 @DataJpaTest
 public class FixTest {
 
@@ -37,16 +37,16 @@ public class FixTest {
         Fix fix = new Fix();
       
         fix.setFixname("จอดับบ่อยๆ");
-        fix.setQueue("Q0012020");
+        fix.setQueue("00012020");
        
 
         fix = fixRepository.saveAndFlush(fix);
         final Optional<Fix> found = fixRepository.findById(fix.getId());
       
         assertEquals("จอดับบ่อยๆ", found.get().getFixname());
-        assertEquals("Q0012020", found.get().getQueue());
+        assertEquals("00012020", found.get().getQueue());
     
-    }
+    }  
 
     @Test
     void b5907397_testQueueMustNotBeNull() {
@@ -68,21 +68,31 @@ public class FixTest {
     }
 
     @Test
-    void b5907397_testQueueSize() {
+    void b5907397_testFixnameSize() {
        Fix fix = new Fix();
 
        fix.setFixname("จอดับบ่อยๆ");
-       fix.setQueue("Q0012020");
-       
+       fix.setQueue("00012020");
 
-       fix = fixRepository.saveAndFlush(fix);
+      fix = fixRepository.saveAndFlush(fix);
 
         Optional<Fix> found = fixRepository.findById(fix.getId());
-        assertEquals("Q0012020", found.get().getQueue());
+        assertEquals("จอดับบ่อยๆ", found.get().getFixname());
     }
 
+    @Test
+    void b5907397_testQueuePattern() {
+        Fix fix = new Fix();
+
+        fix.setFixname("จอดับบ่อยๆ");
+        fix.setQueue("00012020");
+
+        fix = fixRepository.saveAndFlush(fix);
+
+        Optional<Fix> found = fixRepository.findById(fix.getId());
+        assertEquals("00012020", found.get().getQueue());
+    }
+   
     
 }
-
-
 
