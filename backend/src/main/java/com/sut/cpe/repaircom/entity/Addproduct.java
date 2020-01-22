@@ -31,6 +31,9 @@ public class Addproduct{
     @Column(name="ADDPRODUCT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
     
+    @NotNull
+    @Pattern(regexp = "\\d{8}")
+    private String proid;
     @NotNull 
     private String productname;
     @NotNull
@@ -61,8 +64,8 @@ public class Addproduct{
     private Collection<Receipt> receipts;
 
     public Addproduct(){}
-    public Addproduct(String productname,String  description,int price){
-        
+    public Addproduct(String proid,String productname,String  description,int price){
+        this.proid = proid;
         this.productname = productname;
         this.description = description;
         this.price = price;

@@ -117,10 +117,10 @@ public class RepaircomApplication {
             headingRepository.save(new Heading("แจ้งเรื่องร้องเรียน"));//ระบบติดต่อสอบถาม
             headingRepository.save(new Heading("สอบถามเรื่องอื่นๆ"));//ระบบติดต่อสอบถาม
 
-            addproductRepository.save(new Addproduct("RAM","8gb",320));
-			addproductRepository.save(new Addproduct("Card","sdfs",840));
-			addproductRepository.save(new Addproduct("cpu","64bit",1500));
-            addproductRepository.save(new Addproduct("on repair","-",0));
+            addproductRepository.save(new Addproduct("20200001","RAM","8gb",320));
+			addproductRepository.save(new Addproduct("20200001","Card","sdfs",840));
+			addproductRepository.save(new Addproduct("20200001","cpu","64bit",1500));
+            addproductRepository.save(new Addproduct("20200001","on repair","-",0));
 
             machinecolorRepository.save(new Machinecolor("Red"));
             machinecolorRepository.save(new Machinecolor("Green"));
