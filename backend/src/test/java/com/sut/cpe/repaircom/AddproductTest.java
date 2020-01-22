@@ -36,11 +36,26 @@ public class AddproductTest {
         validator = factory.getValidator();
     }
 
+    @Test
+    void b5916962_testProidPattern() {
+        Addproduct addproduct = new Addproduct();
 
+        addproduct.setProid("20200001");
+        addproduct.setProductname("MSI RAM");
+        addproduct.setDescription("8GB");
+        addproduct.setPrice(800);
+        
+
+        addproduct = addproductRepository.saveAndFlush(addproduct);
+
+        Optional<Addproduct> found = addproductRepository.findById(addproduct.getId());
+        assertEquals("20200001", found.get().getProid());
+    }
     @Test
     void b5916962_testAddproductSuccess(){
         Addproduct addproduct = new Addproduct();
       
+        addproduct.setProid("20200001");
         addproduct.setProductname("MSI RAM");
         addproduct.setDescription("8GB");
         addproduct.setPrice(800);
@@ -48,7 +63,7 @@ public class AddproductTest {
 
         addproduct = addproductRepository.saveAndFlush(addproduct);
         final Optional<Addproduct> found = addproductRepository.findById(addproduct.getId());
-      
+        assertEquals("20200001", found.get().getProid());
         assertEquals("MSI RAM", found.get().getProductname());
         assertEquals("8GB", found.get().getDescription());
         assertEquals(800, found.get().getPrice());
@@ -58,6 +73,7 @@ public class AddproductTest {
     void b5916962_testProductnameMustNotBeNull() {
         Addproduct addproduct = new Addproduct();
         
+        addproduct.setProid("20200001");
         addproduct.setProductname(null);
         addproduct.setDescription("8GB");
         addproduct.setPrice(800);
@@ -77,6 +93,7 @@ public class AddproductTest {
     void b5916962_testDescriptionSize() {
         Addproduct addproduct = new Addproduct();
         
+        addproduct.setProid("20200001");
         addproduct.setProductname("MSI RAM");
         addproduct.setDescription("8GB");
         addproduct.setPrice(800);

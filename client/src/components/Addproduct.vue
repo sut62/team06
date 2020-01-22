@@ -28,10 +28,24 @@
     </v-avatar>
   </div>
   
-      <h1 align='center'>เพิ่มอะไหล่คอมพิวเตอร์</h1>
+      <h1 align='center' class="display-1 font-weight-bold mb-2">เพิ่มอะไหล่คอมพิวเตอร์</h1>
     
     <v-container nowrap  class="justify-center">
       <v-form v-model="valid" ref="form">
+
+      <v-layout  row  class="justify-center">
+      <v-col cols="5">
+          <v-text-field
+            solo
+            label="ProductID"
+            v-model="addproduct.proid"
+            :items="proid"
+            :rules="[(v) => !!v || 'ProductID']"
+            required
+          ></v-text-field>
+        </v-col>
+        </v-layout>
+      
       <v-layout  row  class="justify-center">
       <v-col cols="5">
           <v-text-field
@@ -166,7 +180,7 @@ import http from "../http-common";
    data() {
     return {
       addproduct: {
-       
+        proid: "",
         productname: "",
         description: "",
         typeId: "",
@@ -250,6 +264,8 @@ import http from "../http-common";
         .post(
           // ("/addproduct/{productname}/{description}/{brand_id}/{part_id}/{branch_id}")
           "http://localhost:9000/addproduct/" +
+            this.addproduct.proid +
+            "/" +
             this.addproduct.productname +
             "/" +
             this.addproduct.description +
@@ -316,10 +332,10 @@ import http from "../http-common";
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 1000px;
+    height: 1100px;
     width: 800px; 
-    background-color: #E0E0E0;
-    opacity: 0.9;
+    background-color: #424242;
+    opacity: 1;
     -moz-box-shadow:inset 0 0 10px #000000;
    -webkit-box-shadow:inset 0 0 10px #000000;
    box-shadow:inset 0 0 10px #000000;

@@ -53,8 +53,9 @@ public class AddproductController {
         return addproduct;
     }
 
-    @PostMapping("/addproduct/{productname}/{description}/{type_id}/{brand_id}/{part_id}/{branch_id}/{price}")
+    @PostMapping("/addproduct/{proid}/{productname}/{description}/{type_id}/{brand_id}/{part_id}/{branch_id}/{price}")
     public Addproduct newAddproduct(Addproduct newAddproduct,
+    @PathVariable String proid,
     @PathVariable String productname,
     @PathVariable String description,
     @PathVariable long type_id,
@@ -69,6 +70,7 @@ public class AddproductController {
     Brand brand = brandRepository.findById(brand_id);
     Part part = partRepository.findById(part_id);
     Branch  branch = branchRepository.findById(branch_id);
+    newAddproduct.setProid(proid);
     newAddproduct.setProductname(productname);
     newAddproduct.setDescription(description);
     newAddproduct.setType(type);
