@@ -3,12 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>receiptTest</title>
+	<title>ReceiptTest</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">ReceiptTest</td></tr>
+<tr><td rowspan="1" colspan="3">Receipt Correct</td></tr>
 </thead>
 <tbody>
 <tr><td>open</td><td>http://localhost:8080/receipt<datalist><option>http://localhost:8080/receipt</option></datalist></td><td></td>
@@ -80,6 +80,84 @@
 <tr><td>click</td><td>//div[@id='test']/div[9]/div[2]/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='test']/div[9]/div[2]/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=button.v-btn.v-btn--depressed.theme--light.v-size--large.green.darken-2 &gt; span.v-btn__content</option></datalist></td><td></td>
 </tr>
 <tr><td>assertText</td><td>//div[@id='test']/div[9]/div[3]/div/div<datalist><option>//div[@id='test']/div[9]/div[3]/div/div</option><option>//div[9]/div[3]/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>บันทึกข้อมูลเสร็จสิ้น CLOSE</td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div[9]/div[3]/div/div/button/span<datalist><option>//div[@id='test']/div[9]/div[3]/div/div/button/span</option><option>//div[3]/div/div/button/span</option><option>css=button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Receipt Incorrect</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/receipt<datalist><option>http://localhost:8080/receipt</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-12<datalist><option>id=input-12</option><option>//input[@id='input-12']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-12</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-12<datalist><option>id=input-12</option><option>//input[@id='input-12']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-12</option></datalist></td><td>1234567890123</td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div/div[2]/div/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div[2]/button/span</option><option>//div[2]/div/div/div/div/div/div[2]/button/span</option><option>css=button.ml-12.mb-7.v-btn.v-btn--contained.theme--light.v-size--large.primary &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='test']/div/div[3]/div/div<datalist><option>//div[@id='test']/div/div[3]/div/div</option><option>//div[3]/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>ค้นหาสำเร็จ 1234567890123 CLOSE</td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div/div[3]/div/div/button/span<datalist><option>//div[@id='test']/div[9]/div[3]/div/div/button/span</option><option>//div[3]/div/div/button/span</option><option>css=button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option><option>//div[@id='test']/div/div[3]/div/div/button/span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-16<datalist><option>id=input-16</option><option>//input[@id='input-16']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div[4]/div/div/div/div/input</option><option>//div[4]/div/div/div/div/input</option><option>css=#input-16</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-16<datalist><option>id=input-16</option><option>//input[@id='input-16']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div[4]/div/div/div/div/input</option><option>//div[4]/div/div/div/div/input</option><option>css=#input-16</option></datalist></td><td>45</td>
+</tr>
+<tr><td>click</td><td>id=input-19<datalist><option>id=input-19</option><option>//input[@id='input-19']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div[5]/div/div/div/div/input</option><option>//div[5]/div/div/div/div/input</option><option>css=#input-19</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-19<datalist><option>id=input-19</option><option>//input[@id='input-19']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div[5]/div/div/div/div/input</option><option>//div[5]/div/div/div/div/input</option><option>css=#input-19</option></datalist></td><td>ta na </td>
+</tr>
+<tr><td>click</td><td>id=input-22<datalist><option>id=input-22</option><option>//input[@id='input-22']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div[6]/div/div/div/div/input</option><option>//div[6]/div/div/div/div/input</option><option>css=#input-22</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-22<datalist><option>id=input-22</option><option>//input[@id='input-22']</option><option>//div[@id='test']/div/div[2]/div/div/div/div/div/div[6]/div/div/div/div/input</option><option>//div[6]/div/div/div/div/input</option><option>css=#input-22</option></datalist></td><td>0854798541</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประเภทอุปกรณ์'])[1]/following::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประเภทอุปกรณ์'])[1]/following::div[2]</option><option>//div[@id='test']/div[2]/div[2]/div/div/div/div/div/div[7]/div/div/div/div/div</option><option>//div[7]/div/div/div/div/div</option><option>css=div.v-select__selections</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=pc-list-item-90<datalist><option>id=pc-list-item-91</option><option>//div[@id='pc-list-item-91']</option><option>xpath=(//div[@id='list-25']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=#pc-list-item-91</option><option>id=pc-list-item-90</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงาน'])[1]/following::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงาน'])[1]/following::div[2]</option><option>//div[@id='test']/div[3]/div[2]/div/div/div/div/div/div[8]/div/div/div/div/div</option><option>//div[8]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=natalee-satong-list-item-94<datalist><option>id=natalee-satong-list-item-94</option><option>//div[@id='natalee-satong-list-item-94']</option><option>//div[@id='list-32']/div[2]/div/div</option><option>//div/div/div/div[2]/div/div</option><option>css=#natalee-satong-list-item-94</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='สาขา'])[1]/following::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='สาขา'])[1]/following::div[2]</option><option>//div[@id='test']/div[4]/div[2]/div/div/div/div/div/div[9]/div/div/div/div/div</option><option>//div[9]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=สาขาจังหวัดปราจีนบุรี-list-item-99<datalist><option>id=สาขาจังหวัดปราจีนบุรี-list-item-99</option><option>//div[@id='สาขาจังหวัดปราจีนบุรี-list-item-99']</option><option>//div[@id='list-39']/div[2]/div/div</option><option>//div/div/div/div[2]/div/div</option><option>css=#สาขาจังหวัดปราจีนบุรี-list-item-99</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่1'])[1]/following::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่1'])[1]/following::div[2]</option><option>//div[@id='test']/div[5]/div[2]/div/div/div/div/div/div[10]/div/div/div/div/div</option><option>//div[10]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='list-46']/div[2]/div<datalist><option>//div[@id='list-46']/div[2]/div</option><option>//div/div/div/div[2]/div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div[5]/div[2]/div/div/div/div/div/div[11]/button/span<datalist><option>//div[@id='test']/div[5]/div[2]/div/div/div/div/div/div[11]/button/span</option><option>//div[11]/button/span</option><option>css=button.ml-12.mb-7.v-btn.v-btn--depressed.theme--light.v-size--large.primary &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่2'])[1]/following::div[2]<datalist><option>//div[@id='test']/div[6]/div[2]/div/div/div/div/div/div[13]/div/div/div/div/div</option><option>//div[13]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประเภทอุปกรณ์'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่2'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=cpu-list-item-114<datalist><option>id=cpu-list-item-114</option><option>//div[@id='cpu-list-item-114']</option><option>//div[@id='list-54']/div[3]/div/div</option><option>//div/div/div[3]/div/div</option><option>css=#cpu-list-item-114</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(//button[@type='button'])[5]<datalist><option>xpath=(//button[@type='button'])[5]</option><option>//div[@id='test']/div[6]/div[2]/div/div/div/div/div/div[14]/button</option><option>//div[14]/button</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่3'])[1]/following::div[2]<datalist><option>//div[@id='test']/div[7]/div[2]/div/div/div/div/div/div[16]/div/div/div/div/div</option><option>//div[16]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประเภทอุปกรณ์'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่3'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='list-62']/div[2]/div<datalist><option>//div[@id='list-62']/div[2]/div</option><option>//div/div/div/div[2]/div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div[7]/div[2]/div/div/div/div/div/div[17]/button/span<datalist><option>//div[@id='test']/div[7]/div[2]/div/div/div/div/div/div[17]/button/span</option><option>//div[17]/button/span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่4'])[1]/following::div[2]<datalist><option>//div[@id='test']/div[8]/div[2]/div/div/div/div/div/div[19]/div/div/div/div/div</option><option>//div[19]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประเภทอุปกรณ์'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่4'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=cpu-list-item-126<datalist><option>id=cpu-list-item-126</option><option>//div[@id='cpu-list-item-126']</option><option>//div[@id='list-70']/div[3]/div/div</option><option>//div/div/div[3]/div/div</option><option>css=#cpu-list-item-126</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div[8]/div[2]/div/div/div/div/div/div[20]/button/span<datalist><option>//div[@id='test']/div[8]/div[2]/div/div/div/div/div/div[20]/button/span</option><option>//div[20]/button/span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่5'])[1]/following::div[2]<datalist><option>//div[@id='test']/div[9]/div[2]/div/div/div/div/div/div[22]/div/div/div/div/div</option><option>//div[22]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='ประเภทอุปกรณ์'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่4'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='อะไหล่ที่เปลี่ยนชิ้นที่5'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=cpu-list-item-132<datalist><option>id=cpu-list-item-132</option><option>//div[@id='cpu-list-item-132']</option><option>//div[@id='list-78']/div[3]/div/div</option><option>//div/div/div[3]/div/div</option><option>css=#cpu-list-item-132</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div[9]/div[2]/div/div/div/div/div/div[23]/button/span<datalist><option>//div[@id='test']/div[9]/div[2]/div/div/div/div/div/div[23]/button/span</option><option>//div[23]/button/span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='test']/div[9]/div[2]/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='test']/div[9]/div[2]/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=button.v-btn.v-btn--depressed.theme--light.v-size--large.green.darken-2 &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='test']/div[9]/div[3]/div/div<datalist><option>//div[@id='test']/div[9]/div[3]/div/div</option><option>//div[9]/div[3]/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>กรุณาใส่ข้อมูลให้ถูกต้อง CLOSE</td>
 </tr>
 <tr><td>click</td><td>//div[@id='test']/div[9]/div[3]/div/div/button/span<datalist><option>//div[@id='test']/div[9]/div[3]/div/div/button/span</option><option>//div[3]/div/div/button/span</option><option>css=button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
 </tr>
