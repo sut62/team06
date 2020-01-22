@@ -20,7 +20,7 @@
   <v-container>
     <v-layout text-center wrap>
       <v-flex mb-4>
-        <br />
+        <br /><br /> <br />        
         <h1 class="display-2 font-weight-bold mb-3">Receipt Information</h1>
       </v-flex>
     </v-layout>
@@ -51,17 +51,21 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Date", value: "receiptDate" },
-        { text: "Type", value: "type.typename" },
+        { text: "วันที่", value: "receiptDate" },
+        { text: "ประเภท", value: "type.typename" },
         { text: "Product", value: "addproduct.productname" },
         { text: "product2", value: "proR2" },
         { text: "Product3", value: "proR3" },
         { text: "Product4", value: "proR4" },
         { text: "Product5", value: "proR5" },
-        { text: "Customer", value: "customer.cusName" },
-        { text: "Employee", value: "employee.empName" },
-        { text: "Branch", value: "branch.branchname" },
-        { text: "Price", value: "receiptPrice" }
+        { text: "รหัสประจำตัวลูกค้า", value: "customer.identification" },
+        { text: "ชื่อลูกค้า", value: "customer.cusName" },
+        { text: "รหัสประจำตัวผู้รับ", value: "receiptCusident" },
+        { text: "ชื่อผู้รับ", value: "receiptCusname" },
+        { text: "เบอร์โทรผู้รับ", value: "receiptCustel" },
+        { text: "พนักงาน", value: "employee.empName" },
+        { text: "สาขา", value: "branch.branchname" },
+        { text: "ราคา", value: "receiptPrice" }
         
       
       ],

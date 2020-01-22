@@ -54,7 +54,7 @@ public class ReceiptController {
             return receiptRepository.findAll().stream().collect(Collectors.toList());
         }
 
-        @PostMapping("/receipt/{identification}/{type_id}/{pro_id}/{proR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
+        @PostMapping("/receipt/{identification}/{receiptCusident}/{receiptCusname}/{receiptCustel}/{type_id}/{pro_id}/{proR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
             public Receipt newReceipt(Receipt newReceipt,
             @PathVariable String identification,
             @PathVariable long type_id,
@@ -65,7 +65,10 @@ public class ReceiptController {
             @PathVariable String proR5,
             @PathVariable long employee_id,
             @PathVariable long branch_id,
-            @PathVariable String receiptPrice){
+            @PathVariable String receiptPrice,
+            @PathVariable String receiptCusident,
+            @PathVariable String receiptCusname,
+            @PathVariable String receiptCustel){
             
             Customer customer = customerRepository.findByIdentification(identification);
             Type type = typeRepository.findById(type_id);
@@ -74,7 +77,9 @@ public class ReceiptController {
             Branch branch = branchRepository.findById(branch_id);
             
            
-
+            newReceipt.setReceiptCustel(receiptCustel);
+            newReceipt.setReceiptCusname(receiptCusname);
+            newReceipt.setReceiptCusident(receiptCusident);
             newReceipt.setCustomer(customer);
             newReceipt.setType(type);
             newReceipt.setAddproduct(addproduct);
