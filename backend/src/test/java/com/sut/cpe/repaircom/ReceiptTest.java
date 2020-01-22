@@ -37,6 +37,9 @@ public class ReceiptTest {
     void b5914760_testReceiptSuccess(){
         Receipt receipt = new Receipt();
       
+        receipt.setReceiptCusname("tanaka mana");
+        receipt.setReceiptCusident("1234567890123");
+        receipt.setReceiptCustel("0812345678");
         receipt.setReceiptPrice("1580");
         receipt.setProR2("cpu");
         receipt.setProR3("gpu");
@@ -46,6 +49,9 @@ public class ReceiptTest {
         receipt = receiptRepository.saveAndFlush(receipt);
         final Optional<Receipt> found = receiptRepository.findById(receipt.getId());
       
+        assertEquals("tanaka mana", found.get().getReceiptCusname());
+        assertEquals("1234567890123", found.get().getReceiptCusident());
+        assertEquals("0812345678", found.get().getReceiptCustel());
         assertEquals("1580", found.get().getReceiptPrice());
         assertEquals("cpu", found.get().getProR2());
         assertEquals("gpu", found.get().getProR3());
@@ -53,10 +59,14 @@ public class ReceiptTest {
         assertEquals("psu", found.get().getProR5());
     }
 
+    
     @Test
     void b5914760_testProR2MustNotBeNull() {
         Receipt receipt = new Receipt();
         
+        receipt.setReceiptCusname("tanaka mana");
+        receipt.setReceiptCusident("1234567890123");
+        receipt.setReceiptCustel("0812345678");
         receipt.setReceiptPrice("1580");
         receipt.setProR2(null);
         receipt.setProR3("gpu");
@@ -75,7 +85,44 @@ public class ReceiptTest {
         assertEquals("proR2", v.getPropertyPath().toString());
     }
 
+    
+    @Test
+    void b5914760_testIdentificationSize() {
+        Receipt receipt = new Receipt();
+        
+        receipt.setReceiptCusname("tanaka mana");
+        receipt.setReceiptCusident("1234567890123");
+        receipt.setReceiptCustel("0812345678");
+        receipt.setReceiptPrice("1580");
+        receipt.setProR2("cpu");
+        receipt.setProR3("gpu");
+        receipt.setProR4("ram");
+        receipt.setProR5("psu");
 
+        receipt = receiptRepository.saveAndFlush(receipt);
+
+        Optional<Receipt> found = receiptRepository.findById(receipt.getId());
+        assertEquals("1234567890123", found.get().getReceiptCusident());
+    }
+
+    @Test
+    void b5914760_testTelPattern() {
+        Receipt receipt = new Receipt();
+
+        receipt.setReceiptCusname("tanaka mana");
+        receipt.setReceiptCusident("1234567890123");
+        receipt.setReceiptCustel("0812345678");
+        receipt.setReceiptPrice("1580");
+        receipt.setProR2("cpu");
+        receipt.setProR3("gpu");
+        receipt.setProR4("ram");
+        receipt.setProR5("psu");
+
+        receipt = receiptRepository.saveAndFlush(receipt);
+
+        Optional<Receipt> found = receiptRepository.findById(receipt.getId());
+        assertEquals("0812345678", found.get().getReceiptCustel());
+    }
 
 }
 

@@ -14,6 +14,7 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 
 @Data
@@ -30,19 +31,24 @@ public class Receipt{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="RECEIPT_SEQ")
     @Column(name="RECEIPT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
+    private @NonNull String receiptCusname;
+
+    @NotNull
+	@Size(max = 13,min = 13)
+    private String receiptCusident; 
+
+    @NotNull
+	@Pattern(regexp = "\\d{10}")
+	private String receiptCustel;
 
     @NotNull
     private String receiptPrice;
-
     @NotNull
     private  String proR2;
-
     @NotNull
     private  String proR3;
-
     @NotNull
     private  String proR4;
-
     @NotNull
     private  String proR5;
   
@@ -73,7 +79,10 @@ public class Receipt{
 
 
         public Receipt(){}
-        public Receipt(Date receiptDate,String receiptPrice,String proR2,String proR3,String proR4,String proR5 ){
+        public Receipt(String receiptCusident,String receiptCusname,String receiptCustel,Date receiptDate,String receiptPrice,String proR2,String proR3,String proR4,String proR5 ){
+            this.receiptCusname = receiptCusname;
+            this.receiptCusident = receiptCusident;
+            this.receiptCustel = receiptCustel;
             this.receiptDate = receiptDate;
             this.receiptPrice = receiptPrice;
             this.proR2 = proR2;

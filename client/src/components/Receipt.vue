@@ -45,11 +45,51 @@
          <v-btn class="ml-12 mb-7" @click="findCustomer" raised large color="primary">SEARCH</v-btn>
          </b-col> 
 
+
           <b-col md=4>
            <v-flex md12 xs12 lg12 xl3>
               <p class="font-weight-bold" align = 'center' v-if="customerCheck != ''" >Customer Name : {{customerName}}</p>
               </v-flex>
       </b-col>
+
+     
+            <v-col cols="4">
+              <v-text-field
+                      outlined
+                       solo
+                      type="number"
+                      label="เลขประจำตัวผู้รับ"
+                      v-model="receipt.receiptCusident"
+                      :rules="[(v) => !!v || 'Item is required']"
+                      required
+              ></v-text-field>
+            </v-col>
+      
+            <v-col cols="4">
+              <v-text-field
+                      outlined
+                       solo
+                      label="ชื่อผู้รับ"
+                      v-model="receipt.receiptCusname"
+                      :rules="[(v) => !!v || 'Item is required']"
+                      required
+              ></v-text-field>
+            </v-col>
+
+            
+            <v-col cols="4">
+              <v-text-field
+                      outlined
+                       solo
+                      type="number"
+                      label="เบอร์โทรผู้รับ"
+                      v-model="receipt.receiptCustel"
+                      :rules="[(v) => !!v || 'Item is required']"
+                      required
+              ></v-text-field>
+            </v-col>
+        
+      
       
 
        <b-col md=4>
@@ -256,6 +296,9 @@
    data() {
     return {
       receipt: {
+        receiptCusname: "",
+        receiptCusident: "",
+        receiptCustel: "",
         customerIdent: "",
         typeId: "",
         proId:"",
@@ -271,6 +314,7 @@
         valid: false,
       customerCheck: false,
       customerName: "",
+      customerIDent: "",
       pCheck: false,
       pPrice: "",
       p2Check: false,
@@ -281,6 +325,8 @@
       p4Price: "",
       p5Check: false,
       p5Price: "",
+      snaktr: false,
+      snactexttrue: "",
       drawer: false
     };
   },
@@ -348,10 +394,9 @@
                 this.customerName = response.data.cusName;
                 this.customerCheck = response.status;
                 this.snaktr = true;
-                 this.snactexttrue =('ค้นหาสำเร็จ'+this.receipt.customerIdent )
+                this.snactexttrue =('ค้นหาสำเร็จ '+this.receipt.customerIdent )
                
-                
-              
+                     
               } else {
                  this.snaktr = true;
                  this.snactexttrue =('ไม่พบข้อมูล') 
@@ -499,12 +544,18 @@
     },
 
     
-     saveReceipts() {
+     saveReceipts(){
           http
         .post(
-        // /receipt/{identification}/{type_id}/{pro_id}/{proeR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
+        // ("/receipt/{identification}/{receiptCusident}/{receiptCusname}/{receiptCustel}/{type_id}/{pro_id}/{proR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
           "/receipt/" +
             this.receipt.customerIdent +
+            "/" +
+            this.receipt.receiptCusident +
+            "/" +
+            this.receipt.receiptCusname +
+            "/" +
+            this.receipt.receiptCustel +
             "/" +
             this.receipt.typeId +
             "/" +
@@ -524,18 +575,24 @@
             "/" +
             this.result ,
            
-          this.receipt,
+            this.receipt,
           console.log(this.receipt),
            
         )
        .then(response => {
           console.log(response);
-          this.$router.push("/viewreceipt");
           this.snaktr = true;
           this.snactexttrue =('บันทึกข้อมูลเสร็จสิ้น')
+
+        
         })
+        
         .catch(e => {
           console.log(e);
+          if(e = true){
+           this.snaktr = true;
+           this.snactexttrue ="กรุณาใส่ข้อมูลให้ถูกต้อง"
+          }
         });
       this.submitted = true;
      
