@@ -1,12 +1,12 @@
 <template>
-  <v-app id="login" :style="{ backgroundImage: 'url(' + require('@/assets/d.jpg') + ')' }">
+  <v-app id="login"  :style="{ backgroundImage: 'url(' + require('@/assets/BGLOG.jpg') + ')' }">
     <v-content>
       <v-container
-        
-        class="fill-height"
         fluid
+        class="hbg"
+        id="customer"  :style="{ backgroundImage: 'url(' + require('@/assets/lcustomer.png') + ')' }"
       >
-      
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <v-row
           align="center"
           justify="center"
@@ -14,17 +14,17 @@
           <v-col
             cols="12"
             sm="8"
-            md="4"
+            md="6"
           >
             <v-card class="elevation-12">
               <v-toolbar
-                color="primary"
+                color="#F9A825"
                 dark
-                flat
+                dense
               >
-                <v-toolbar-title>Login to Health Insurance System </v-toolbar-title>
+                <v-toolbar-title></v-toolbar-title>
                 
-                <div class="flex-grow-1"></div>
+                <div class="flex-grow-3"></div>
                
                
               </v-toolbar>
@@ -48,14 +48,20 @@
               
               <v-card-actions>
                 <div class="flex-grow-1"></div>
-                <v-btn color="primary" @click="UserValidate">LOGIN</v-btn>
-                <v-btn color="primary" to ="/Register">Register</v-btn>
+                <v-btn color="#64DD17" @click="UserValidate">LOGIN</v-btn>
+                <v-btn color="primary" to ="/Home">Back</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
     </v-content>
+
+    <v-footer color="#EEEEEE">
+      <v-spacer></v-spacer>
+      <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
+    </v-footer>
+
   </v-app>
 </template>
 
@@ -95,29 +101,9 @@ import http from "../http-common";
         .then(response => {
             console.log(response);
             this.message = JSON.stringify(response.data);
-          if(this.message == '{"p1":"true"}'){
+          if(this.message == '{"customer":"true"}'){
                 alert('login success')
                 this.$router.push({ path: `/customer` })
-          }
-          else if(this.message == '{"p2":"true"}'){
-                alert('login success')
-                this.$router.push({ path: `/fix` })
-          }
-          else if(this.message == '{"p3":"true"}'){
-                alert('login success')
-                this.$router.push({ path: `/cushome` })
-          }
-          else if(this.message == '{"p4":"true"}'){
-                alert('login success')
-                this.$router.push({ path: `/receipt` })
-          }
-          else if(this.message == '{"p5":"true"}'){
-                alert('login success')
-                this.$router.push({ path: `/addproduct` })
-          }
-          else if(this.message == '{"p6":"true"}'){
-                alert('login success')
-                this.$router.push({ path: `/repairindex` })
           }
           else if(this.message == '{"massage":"false"}'){
                     alert('wrong password')
@@ -127,29 +113,9 @@ import http from "../http-common";
               alert('wrong username')
               this.clear()
           }
-          else if(this.message == '{"p1":"false"}'){
+          else if(this.message == '{"customer":"false"}'){
                alert('login false')
                this.clear()
-          }
-          else if(this.message == '{"p2":"false"}'){
-               alert('login false')
-               this.clear()
-          }
-          else if(this.message == '{"p3":"false"}'){
-               alert('login false')
-               this.clear()
-          }
-          else if(this.message == '{"p4":"false"}'){
-               alert('login false')
-               this.clear()
-          }
-          else if(this.message == '{"p5":"false"}'){
-               alert('login false')
-               this.clear()
-          }
-          else if(this.message == '{"p6":"false"}'){
-            alert('login false')
-            this.clear()
           }
           else{
          }
@@ -172,4 +138,13 @@ import http from "../http-common";
 </script>
 
 <style>
+  .lbg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+    background-color: #0000;
+    opacity: 0.9;
+  }
 </style>

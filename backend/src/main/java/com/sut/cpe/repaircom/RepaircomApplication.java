@@ -1,11 +1,7 @@
 package com.sut.cpe.repaircom;
 
 import com.sut.cpe.repaircom.entity.*;
-import com.sut.cpe.repaircom.entity.Province;
-import com.sut.cpe.repaircom.entity.Sex;
 import com.sut.cpe.repaircom.repository.*;
-import com.sut.cpe.repaircom.repository.ProvinceRepository;
-import com.sut.cpe.repaircom.repository.SexRepository;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -128,22 +124,15 @@ public class RepaircomApplication {
             machinecolorRepository.save(new Machinecolor("Black"));
             machinecolorRepository.save(new Machinecolor("Gray"));
             machinecolorRepository.save(new Machinecolor("Silver"));
+
+            profileloginRepository.save(new Profilelogin("customer","12345678"));
+            profileloginRepository.save(new Profilelogin("fix","12345678"));
+            profileloginRepository.save(new Profilelogin("admin","12345678"));
+            profileloginRepository.save(new Profilelogin("addproduct","12345678"));
+            profileloginRepository.save(new Profilelogin("receipt","12345678"));
+            profileloginRepository.save(new Profilelogin("contact","12345678"));
             
             
-
-
-
-            addproductRepository.findAll().forEach(System.out::println);
-            typeRepository.findAll().forEach(System.out::println);
-            brandRepository.findAll().forEach(System.out::println);
-            partRepository.findAll().forEach(System.out::println);
-            branchRepository.findAll().forEach(System.out::println);
-            provinceRepository.findAll().forEach(System.out::println); // แสดง ข้อมูลทั้งหมดใน Entity Province บน Terminal
-            employeeRepository.findAll().forEach(System.out::println); // แสดง ข้อมูลทั้งหมดใน Entity Employee บน Terminal
-            sexRepository.findAll().forEach(System.out::println); // แสดง ข้อมูลทั้งหมดใน Entity Sex บน Termina
-            communicationRepository.findAll().forEach(System.out::println);//ระบบติดต่อสอบถาม
-            headingRepository.findAll().forEach(System.out::println);//ระบบติดต่อสอบถาม
-            machinecolorRepository.findAll().forEach(System.out::println);
 
         };
     }
