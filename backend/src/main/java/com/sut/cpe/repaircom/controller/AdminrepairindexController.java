@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -41,7 +42,7 @@ public class AdminrepairindexController {
     private StatusrepairRepository statusrepairRepository;
     @Autowired
     private TypeRepository typeRepository;
-    
+
     
         AdminrepairindexController(AdminrepairindexRepository adminrepairindexRepository){
             this.adminrepairindexRepository = adminrepairindexRepository;
@@ -69,8 +70,7 @@ public class AdminrepairindexController {
             Customer customer = customerRepository.findByIdentification(identification);
             Statusrepair statusrepair = statusrepairRepository.findById(statusrepair_id);
             Type type = typeRepository.findById(type_id);
-   
-
+            
             newAdminrepairindex.setBreakdown(breakdown);
             newAdminrepairindex.setRepairDate(new Date());
             newAdminrepairindex.setBranch(branch);
@@ -79,6 +79,7 @@ public class AdminrepairindexController {
             newAdminrepairindex.setCustomer(customer);
             newAdminrepairindex.setStatusrepair(statusrepair);
             newAdminrepairindex.setType(type);
+        
 
 
                 return adminrepairindexRepository.save(newAdminrepairindex);
