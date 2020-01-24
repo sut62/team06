@@ -22,7 +22,7 @@ public class RepaircomApplication {
     }
 
     @Bean
-    ApplicationRunner init(EmployeeRepository employeeRepository,ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository,MachinecolorRepository machinecolorRepository) {
+    ApplicationRunner init(EmployeeRepository employeeRepository,ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository,MachinecolorRepository machinecolorRepository,ProfileloginRepository profileloginRepository) {
         return args -> {
             Stream.of("Takoonkan  Bunjan", "Natalee Satong", "Sawadee Yambai").forEach(name -> {
                 Employee employee = new Employee(); // สร้าง Object Employee
