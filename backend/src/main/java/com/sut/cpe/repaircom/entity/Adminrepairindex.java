@@ -1,4 +1,5 @@
 package com.sut.cpe.repaircom.entity;
+
 import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -7,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,9 +20,14 @@ import javax.persistence.GenerationType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @Entity
@@ -33,7 +41,7 @@ public class Adminrepairindex{
     @Id
     @SequenceGenerator(name="ADMINREPAIR_SEQ",sequenceName="ADMINREPAI_SEQR")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="ADMINREPAIR_SEQ")
-    @Column(name="ADMINREPAIR_ID",unique = true , nullable = true )
+    @Column(name="ADMINREPAIR_ID",unique = false , nullable = true )
     private @NonNull Long id;
 
     @NotNull
@@ -41,7 +49,7 @@ public class Adminrepairindex{
     @Pattern(regexp = "[ก-์|A-z|\\s].+")
     private String breakdown;
 
-
+    
 
 
     @Column(name="REPAIR_DATE")
@@ -71,11 +79,16 @@ public class Adminrepairindex{
     @JoinColumn(name = "BRAND_ID", insertable = true)
     private  Brand brand;
 
+    @JsonIgnoreProperties("adminrepairindex")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "adminrepairindex", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Partfix> partfix = new ArrayList<Partfix>();
+
     
     public Adminrepairindex(){}
     public Adminrepairindex(Date repairDate,String breakdown){
         this.repairDate = repairDate;
         this.breakdown = breakdown;
+
     }
 
 
