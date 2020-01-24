@@ -40,59 +40,59 @@ String username;
     try{
         if(profilelogin.getUsername().equals("customer")){
             if(profilelogin.getPassword().equals(password)){
-            map.put("p1","true");
+            map.put("customer","true");
             }
             else{
-                map.put("p1","false");
+                map.put("customer","false");
             }
         }
         else if(profilelogin.getUsername().equals("fix")) {
             if(profilelogin.getPassword().equals(password)) {
-                map.put("p2","true");
+                map.put("fix","true");
                 }
             else {
-                map.put("p2","false");
-            }
-        }
-        else if(profilelogin.getUsername().equals("contact")) {
-            if(profilelogin.getPassword().equals(password)) {
-                map.put("p3","true");
-                }
-            else {
-                map.put("p3","false");
+                map.put("fix","false");
             }
         }
         else if(profilelogin.getUsername().equals("receipt")) {
             if(profilelogin.getPassword().equals(password)) {
-                map.put("p4","true");
+                map.put("receipt","true");
                 }
             else {
-                map.put("p4","false");
+                map.put("receipt","false");
             }
         }
         else if(profilelogin.getUsername().equals("addproduct")) {
             if(profilelogin.getPassword().equals(password)) {
-                map.put("p5","true");
+                map.put("addproduct","true");
             }
             else {
-                map.put("p5","false");
+                map.put("addproduct","false");
             }
         }
 
-        else if(profilelogin.getUsername().equals("technician")) {
+        else if(profilelogin.getUsername().equals("admin")) {
             if(profilelogin.getPassword().equals(password)) {
-                map.put("p6","true");
+                map.put("admin","true");
                 }
             else {
-                map.put("p6","false");
+                map.put("admin","false");
+            }
+        }
+        else if(profilelogin.getUsername().equals("contact")) {
+            if(profilelogin.getPassword().equals(password)) {
+                map.put("contact","true");
+            }
+            else {
+                map.put("contact","false");
             }
         }
         else if(profilelogin.getUsername().equals(username)) {
             if(profilelogin.getPassword().equals(password)) {
-                map.put("p3","true");
+                map.put("contact","true");
                 }
             else {
-                map.put("p3","false");
+                map.put("contact","false");
             }
         }
         else

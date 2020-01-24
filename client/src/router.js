@@ -8,7 +8,12 @@ import Fix from '@/components/Fix.vue'
 import Cushome from '@/components/Cushome.vue'
 import Receipt from  '@/components/Receipt.vue'
 import ViewReceipt from  '@/components/ViewReceiptData.vue'
-import Login from '@/components/Loginform.vue'
+import LoginCustomer from '@/components/LoginCustomer.vue'
+import LoginFix from '@/components/LoginFix.vue'
+import LoginContact from '@/components/LoginContact.vue'
+import LoginAdmin from '@/components/LoginAdmin.vue'
+import LoginReceipt from '@/components/LoginReceipt.vue'
+import LoginAddProduct from '@/components/LoginAddProduct.vue'
 import Register from '@/components/Registerform.vue'
 import Home from '@/components/Home.vue'
 import Contact from '@/components/Contact.vue'
@@ -57,9 +62,9 @@ export default new Router({
       redirect: '/home'
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
+      path: '/logincustomer',
+      name: 'logincustomer',
+      component: LoginCustomer
     },
     {
       path: '/register',
@@ -85,6 +90,31 @@ export default new Router({
       path: '/viewAddproduct',
       name: 'viewaddproduct',
       component: ViewAddproduct
+    },
+{
+      path: '/loginfix',
+      name: 'loginfix',
+      component: LoginFix
+    },
+    {
+      path: '/logincontact',
+      name: 'logincontact',
+      component: LoginContact
+    },
+    {
+      path: '/loginadmin',
+      name: 'loginadmin',
+      component: LoginAdmin
+    },
+    {
+      path: '/loginaddproduct',
+      name: 'loginaddproduct',
+      component: LoginAddProduct
+    },
+    {
+      path: '/loginreceipt',
+      name: 'loginreceipt',
+      component: LoginReceipt
     },
   ]
 })
