@@ -7,6 +7,7 @@ import javax.persistence.OneToMany;
 import java.util.Collection;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +23,8 @@ import javax.validation.constraints.Size;
 @Setter
 @ToString
 @EqualsAndHashCode
-@Table(name="ADDPRODUCT")
+@Table(name="ADDPRODUCT" ,
+    uniqueConstraints = @UniqueConstraint(columnNames = {"proid"}))
 
 public class Addproduct{
     @Id
@@ -33,6 +35,7 @@ public class Addproduct{
     
     @NotNull
     @Pattern(regexp = "\\d{8}")
+    @Column(name = "proid")
     private String proid;
     @NotNull 
     private String productname;

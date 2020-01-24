@@ -103,7 +103,29 @@ public class AddproductTest {
         Optional<Addproduct> found = addproductRepository.findById(addproduct.getId());
         assertEquals("8GB", found.get().getDescription());
     }
+    @Test
+     void b5916962_testProidTestUnique() {
+         
+        Addproduct a1 = new Addproduct();
+        a1.setProid("20200001");
+        a1.setProductname("MSI RAM");
+        a1.setDescription("8GB");
+        a1.setPrice(800);
+        addproductRepository.saveAndFlush(a1);
+ 
+     
+         assertThrows(DataIntegrityViolationException.class, () -> {
 
+           
+         Addproduct a2 = new Addproduct();
+
+         a2.setProid("20200001");
+         a2.setProductname("MSI RAM");
+         a2.setDescription("8GB");
+         a2.setPrice(800);
+         addproductRepository.saveAndFlush(a2);
+         });
+     }
 
     
 
