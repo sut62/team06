@@ -50,7 +50,7 @@
             </v-navigation-drawer>
         </nav>
         
-        <div class="vbg">
+        <div class="addpro">
         
     <br><br>
     <div class="text-center">
@@ -352,7 +352,7 @@ import http from "../http-common";
     margin-left: auto;
     margin-right: auto;
 }
-.vbg{
+.addpro{
     display: block;
     margin-left: auto;
     margin-right: auto;
