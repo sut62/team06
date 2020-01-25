@@ -8,4 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface AdminrepairindexRepository extends JpaRepository<Adminrepairindex,Long>{
     Adminrepairindex findById (long id);
+    Adminrepairindex findByRepairwork(String repairwork);
 }
+

@@ -33,13 +33,11 @@ public class ReceiptController {
     @Autowired
     private BranchRepository branchRepository;
     @Autowired
-    private CustomerRepository customerRepository;
-    @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
     private TypeRepository typeRepository;
     @Autowired
-    private AddproductRepository addproductRepository;
+    private AdminrepairindexRepository adminrepairindexRepository;
    
    
     
@@ -53,43 +51,36 @@ public class ReceiptController {
         public Collection<Receipt> Receipts(){
             return receiptRepository.findAll().stream().collect(Collectors.toList());
         }
+        @GetMapping("/receipt/{receiptNum}")
+        public Receipt Receipts(@PathVariable String receiptNum) {
+        Receipt receipt = receiptRepository.findByReceiptNum(receiptNum);
+        return receipt;
+        }
 
-        @PostMapping("/receipt/{identification}/{receiptCusident}/{receiptCusname}/{receiptCustel}/{type_id}/{pro_id}/{proR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
+        @PostMapping("/receipt/{receiptNum}/{repairwork}/{receiptCusident}/{receiptCusname}/{receiptCustel}/{type_id}/{employee_id}/{branch_id}")
             public Receipt newReceipt(Receipt newReceipt,
-            @PathVariable String identification,
             @PathVariable long type_id,
-            @PathVariable long pro_id,
-            @PathVariable String proR2,
-            @PathVariable String proR3,
-            @PathVariable String proR4,
-            @PathVariable String proR5,
             @PathVariable long employee_id,
             @PathVariable long branch_id,
-            @PathVariable String receiptPrice,
+            @PathVariable String repairwork,
             @PathVariable String receiptCusident,
             @PathVariable String receiptCusname,
-            @PathVariable String receiptCustel){
+            @PathVariable String receiptCustel,
+            @PathVariable String receiptNum){
             
-            Customer customer = customerRepository.findByIdentification(identification);
             Type type = typeRepository.findById(type_id);
-            Addproduct addproduct = addproductRepository.findById(pro_id);
             Employee employee = employeeRepository.findById(employee_id);
             Branch branch = branchRepository.findById(branch_id);
+            Adminrepairindex adminrepairindex = adminrepairindexRepository.findByRepairwork(repairwork);
             
-           
+            newReceipt.setAdminrepairindex(adminrepairindex);
+            newReceipt.setReceiptNum(receiptNum);
             newReceipt.setReceiptCustel(receiptCustel);
             newReceipt.setReceiptCusname(receiptCusname);
             newReceipt.setReceiptCusident(receiptCusident);
-            newReceipt.setCustomer(customer);
             newReceipt.setType(type);
-            newReceipt.setAddproduct(addproduct);
             newReceipt.setEmployee(employee);
             newReceipt.setBranch(branch);
-            newReceipt.setReceiptPrice(receiptPrice);
-            newReceipt.setProR2(proR2);
-            newReceipt.setProR3(proR3);
-            newReceipt.setProR4(proR4);
-            newReceipt.setProR5(proR5);
             newReceipt.setReceiptDate(new Date());
            
 

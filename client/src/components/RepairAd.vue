@@ -191,8 +191,8 @@
 
       },
         valid: false,
-        useforrepair:[],
-        pf : null,
+      
+       
           snaktr: false,
 
         snactexttrue: ""
@@ -332,9 +332,9 @@
         "/" +
         this.repaircp.status +
         "/" +
-        this.repaircp.typerp +
-        "/" +
-        this.pf,
+        this.repaircp.typerp ,
+       
+       
         this.repaircp,
         console.log(this.repaircp),
       

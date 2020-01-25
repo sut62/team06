@@ -15,7 +15,7 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Pattern;
-
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -23,7 +23,8 @@ import javax.validation.constraints.Pattern;
 @Setter
 @ToString
 @EqualsAndHashCode
-@Table(name="RECEIPT")
+@Table(name="RECEIPT"
+    ,uniqueConstraints = @UniqueConstraint(columnNames = {"QUEUE"}))
 
 public class Receipt{
     @Id
@@ -34,6 +35,11 @@ public class Receipt{
     private @NonNull String receiptCusname;
 
     @NotNull
+    @Column(name = "QUEUE")
+	@Pattern(regexp = "[T][C][G]\\d{7}")
+	private String receiptNum;
+
+    @NotNull
 	@Size(max = 13,min = 13)
     private String receiptCusident; 
 
@@ -41,16 +47,7 @@ public class Receipt{
 	@Pattern(regexp = "\\d{10}")
 	private String receiptCustel;
 
-    @NotNull
-    private String receiptPrice;
-    @NotNull
-    private  String proR2;
-    @NotNull
-    private  String proR3;
-    @NotNull
-    private  String proR4;
-    @NotNull
-    private  String proR5;
+
   
 
     @Column(name="RECEIPT_DATE")
@@ -60,10 +57,6 @@ public class Receipt{
     @JoinColumn(name = "BRANCH_ID", insertable = true)
     private @NonNull Branch branch;
 
-   
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Customer.class)
-    @JoinColumn(name = "CUSTOMERE_ID",insertable = true)
-    private @NonNull Customer customer;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID",insertable = true)
@@ -73,22 +66,21 @@ public class Receipt{
     @JoinColumn(name ="TYPE_ID",insertable = true)
     private @NonNull Type type;
 
-    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Addproduct.class)
-    @JoinColumn(name ="ADDPRODUCT_ID",insertable = true)
-    private @NonNull Addproduct addproduct;
+    
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Adminrepairindex.class)
+    @JoinColumn(name ="ADMINREPAIRINDEX_ID",insertable = true)
+    private @NonNull Adminrepairindex adminrepairindex;
+
 
 
         public Receipt(){}
-        public Receipt(String receiptCusident,String receiptCusname,String receiptCustel,Date receiptDate,String receiptPrice,String proR2,String proR3,String proR4,String proR5 ){
+        public Receipt(String receiptCusident,String receiptCusname,String receiptCustel,Date receiptDate,String receiptNum){
             this.receiptCusname = receiptCusname;
             this.receiptCusident = receiptCusident;
             this.receiptCustel = receiptCustel;
             this.receiptDate = receiptDate;
-            this.receiptPrice = receiptPrice;
-            this.proR2 = proR2;
-            this.proR3 = proR3;
-            this.proR4 = proR4;
-            this.proR5 = proR5;
+            this.receiptNum = receiptNum;
+           
 
             }
 
