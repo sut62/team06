@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/addpro.jpeg') + ')' }">
         <nav>
             <v-toolbar color="#C62828" dark>
@@ -9,7 +9,7 @@
                     <span>Computer</span>
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn flat color=#FF9E80 to="/home">
+                <v-btn flat color="grey" to="/home">
                     <span>Sign Out </span>
                     <v-icon right>exit_to_app</v-icon>
                 </v-btn>
