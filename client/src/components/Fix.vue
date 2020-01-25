@@ -116,7 +116,7 @@
                <v-text-field
                solo
                style="width: 300px"
-               label="Queue"
+               label="XXXX2020"
                v-model="fix.queue"
                :items="queue"
                :rules="[(v) => !!v || 'กรุณากรอกคิวงาน']"
@@ -149,8 +149,8 @@
               
                 <v-row justify="center">             
                  <v-layout  row nowrap class="justify-center">
-              <v-btn  @click="saveFixs" x-large color="success" dark>SAVE</v-btn>&nbsp;  
-              <v-btn  @click="clear" x-large color="blue-grey darken-2" dark>CLEAR</v-btn>
+              <v-btn  @click="saveFixs" large color="success" dark>SAVE</v-btn>&nbsp;  
+              <v-btn  @click="clear" large  color="blue-grey darken-2" dark>CLEAR</v-btn>
           </v-layout>
             </v-row>
            
