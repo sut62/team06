@@ -1,14 +1,22 @@
 <template>
   <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }">
+  
   <v-app-bar app color="blue darken-2">
       <v-toolbar-title class="headline text-uppercase">
         <span>ระบบบันทึกการแจ้งซ่อมคอมพิวเตอร์</span>     
      </v-toolbar-title>
       <v-spacer></v-spacer>
+
+ 
+      <v-btn color="grey lighten-5">
+       <router-link class="mr-1" to="/viewfix"> Fix Data </router-link>
+          </v-btn>&nbsp; &nbsp;  
       <v-btn color="grey lighten-5">
         <router-link class="mr-1" to="/home">LOGOUT</router-link>
       </v-btn>
     </v-app-bar>
+    
+    
 
     <div class='fix'>                   
     <br>
@@ -156,7 +164,13 @@
         <v-btn text @click="snaktr = false" >CLOSE</v-btn>
       </v-snackbar>
       
-    </div>  
+    </div> 
+    <div>
+      <v-toolbar flat short color="#EEEEEE">
+        <v-spacer></v-spacer>
+        <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
+      </v-toolbar>
+    </div> 
   </v-app>
 </template>
 
