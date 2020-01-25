@@ -48,7 +48,7 @@ public class Fix{
    
     @NotNull
     @Column(name = "QUEUE")
-	@Pattern(regexp = "\\d{8}")
+	@Pattern(regexp = "[Q]\\d{8}")
     private String queue;
         
     
