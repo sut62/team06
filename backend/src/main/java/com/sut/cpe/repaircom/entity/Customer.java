@@ -17,6 +17,7 @@ import javax.persistence.FetchType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
 
 import com.sut.cpe.repaircom.entity.*;
 
@@ -39,18 +40,21 @@ public class Customer {
 	private @NotNull String cusName;
 
 	@NotNull
-	@Size(max = 13,min = 13)
+	@Pattern(regexp = "\\d{13}")
 	private String identification;
 
 	private @NotNull int age;
-	private @NonNull Date birth;
+	private @NotNull Date birth;
 	private @NotNull String address;
 	private @NotNull String subDistrict;
 	private @NotNull String district;
 
 	@NotNull
-	@Pattern(regexp = "\\d{10}")
+	@Size(max = 10,min = 9)
 	private String tel;
+
+	@Email (message = "Email should be valid")
+	private String email;
 	
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID", insertable = true)
@@ -137,6 +141,14 @@ public class Customer {
 
 	public String getTel() {
         return tel;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 	
 }
