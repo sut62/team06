@@ -71,13 +71,16 @@ public class FixTest {
     void B5907397_testFixnameSize() {
        Fix fix = new Fix();
 
-       fix.setFixname("จอดับบ่อยๆ");
+       fix.setFixname("");
        fix.setQueue("00012020");
+       Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
-      fix = fixRepository.saveAndFlush(fix);
+       // result ต้องมี error 1 ค่าเท่านั้น
+       assertEquals(1, result.size());
 
-        Optional<Fix> found = fixRepository.findById(fix.getId());
-        assertEquals("จอดับบ่อยๆ", found.get().getFixname());
+       ConstraintViolation<Fix> v = result.iterator().next();
+       assertEquals("size must be between 1 and 200",v.getMessage());
+       assertEquals("fixname",v.getPropertyPath().toString());
     }
 
     @Test
@@ -85,12 +88,17 @@ public class FixTest {
         Fix fix = new Fix();
 
         fix.setFixname("จอดับบ่อยๆ");
-        fix.setQueue("00012020");
+        fix.setQueue("00012020yljh");
 
-        fix = fixRepository.saveAndFlush(fix);
+       
+        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
-        Optional<Fix> found = fixRepository.findById(fix.getId());
-        assertEquals("00012020", found.get().getQueue());
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Fix> v = result.iterator().next();
+        assertEquals("must match \"\\d{8}\"", v.getMessage());
+        assertEquals("queue", v.getPropertyPath().toString());
     }
    
     @Test
