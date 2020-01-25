@@ -1,16 +1,64 @@
 <template>
-    <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/bg10.jpg') + ')' }">
+<v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/bg10.jpg') + ')' }">
 
-  <v-app-bar app color="#3366ff">
-      <v-toolbar-title class="headline text-uppercase">
-        <span >CONTACT</span>
-      </v-toolbar-title>
-      
-      <v-spacer></v-spacer>
-      <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/home">LOGOUT</router-link>
-      </v-btn>
-    </v-app-bar>
+        <nav>
+            <v-toolbar class="bar">
+                <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                &nbsp; &nbsp;&nbsp; &nbsp;
+                <v-toolbar-title dark>
+                    <span> <font color="#FFFFFF"> CONTACT </font></span>
+                    
+                </v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat color="#EDE7F6" to="/home">
+                    <span>Sign Out</span>
+                    <v-icon right>exit_to_app</v-icon>
+                </v-btn>
+            </v-toolbar>
+
+            <v-navigation-drawer v-model="drawer" app
+              absolute
+              dark
+              class="colornav"
+              width="15%"
+              height="100%"
+
+              permanent     
+              expand-on-hover
+            >
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-content >MENU</v-list-item-content>
+                        <v-icon left @click="drawer = !drawer">arrow_back</v-icon>
+                    </v-list-item>
+                    <v-list-item to="/contact">
+                        <v-list-item-action>
+                            <v-icon left>email</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>ติดต่อสอบถาม</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item to="/ViewContact">
+                        <v-list-item-action>
+                            <v-icon left>list</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>รายการคำถาม</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </nav>
+ 
+
+
+
+
+
+
+
+
 
 
 
@@ -156,8 +204,23 @@
                   <br>
                   <br>
                   <br>
-    </v-app>
+   
+
+
+
+           <div>
+            <v-toolbar flat short color="#EEEEEE">
+                <v-spacer></v-spacer>
+                <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
+            </v-toolbar>
+        </div>
+</v-app>
 </template>
+
+
+
+
+
 
 
 <script>
@@ -179,7 +242,6 @@ import http from "../http-common";
         
       },
         snaktr: false,
-
         snactexttrue: ""
     };
   },
@@ -191,6 +253,7 @@ import http from "../http-common";
       http
         .get("/communication")
         .then(response => {
+          this.$forceUpdate();
           this.communications = response.data;
           console.log(response.data);
         })
@@ -203,6 +266,7 @@ import http from "../http-common";
       http
         .get("/branch")
         .then(response => {
+          this.$forceUpdate();
           this.branchs = response.data;
           console.log(response.data);
         })
@@ -215,6 +279,7 @@ import http from "../http-common";
       http
         .get("/heading")
         .then(response => {
+          this.$forceUpdate();
           this.headings = response.data;
           console.log(response.data);
         })
@@ -229,11 +294,17 @@ import http from "../http-common";
         .then(response => {
           console.log(response);
           console.log(response.data.cusName)
-          if (response.data != null) {
+          if (response.data.cusName != null) {
             this.customerName = response.data.cusName;
             this.customerCheck = response.status;
+            this.snaktr = true;
+            this.snactexttrue =('ค้นหาสำเร็จ'+this.contact.customerIdent )
+
+
           } else {
-            this.clear()
+              this.snaktr = true;
+              this.snactexttrue =('ไม่พบ ID ที่ค้นหา' ) 
+              this.clear()
           }          
         })
         .catch(e => {
@@ -273,20 +344,29 @@ import http from "../http-common";
                   this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
                   this.$refs.form.reset();
                   this.$router.push("/contact");
+                   
                 })
                 .catch(e => {
                   console.log(e);
                   this.snaktr = true;
-                  this.snactexttrue ="กรุณากรอกข้อมูลให้ครบถ้วน"
+                  this.snactexttrue ="กรุณากรอกข้อมูลให้ถูกต้องครบถ้วน"
                 });
         this.submitted = true;
-     
+        window.location.reload();
+       
     },
+          clear() {
+        this.$refs.form.reset();
+        this.contactCheck = null;
+      },
+
     refreshList() {
       this.getCommunication();
       this.getBranch();
       this.getHeading();
+ 
     }
+    
     /* eslint-enable no-console */
   },
   mounted() {
@@ -300,8 +380,34 @@ import http from "../http-common";
 
 
 
- <style>
- .btncenter{
+
+
+
+<style>
+    .vbg{
+        margin-left: auto;
+        margin-right: auto;
+        height: 800px;
+        width: 1200px;
+        opacity: 0.9;
+    }
+
+    .colornav{
+  background: #9053c7;
+  background: -webkit-linear-gradient(-135deg, #000031, rgb(38, 105, 228));
+  background: -o-linear-gradient(-135deg, #000031,  rgb(38, 105, 228));
+  background: -moz-linear-gradient(-135deg, #000031,  rgb(38, 105, 228));
+  background: linear-gradient(-135deg, #000031,  rgb(38, 105, 228));
+    }
+    .bar{
+    background: #9053c7;
+  background: -webkit-linear-gradient(-135deg,rgb(38, 105, 228),#000031);
+  background: -o-linear-gradient(-135deg,rgb(38, 105, 228),#000031);
+  background: -moz-linear-gradient(-135deg,rgb(38, 105, 228),#000031);
+  background: linear-gradient(-135deg,rgb(38, 105, 228),#000031);
+    }
+
+     .btncenter{
     
     display: block;
     margin-left: auto;
@@ -311,7 +417,7 @@ import http from "../http-common";
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 900px;
+    height: 1000px;
     width: 800px; 
     background-color: #ebecf7;
     opacity: 5;
