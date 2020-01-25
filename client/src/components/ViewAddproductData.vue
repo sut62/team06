@@ -1,54 +1,87 @@
 <template>
-  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/addpro.jpeg') + ')' }">
-  <v-app-bar app color="#C62828">
-      <v-toolbar-title class="headline text-uppercase">
-        <span >VIEW</span>
-        <span class="font-weight-light"> PRODUCT</span>
-      </v-toolbar-title>
-      
-      <v-spacer></v-spacer>
-      <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/addproduct">ADD PRODUCT </router-link>
-      </v-btn>
-      <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/viewAddproduct">INFORMATION</router-link>
-      </v-btn>
-      <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/home">LOGOUT</router-link>
-      </v-btn>
-    </v-app-bar>
-                     
-    <br>
-    <div class="text-center">
-    <br>
-<br>
-<br>
-    <v-avatar>
-      <img src="https://image.flaticon.com/icons/png/512/187/187503.png" alt="avatar">
-    </v-avatar>
-  </div>
-        <v-container>
-            <v-card>
-                <v-card-title>
-                    <v-text-field
-                            v-model="search"
-                            append-icon="search"
-                            label="Search"
-                            single-line
-                            hide-details
-                    ></v-text-field>
-                </v-card-title>
-                <v-data-table
-                        :headers="headers"
-                        :items="items"
-                        :search="search"
-                ></v-data-table>
-            </v-card>
-        </v-container>
+    <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/addpro.jpeg') + ')' }">
+        <nav>
+            <v-toolbar color="#C62828" dark>
+                <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                &nbsp; &nbsp;&nbsp; &nbsp;
+                <v-toolbar-title>
+                    <span> Repair</span>
+                    <span>Computer</span>
+                </v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat color="grey" to="/home">
+                    <span>Sign Out </span>
+                    <v-icon right>exit_to_app</v-icon>
+                </v-btn>
+            </v-toolbar>
+
+            <v-navigation-drawer v-model="drawer" app
+              absolute
+      dark
+      src="https://wallpaperplay.com/walls/full/0/3/d/163882.jpg"
+      width="15%"
+             permanent
+              expand-on-hover
+             >
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-content >ADDPRODUCT MENU</v-list-item-content>
+                        <v-icon left @click="drawer = !drawer">arrow_back</v-icon>
+                    </v-list-item>
+                    <v-list-item to="/addproduct">
+                        <v-list-item-action>
+                            <v-icon left>account_box</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Add Product</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item to="/viewAddproduct">
+                        <v-list-item-action>
+                            <v-icon left>assessment</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>View Addproducts</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </nav>
+        <div class="addpro">
+            <v-container>
+                <v-card>
+                    <v-card-title>
+                        <v-text-field
+                                v-model="search"
+                                append-icon="search"
+                                label="Search"
+                                single-line
+                                hide-details
+                        ></v-text-field>
+                    </v-card-title>
+                </v-card>
+                <br>
+                <v-card color="#7C4DFF">
+                    <v-data-table
+                            :headers="headers"
+                            :items="items"
+                            :search="search"
+                            
+                    >
+                    </v-data-table>
+                </v-card>
+            </v-container>
+        </div><div>
+      <v-toolbar flat short color="#EEEEEE">
+        <v-spacer></v-spacer>
+        <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
+      </v-toolbar>
+    </div>
+    
         
     </v-app>
+    
 </template>
-
 <script>
     import http from "../http-common";
 
@@ -98,3 +131,14 @@
 </script>
 
 
+<style>
+    .addpro{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 950px;
+        width: 1000px;
+        background-color: #0000;
+        opacity: 0.9;
+    }
+</style>
