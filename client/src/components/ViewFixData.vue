@@ -16,7 +16,8 @@
       <v-layout  row  class="justify-center">
             <v-col cols="10">  
                 <v-toolbar-title>
-                    <span>Repair Computer</span>
+                    <span>ระบบดูข้อมูลบันทึก</span><br>
+                    <span>การแจ้งซ่อมคอมพิวเตอร์</span>
                 </v-toolbar-title>
   <v-avatar>
       <img  class="justify-center" 
