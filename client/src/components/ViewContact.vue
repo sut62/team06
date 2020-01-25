@@ -79,7 +79,14 @@
     </v-row>
   </v-container>
 
-  
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
           <div>
             <v-toolbar flat short color="#EEEEEE">
                 <v-spacer></v-spacer>
@@ -156,8 +163,8 @@ export default {
 
     .colornav{
   background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #000031, rgb(38, 105, 228));
-  background: -o-linear-gradient(-135deg, #000031,  rgb(38, 105, 228));
+  background: -webkit-linear-gradient(-135deg, #000031, rgb(6, 65, 173));
+  background: -o-linear-gradient(-135deg, #000031,  rgb(6, 65, 173));
   background: -moz-linear-gradient(-135deg, #000031,  rgb(38, 105, 228));
   background: linear-gradient(-135deg, #000031,  rgb(38, 105, 228));
     }
