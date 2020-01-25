@@ -1,5 +1,5 @@
 <template>
-<v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/bg10.jpg') + ')' }">
+<v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/BGcontact.jpg') + ')' }">
 
         <nav>
             <v-toolbar class="bar">

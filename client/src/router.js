@@ -18,6 +18,8 @@ import Register from '@/components/Registerform.vue'
 import Home from '@/components/Home.vue'
 import Contact from '@/components/Contact.vue'
 import ViewAddproduct from '@/components/ViewAddproductData.vue'
+import ViewContact from '@/components/ViewContact.vue'
+import ViewFix from  '@/components/ViewFixData.vue'
 
 
 Vue.use(Router)
@@ -91,7 +93,7 @@ export default new Router({
       name: 'viewaddproduct',
       component: ViewAddproduct
     },
-{
+    {
       path: '/loginfix',
       name: 'loginfix',
       component: LoginFix
@@ -115,6 +117,16 @@ export default new Router({
       path: '/loginreceipt',
       name: 'loginreceipt',
       component: LoginReceipt
+    },
+    {
+      path: '/viewfix',
+      name: 'viewfix',
+      component: ViewFix
+    },
+    {
+      path: '/viewcontact',
+      name: 'viewcontact',
+      component: ViewContact
     },
   ]
 })
