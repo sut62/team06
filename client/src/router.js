@@ -20,7 +20,7 @@ import Contact from '@/components/Contact.vue'
 import ViewAddproduct from '@/components/ViewAddproductData.vue'
 import ViewContact from '@/components/ViewContact.vue'
 import ViewFix from  '@/components/ViewFixData.vue'
-
+import viewrepairindex from '@/components/viewRepairAd.vue'
 
 Vue.use(Router)
 
@@ -127,6 +127,11 @@ export default new Router({
       path: '/viewcontact',
       name: 'viewcontact',
       component: ViewContact
+    },
+    {
+      path: '/viewrepairindex',
+      name: 'viewrepairindex',
+      component: viewrepairindex
     },
   ]
 })
