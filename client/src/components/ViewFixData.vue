@@ -2,7 +2,7 @@
     <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }">
         <nav>
             
-            <v-toolbar class="colornav">      
+            <v-toolbar class="colorna">      
             </v-toolbar>
             <v-navigation-drawer v-model="drawer" app
               absolute
@@ -89,8 +89,8 @@
                 <br>
             </v-container>
         </div>
-
-        <div>
+    
+        <div class='Pop'>
       <v-toolbar flat short color="#EEEEEE">
         <v-spacer></v-spacer>
         <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
@@ -117,6 +117,7 @@ export default {
         { text: "พนักงาน", value: "employee.empName" },
         { text: "ลูกค้า", value: "customer.cusName" },
         { text: "Machinecolor", value: "machinecolor.machinecolor" },
+        { text: "ประเภทอุปกรณ์ที่นำมาซ่อม", value: "fixtype.fixtypename" },
         { text: "Brand", value: "brand.brandname" },
         { text: "ปัญหา", value: "fixname" }
         
@@ -151,7 +152,7 @@ export default {
 </script>
 
 <style>
-.btncenter{
+.btncenters{
     
     display: block;
     margin-left: auto;
@@ -162,7 +163,7 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 755px;
+    height:  865px;
     width: 1200px; 
     background-color: #ebecf7;
     opacity: 5;
@@ -173,14 +174,30 @@ export default {
 }
 
 </style>
-<style>.vbg{
+
+<style>.vbgs{
         margin-left: auto;
         margin-right: auto;
-        height: 800px;
-        width: 1200px;
+        height: 1075px;
+        width: 800px; 
         opacity: 0.9;
     }
-    .colornav{
+    .colorna{
+  background: #792dbb;
+  background: -webkit-linear-gradient(-135deg, #010155, rgb(38, 105, 228));
+  background: -o-linear-gradient(-135deg, #020261,  rgb(38, 105, 228));
+  background: -moz-linear-gradient(-135deg, #010169,  rgb(38, 105, 228));
+  background: linear-gradient(-135deg, #020277,  rgb(38, 105, 228));
+    }
+</style>
+
+<style>.Pop{
+        margin-left: auto;
+        margin-right: auto;
+        width: 2040px; 
+        opacity: 1;
+    }
+    .colorna{
   background: #792dbb;
   background: -webkit-linear-gradient(-135deg, #010155, rgb(38, 105, 228));
   background: -o-linear-gradient(-135deg, #020261,  rgb(38, 105, 228));
