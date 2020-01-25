@@ -165,6 +165,9 @@
     <v-snackbar right v-model="snaktr" :timeout="10000">{{snactexttrue}}
                       <v-btn text @click="snaktr = false" >CLOSE</v-btn>
                      </v-snackbar>
+      <v-snackbar  right v-model="snaktn" :timeout="10000">{{snactexttrue}}
+      <v-btn text @click="snaktn = false" to="/viewrepairindex">OK</v-btn>
+      </v-snackbar>
    <v-toolbar flat short color="#303F9F">
         <v-spacer></v-spacer>
         <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
@@ -194,6 +197,7 @@
         useforrepair:[],
         pf : null,
           snaktr: false,
+          snaktn: false,
 
         snactexttrue: ""
     };
@@ -341,11 +345,9 @@
       .then(response =>{
         console.log(response);
         if(response = true){
-            this.snaktr = true;
+            this.snaktn = true;
             this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
-            if(this.snaktr = true){
-            this.$router.push('/viewrepairindex')
-            }
+           
             
         }
       })
