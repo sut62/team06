@@ -1,7 +1,7 @@
 <template>
-    <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/b.jpg') + ')' }" >
+    <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/rep.jpg') + ')' }" >
         <nav>
-            <v-toolbar color="#00BCD4" dark>
+            <v-toolbar color="#303F9F" dark>
                 <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 &nbsp; &nbsp;&nbsp; &nbsp;
                 <v-toolbar-title>
@@ -18,7 +18,7 @@
             <v-navigation-drawer v-model="drawer" app height="100%"
               absolute
       dark
-    color="#00BCD4"
+    color="#303F9F"
       width="15%"
              permanent
               expand-on-hover
@@ -80,7 +80,7 @@
                 </v-card>
             </v-container>
         </div><div>
-      <v-toolbar flat short color="#EEEEEE">
+      <v-toolbar flat short color="#303F9F">
         <v-spacer></v-spacer>
         <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
       </v-toolbar>

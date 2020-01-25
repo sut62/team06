@@ -63,7 +63,7 @@ public class AdminrepairindexController {
         @PostMapping("/Adminrepairindex/{breakdown}/{totalrepairprice}/{repairwork}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}")
             public Adminrepairindex newAdminrepairindex(Adminrepairindex newAdminrepairindex,
             @PathVariable String breakdown,
-            @PathVariable String totalrepairprice,
+            @PathVariable Double totalrepairprice,
             @PathVariable String repairwork,
             @PathVariable long branch_id,
             @PathVariable long brand_id,
