@@ -49,7 +49,7 @@ public class CustomerController {
     private EmployeeRepository employeeRepository;
     @Autowired
     private SexRepository sexRepository;
-  
+
     CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
@@ -60,12 +60,12 @@ public class CustomerController {
     }
     //ลบข้อมูล
     @DeleteMapping("/customer/{customer_id}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable("customer_id") long customer_id) {
-		System.out.println("Delete Customer with ID = " + customer_id + "...");
+    public ResponseEntity<String> deleteCustomer(@PathVariable("customer_id") long customer_id) {
+        System.out.println("Delete Customer with ID = " + customer_id + "...");
 
-		customerRepository.deleteById(customer_id);
+        customerRepository.deleteById(customer_id);
 
-		return new ResponseEntity<>("Customer has been deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Customer has been deleted!", HttpStatus.OK);
     }
     @GetMapping("/customer/{identification}")
     public Customer Customers(@PathVariable String identification) {
@@ -73,49 +73,51 @@ public class CustomerController {
         return customer;
     }
     //สร้างข้อมูล
-    @PostMapping("/customer/{sex_id}/{subDistrict}/{district}/{province_id}/{employee_id}/{cusName}/{identification}/{age}/{address}/{tel}/{birth}")
+    @PostMapping("/customer/{sex_id}/{subDistrict}/{district}/{province_id}/{employee_id}/{cusName}/{identification}/{age}/{address}/{tel}/{birth}/{email}")
     public Customer newCustomer(
-    @PathVariable long sex_id,
-    @PathVariable String subDistrict,
-    @PathVariable String district,
-    @PathVariable long province_id,
-    @PathVariable long employee_id,
-    @PathVariable String cusName,
-    @PathVariable String identification,
-    @PathVariable int age,
-    @PathVariable String address,
-    @PathVariable String tel,
-    @PathVariable String birth){
+            @PathVariable long sex_id,
+            @PathVariable String subDistrict,
+            @PathVariable String district,
+            @PathVariable long province_id,
+            @PathVariable long employee_id,
+            @PathVariable String cusName,
+            @PathVariable String identification,
+            @PathVariable int age,
+            @PathVariable String address,
+            @PathVariable String tel,
+            @PathVariable String birth,
+            @PathVariable String email){
 
-    Customer newCustomer = new Customer();
-    Sex customerSex = sexRepository.findById(sex_id);
-    Province customerProvince = provinceRepository.findById(province_id);
-    Employee createdBy = employeeRepository.findById(employee_id);
+        Customer newCustomer = new Customer();
+        Sex customerSex = sexRepository.findById(sex_id);
+        Province customerProvince = provinceRepository.findById(province_id);
+        Employee createdBy = employeeRepository.findById(employee_id);
 
-    newCustomer.setCustomerSex(customerSex);
-    newCustomer.setCustomerProvince(customerProvince);
-    newCustomer.setCreatedBy(createdBy);
+        newCustomer.setCustomerSex(customerSex);
+        newCustomer.setCustomerProvince(customerProvince);
+        newCustomer.setCreatedBy(createdBy);
 
-    newCustomer.setCusName(cusName);
-    newCustomer.setSubDistrict(subDistrict);
-    newCustomer.setDistrict(district);
-    newCustomer.setIdentification(identification);
-    newCustomer.setAge(age);
-    newCustomer.setAddress(address);
-    newCustomer.setTel(tel);
-    
-    //convert String to Date
-    try {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        java.util.Date date = simpleDateFormat.parse(birth);
-        newCustomer.setBirth(date);
-    }
-    catch (Exception e) {
-        System.out.println(e);
-    }
-    
-    return customerRepository.save(newCustomer); 
-    
+        newCustomer.setCusName(cusName);
+        newCustomer.setSubDistrict(subDistrict);
+        newCustomer.setDistrict(district);
+        newCustomer.setIdentification(identification);
+        newCustomer.setAge(age);
+        newCustomer.setAddress(address);
+        newCustomer.setTel(tel);
+
+        //convert String to Date
+        try {
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            java.util.Date date = simpleDateFormat.parse(birth);
+            newCustomer.setBirth(date);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        newCustomer.setEmail(email);
+
+        return customerRepository.save(newCustomer);
+
     }
 }

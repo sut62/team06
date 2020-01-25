@@ -50,10 +50,12 @@ public class Customer {
 	private @NotNull String district;
 
 	@NotNull
-	@Size(max = 10,min = 9)
+	@Size(min = 10, max = 10)
+	@Pattern(regexp = "[0-9]*")
 	private String tel;
 
-	@Email (message = "Email should be valid")
+	@NotNull
+	@Email
 	private String email;
 	
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Employee.class)
