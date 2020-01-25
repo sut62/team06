@@ -1,33 +1,64 @@
 <template>
-  <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/addpro.jpeg') + ')' }">
-  <v-app-bar app color="#C62828">
-      <v-toolbar-title class="headline text-uppercase">
-        <span >ADD</span>
-        <span class="font-weight-light"> PRODUCT</span>
-      </v-toolbar-title>
+    <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/addpro.jpeg') + ')' }">
+        <nav>
+            <v-toolbar color="#C62828" dark>
+                <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                &nbsp; &nbsp;&nbsp; &nbsp;
+                <v-toolbar-title>
+                    <span> Repair</span>
+                    <span>Computer</span>
+                </v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat color=#FF9E80 to="/home">
+                    <span>Sign Out </span>
+                    <v-icon right>exit_to_app</v-icon>
+                </v-btn>
+            </v-toolbar>
+
+            <v-navigation-drawer v-model="drawer" app
+              absolute
+      dark
+      src="https://wallpaperplay.com/walls/full/0/3/d/163882.jpg"
       
-      <v-spacer></v-spacer>
-      <!--<v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/">ADD PRODUCT </router-link>
-      </v-btn>
-      <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/view">INFORMATION</router-link>
-      </v-btn>-->
-      <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/home">LOGOUT</router-link>
-      </v-btn>
-    </v-app-bar>
-    <div class='addpro'>                   
-    <br>
+      width="15%"
+      height="100%"
+             permanent
+              expand-on-hover
+             >
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-content >ADDPRODUCT MENU</v-list-item-content>
+                        <v-icon left @click="drawer = !drawer">arrow_back</v-icon>
+                    </v-list-item>
+                    <v-list-item to="/addproduct">
+                        <v-list-item-action>
+                            <v-icon left>account_box</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Add Product</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item to="/viewAddproduct">
+                        <v-list-item-action>
+                            <v-icon left>assessment</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>View Addproducts</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </nav>
+        
+        <div class="vbg">
+        
+    <br><br>
     <div class="text-center">
-    <br>
-<br>
-<br>
     <v-avatar>
       <img src="https://image.flaticon.com/icons/png/512/187/187503.png" alt="avatar">
     </v-avatar>
   </div>
-  
+    
       <h1 align='center' class="display-1 font-weight-bold mb-2">เพิ่มอะไหล่คอมพิวเตอร์</h1>
     
     <v-container nowrap  class="justify-center">
@@ -328,13 +359,13 @@ import http from "../http-common";
     margin-left: auto;
     margin-right: auto;
 }
-.addpro{
+.vbg{
     display: block;
     margin-left: auto;
     margin-right: auto;
     height: 1100px;
     width: 800px; 
-    background-color: #424242;
+    background-color: #EEEEEE;
     opacity: 1;
     -moz-box-shadow:inset 0 0 10px #000000;
    -webkit-box-shadow:inset 0 0 10px #000000;
