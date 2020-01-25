@@ -25,6 +25,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -49,13 +51,18 @@ public class Adminrepairindex{
     @Pattern(regexp = "[ก-์|A-z|\\s].+")
     private String breakdown;
 
-    @NotNull
-    private String totalrepairprice;
+   
 
-    @NotNull 
+    @NotNull
+    @Column(unique = true)
+    @Pattern(regexp = "[R]\\d{7}")
     private String repairwork;
 
+    @NotNull
+    @PositiveOrZero
+    private Double totalrepairprice;
 
+    @NotNull
     @Column(name="REPAIR_DATE")
     private Date repairDate;
 
@@ -87,7 +94,7 @@ public class Adminrepairindex{
 
     
     public Adminrepairindex(){}
-    public Adminrepairindex(Date repairDate,String breakdown,String totalrepairprice,String repairwork){
+    public Adminrepairindex(Date repairDate,String breakdown,Double totalrepairprice,String repairwork){
         this.repairDate = repairDate;
         this.breakdown = breakdown;
         this.totalrepairprice = totalrepairprice;

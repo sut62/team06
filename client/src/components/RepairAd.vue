@@ -1,12 +1,12 @@
 <template>
-<v-app id="test" class="my-auto" :style="{ backgroundImage: 'url(' + require('@/assets/b.jpg') + ')' }" >
+<v-app id="test" class="my-auto" :style="{ backgroundImage: 'url(' + require('@/assets/rep.jpg') + ')' }" >
       <nav>
-            <v-toolbar  color="#00BCD4" dark>
+            <v-toolbar  color="#303F9F" dark>
                 <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 &nbsp; &nbsp;&nbsp; &nbsp;
                 <v-toolbar-title>
-                    <span> Repair</span>
-                    <span>Computer</span>
+                    <span class="fond"> Repaircomputer</span>
+                   
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn flat color="grey" to="/home">
@@ -17,7 +17,7 @@
 
             <v-navigation-drawer v-model="drawer" app
               absolute
-     color="#00BCD4"
+     color="#303F9F"
      height="100%"
       width="15%"
              permanent
@@ -50,7 +50,7 @@
 
   <b-container md=6 class=" h-100 align-items-center d-flex my-12 ">
   
-    <b-card  md=12 dark nowrap fill-height class="my-2 mx-0 bg-secondary align-items-center d-flex justify-content-center " style="width:600px  height:2200px" >
+    <b-card   md=12 nowrap fill-height class="my-2 mx-0 align-items-center d-flex justify-content-center " style="width:600px  height:2200px" >
     <b-row md=12 ref="form" nowrap  class="bg align-items-center d-flex justify-content-center">
      
       <b-col md=6>
@@ -162,10 +162,10 @@
   </b-container>
 
 
-    <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
+    <v-snackbar right v-model="snaktr" :timeout="10000">{{snactexttrue}}
                       <v-btn text @click="snaktr = false" >CLOSE</v-btn>
                      </v-snackbar>
-   <v-toolbar flat short color="#EEEEEE">
+   <v-toolbar flat short color="#303F9F">
         <v-spacer></v-spacer>
         <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
       </v-toolbar>
@@ -191,8 +191,8 @@
 
       },
         valid: false,
-      
-       
+        useforrepair:[],
+        pf : null,
           snaktr: false,
 
         snactexttrue: ""
@@ -332,9 +332,7 @@
         "/" +
         this.repaircp.status +
         "/" +
-        this.repaircp.typerp ,
-       
-       
+        this.repaircp.typerp,
         this.repaircp,
         console.log(this.repaircp),
       
@@ -399,6 +397,9 @@
 .ccl{
   max-width: 50%;
   max-height: 100%;
+}
+.card{
+background: rgba(255, 252, 252, 0.5);
 }
 @font-face {
     font-family: 'Kulachat'; /*a name to be used later*/
