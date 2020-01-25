@@ -49,7 +49,11 @@ public class Adminrepairindex{
     @Pattern(regexp = "[ก-์|A-z|\\s].+")
     private String breakdown;
 
-    
+    @NotNull
+    private String totalrepairprice;
+
+    @NotNull 
+    private String repairwork;
 
 
     @Column(name="REPAIR_DATE")
@@ -85,9 +89,11 @@ public class Adminrepairindex{
 
     
     public Adminrepairindex(){}
-    public Adminrepairindex(Date repairDate,String breakdown){
+    public Adminrepairindex(Date repairDate,String breakdown,String totalrepairprice,String repairwork){
         this.repairDate = repairDate;
         this.breakdown = breakdown;
+        this.totalrepairprice = totalrepairprice;
+        this.repairwork = repairwork;
 
     }
 

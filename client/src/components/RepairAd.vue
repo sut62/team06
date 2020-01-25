@@ -1,31 +1,59 @@
 <template>
 <v-app id="test" class="my-auto" :style="{ backgroundImage: 'url(' + require('@/assets/b.jpg') + ')' }" >
-      <div class="bn bg-dark">
-                <v-app-bar icon="wrench" color="deep-purple accent-4" dense dark :style="{ backgroundImage: 'url(' + require('@/assets/a.jpeg') + ')' }"
-                    >
-                      
+      <nav>
+            <v-toolbar  color="#00BCD4" dark>
+                <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                &nbsp; &nbsp;&nbsp; &nbsp;
+                <v-toolbar-title>
+                    <span> Repair</span>
+                    <span>Computer</span>
+                </v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat color="grey" to="/home">
+                    <span>Sign Out </span>
+                    <v-icon right>exit_to_app</v-icon>
+                </v-btn>
+            </v-toolbar>
 
-                      <v-toolbar-title icons="wrench" class="fond">บันทึกการซ่อมคอมพิวเตอร์ของพนักงาน</v-toolbar-title>
-
-                      <v-spacer></v-spacer>
-
-                      <v-btn class="fond">
-                          <router-link to="/home">ออกจากระบบ</router-link>
-                      </v-btn>
-
-                  
-
-                  
-                    </v-app-bar>
-        </div>
-
+            <v-navigation-drawer v-model="drawer" app
+              absolute
+     color="#00BCD4"
+     height="100%"
+      width="15%"
+             permanent
+              expand-on-hover
+             >
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-content >adminrepair MENU</v-list-item-content>
+                        <v-icon left @click="drawer = !drawer">arrow_back</v-icon>
+                    </v-list-item>
+                    <v-list-item to="/repairindex">
+                        <v-list-item-action>
+                            <v-icon left>account_box</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Adminrepairindex</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item to="/viewrepairindex">
+                        <v-list-item-action>
+                            <v-icon left>assessment</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>View AdminRepair</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </nav>
 
   <b-container md=6 class=" h-100 align-items-center d-flex my-12 ">
   
     <b-card  md=12 dark nowrap fill-height class="my-2 mx-0 bg-secondary align-items-center d-flex justify-content-center " style="width:600px  height:2200px" >
     <b-row md=12 ref="form" nowrap  class="bg align-items-center d-flex justify-content-center">
      
-      <b-col md=12>
+      <b-col md=6>
          <v-select
           label="สาขาที่รับงาน"
           v-model="repaircp.branchId"
@@ -38,7 +66,7 @@
           solo
         ></v-select>
       </b-col>
-      <b-col md=12> 
+      <b-col md=6> 
         <v-select
           label="พนักงานที่ซ่อม"
           v-model="repaircp.employeeId"
@@ -50,7 +78,7 @@
           class="fond"
           solo
         ></v-select></b-col>
-       <b-col md=12>
+       <b-col md=6>
          <v-text-field
             solo
             label="เลขบัตรลูกค้า"
@@ -58,8 +86,15 @@
             :rules="[(v) => !!v || 'Item is required']"
             class="fond"
           ></v-text-field></b-col>
-       
-      <b-col md=12>
+       <b-col md=6>
+         <v-text-field
+            solo
+            label="รหัสงาน"
+            v-model="repaircp.rpwork"
+            :rules="[(v) => !!v || 'Item is required']"
+            class="fond"
+          ></v-text-field></b-col>
+      <b-col md=6>
         <v-text-field
             solo
             label="อาการเสีย"
@@ -68,7 +103,7 @@
             required
             class="fond"
           ></v-text-field></b-col>
-       <b-col md=12>
+       <b-col md=6>
          <v-select
           label="ประเภทเครื่องที่ซ่อม"
           v-model="repaircp.typerp"
@@ -80,7 +115,7 @@
           class="fond"
           solo
         ></v-select></b-col>
-      <b-col md=12>
+      <b-col md=6>
         <v-select
           label="ยี่ห้อเครื่องที่รับซ่อม"
           v-model="repaircp.brand"
@@ -93,7 +128,7 @@
           solo
         ></v-select></b-col>
    
-      <b-col md=12>
+      <b-col md=6>
         <v-select
           label="สถานะการซ่อม"
           v-model="repaircp.status"
@@ -106,42 +141,34 @@
           solo
         ></v-select>
       </b-col>
-    
-     
+      <b-col md=6>
+          <v-text-field md=12
+              v-model="repaircp.partfix"
+              label="ราคารวม"
+              class="fond"
+              solo
+            />   
+      </b-col>
     </b-row>
- 
+      <b-row class="align-items-center d-flex justify-content-center">
+       <v-btn  md=6 class="mb-7 fond" @click="findCustomer" rounded large color="accent">ค้นหาเลขบัตรลูกค้า</v-btn>
+        
+          <v-btn md=6 class="mb-7 fond" @click="saverepair" rounded large color="accent">บันทึก</v-btn>
+      </b-row>
   </b-card>
  
 
-      <b-container md=12 class="mx-12 h-100">
-        <b-card  md=12 dark nowrap fill-height class=" h-100 my-2 mx-0 bg-secondary align-items-center d-flex justify-content-center  " style="width:500px;"  >
-        
-         
-         <v-btn  md=6 class="mb-7 fond" @click="findCustomer" rounded large color="accent">เลขบัตรลูกค้า</v-btn>
-        
-          <v-btn md=6 class="mb-7 fond" @click="saverepair" rounded large color="accent">บันทึก</v-btn>
-        
-          <v-select md=8
-              v-model="line.usepart"
-              label="อะไหล่ที่ใช้ซ่อม"
-              solo
-            />       
-         <v-btn md=3 rounded color="success">เพิ่ม</v-btn>
-         <v-btn md=3 rounded color="red darken-4">ลบ</v-btn>
-         <v-spacer></v-spacer>
-          <br/>
-       <v-data-table md=12 :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
-       
-       </v-data-table>
-        </b-card>
-      </b-container>
-      
    
   </b-container>
 
 
-
-   
+    <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
+                      <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+                     </v-snackbar>
+   <v-toolbar flat short color="#EEEEEE">
+        <v-spacer></v-spacer>
+        <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
+      </v-toolbar>
 </v-app>
 </template>
 <script>
@@ -158,28 +185,37 @@
         branchId: "",
         employeeId: "",
         brand:"",
-
+        partfix:"",
         status: "",
         typerp: "",
-        piece:""
+
       },
-        headers: [
-        { text: "สาขา", value: "branch.branchname" },
-        { text: "พนักงาน", value: "createdBy.empName" },
-        { text: "อาการเสีย", value: "breakdown" },
-        { text: "ประเภทเครื่อง", value: "type.typename" },
-        { text: "ยี่ห้อ", value: "brand.brandname" },
-        { text: "อะไหล่ที่ใช้", value: "partfix[0].useforrepair" },
-        { text: "สถานะ", value: "statusrepair.currentstatus" },
-       
-      
-      ],
-        items : [],
         valid: false,
-        line: [],
+        useforrepair:[],
+        pf : null,
+          snaktr: false,
+
+        snactexttrue: ""
     };
   },
+
   methods:{
+    splittxt(){
+    return this.useforrepair.split(":").join();
+    console.log(this.useforrepair);
+     
+    },
+    addElement: function(){
+      this.useforrepair.push({
+        partfixs:''
+      });
+    },
+    removeElement: function(index){
+    
+        this.useforrepair.splice(index,1);
+      
+
+    },
     getBranchs(){
       http
       .get("/branch")
@@ -246,20 +282,7 @@
       .get("/addproduct")
       .then(response =>{
         this.$forceUpdate();
-        this.parts = response.data;
-        console.log(response.data);
-      })
-      .catch(e =>{
-        console.log(e);
-      })
-    },
-  
-      getPieces(){
-      http
-      .get("/partpiece")
-      .then(response =>{
-        this.$forceUpdate();
-        this.piece = response.data;
+        this.partfix = response.data;
         console.log(response.data);
       })
       .catch(e =>{
@@ -274,11 +297,13 @@
               if (response.data.cusName != null) {
                 this.customerName = response.data.cusName;
                 this.customerCheck = response.status;
-                alert('ค้นหาสำเร็จด้วยหมายเลข'+ this.repaircp.cmailp)
+                   this.snaktr = true;
+                  this.snactexttrue ="ค้นหาสำเร็จด้วยหมายเลข"+this.repaircp.cmailp
                 
               
               } else {
-                alert('ไม่พบ ID ที่ค้นหา')
+                   this.snaktr = true;
+                  this.snactexttrue ="ไม่พบ ID ที่ค้นหา"
            
               }          
             })
@@ -289,9 +314,13 @@
     saverepair(){
       http
       .post(
-        //"Adminrepairindex/{breakdown}/{addproduct_id}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{typemachrepair_id}/{partpiecesnumberforrepair_id}")
+        //"/Adminrepairindex/{breakdown}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}/{useforrepair}")
         "/Adminrepairindex/"+
          this.repaircp.breakdown + 
+        "/" +
+        this.repaircp.partfix +
+        "/" +
+        this.repaircp.rpwork +
         "/" +
         this.repaircp.branchId +
         "/" +
@@ -305,21 +334,28 @@
         "/" +
         this.repaircp.typerp +
         "/" +
-        this.repaircp.piece,
-        
+        this.pf,
         this.repaircp,
-        console.log(this.repaircp)
+        console.log(this.repaircp),
+      
+        
       )
       .then(response =>{
         console.log(response);
         if(response = true){
-          alert('บันทึกข้อมูลเสร็จสิ้น')
+            this.snaktr = true;
+            this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
+            if(this.snaktr = true){
+            this.$router.push('/viewrepairindex')
+            }
+            
         }
       })
       .catch(e=>{
         console.log(e);
         if(e = true){
-          alert('การบันทึกข้อมูลผิดพลาด')
+             this.snaktr = true;
+            this.snactexttrue ="บันทึกข้อมูลไม่สำเร็จ"
           
         }
       })
@@ -330,7 +366,6 @@
       .get("/Adminrepairindex")
       .then(response =>{
         this.items = response.data;
-        console.log(response.data.partfix);
         console.log(this.items);
       })
       .catch(e =>{
