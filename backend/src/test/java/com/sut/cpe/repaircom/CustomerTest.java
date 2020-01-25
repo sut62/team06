@@ -15,6 +15,8 @@ import javax.validation.ValidatorFactory;
 import java.util.Optional;
 import java.util.Set;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -42,11 +44,17 @@ public class CustomerTest {
         customer.setCusName("parin boorapa");
         customer.setIdentification("1319800218977");
         customer.setAge(21);
-        customer.setBirth(null);
+        try {
+            customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
+        }
+        catch (Exception e) {
+            System.out.println("wrong format");
+        }
         customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
         customer.setSubDistrict("ห้วยหิน");
         customer.setDistrict("หนองหงส์");
         customer.setTel("0939898774");
+        customer.setEmail("Vavo@hotmail.com");
 
         customer = customerRepository.saveAndFlush(customer);
         final Optional<Customer> found = customerRepository.findById(customer.getId());
@@ -54,11 +62,17 @@ public class CustomerTest {
         assertEquals("parin boorapa", found.get().getCusName());
         assertEquals("1319800218977", found.get().getIdentification());
         assertEquals(21, found.get().getAge());
-        assertEquals(null, found.get().getBirth());
+        try {
+            assertEquals(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"), found.get().getBirth());
+        }
+        catch (Exception e) {
+            System.out.println("weong format");
+        }
         assertEquals("63 หมู่่ 14 บ้านหัวเห็ด", found.get().getAddress());
         assertEquals("ห้วยหิน", found.get().getSubDistrict());
         assertEquals("หนองหงส์", found.get().getDistrict());
         assertEquals("0939898774", found.get().getTel());
+        assertEquals("Vavo@hotmail.com", found.get().getEmail());
     }
     
     @Test
@@ -68,11 +82,17 @@ public class CustomerTest {
         customer.setCusName("parin boorapa");
         customer.setIdentification(null);
         customer.setAge(21);
-        customer.setBirth(null);
+        try {
+            customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
+        }
+        catch (Exception e) {
+            System.out.println("wrong format");
+        }
         customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
         customer.setSubDistrict("ห้วยหิน");
         customer.setDistrict("หนองหงส์");
         customer.setTel("0939898774");
+        customer.setEmail("Vavo@hotmail.com");
       
         Set<ConstraintViolation<Customer>> result = validator.validate(customer);
 
@@ -92,11 +112,17 @@ public class CustomerTest {
         customer.setCusName("parin boorapa");
         customer.setIdentification("1234567890123");
         customer.setAge(21);
-        customer.setBirth(null);
+        try {
+            customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
+        }
+        catch (Exception e) {
+            System.out.println("wrong format");
+        }
         customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
         customer.setSubDistrict("ห้วยหิน");
         customer.setDistrict("หนองหงส์");
         customer.setTel("0939898774");
+        customer.setEmail("Vavo@hotmail.com");
 
         customer = customerRepository.saveAndFlush(customer);
 
@@ -111,16 +137,47 @@ public class CustomerTest {
         customer.setCusName("parin boorapa");
         customer.setIdentification("1215422512455");
         customer.setAge(21);
-        customer.setBirth(null);
+        try {
+            customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
+        }
+        catch (Exception e) {
+            System.out.println("wrong format");
+        }
         customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
         customer.setSubDistrict("ห้วยหิน");
         customer.setDistrict("หนองหงส์");
         customer.setTel("0939898774");
+        customer.setEmail("Vavo@hotmail.com");
 
         customer = customerRepository.saveAndFlush(customer);
 
         Optional<Customer> found = customerRepository.findById(customer.getId());
         assertEquals("0939898774", found.get().getTel());
+    }
+
+    @Test
+    void b5915040_testEmail() {
+        Customer customer = new Customer();
+
+        customer.setCusName("parin boorapa");
+        customer.setIdentification("1215422512455");
+        customer.setAge(21);
+        try {
+            customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
+        }
+        catch (Exception e) {
+            System.out.println("wrong format");
+        }
+        customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
+        customer.setSubDistrict("ห้วยหิน");
+        customer.setDistrict("หนองหงส์");
+        customer.setTel("0939898774");
+        customer.setEmail("Vavo@hotmail.com");
+
+        customer = customerRepository.saveAndFlush(customer);
+
+        Optional<Customer> found = customerRepository.findById(customer.getId());
+        assertEquals("Vavo@hotmail.com", found.get().getEmail());
     }
 }
 
