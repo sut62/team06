@@ -106,11 +106,11 @@ public class CustomerTest {
     }
 
     @Test
-    void b5915040_testIdentificationSize() {
+    void b5915040_testIdentificationPattern() {
         Customer customer = new Customer();
 
         customer.setCusName("parin boorapa");
-        customer.setIdentification("1234567890123");
+        customer.setIdentification("131254412548");
         customer.setAge(21);
         try {
             customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
@@ -124,18 +124,23 @@ public class CustomerTest {
         customer.setTel("0939898774");
         customer.setEmail("Vavo@hotmail.com");
 
-        customer = customerRepository.saveAndFlush(customer);
+        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
 
-        Optional<Customer> found = customerRepository.findById(customer.getId());
-        assertEquals("1234567890123", found.get().getIdentification());
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Customer> v = result.iterator().next();
+        assertEquals("must match \"\\d{13}\"", v.getMessage());
+        assertEquals("identification", v.getPropertyPath().toString());
     }
 
     @Test
-    void b5915040_testTelPattern() {
+    void b5915040_testTelsize() {
         Customer customer = new Customer();
 
         customer.setCusName("parin boorapa");
-        customer.setIdentification("1215422512455");
+        customer.setIdentification("5485122545899");
         customer.setAge(21);
         try {
             customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
@@ -146,21 +151,24 @@ public class CustomerTest {
         customer.setAddress("63 หมู่่ 14 บ้านหัวเห็ด");
         customer.setSubDistrict("ห้วยหิน");
         customer.setDistrict("หนองหงส์");
-        customer.setTel("0939898774");
+        customer.setTel("15");
         customer.setEmail("Vavo@hotmail.com");
 
-        customer = customerRepository.saveAndFlush(customer);
+        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
 
-        Optional<Customer> found = customerRepository.findById(customer.getId());
-        assertEquals("0939898774", found.get().getTel());
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Customer> v = result.iterator().next();
+        assertEquals("size must be between 10 and 10",v.getMessage());
+        assertEquals("tel",v.getPropertyPath().toString());
     }
 
     @Test
-    void b5915040_testEmail() {
+    void b5915040_testEmailValidation() {
         Customer customer = new Customer();
 
         customer.setCusName("parin boorapa");
-        customer.setIdentification("1215422512455");
+        customer.setIdentification("1514211254877");
         customer.setAge(21);
         try {
             customer.setBirth(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
@@ -172,12 +180,17 @@ public class CustomerTest {
         customer.setSubDistrict("ห้วยหิน");
         customer.setDistrict("หนองหงส์");
         customer.setTel("0939898774");
-        customer.setEmail("Vavo@hotmail.com");
+        customer.setEmail("gg");
 
-        customer = customerRepository.saveAndFlush(customer);
+        Set<ConstraintViolation<Customer>> result = validator.validate(customer);
 
-        Optional<Customer> found = customerRepository.findById(customer.getId());
-        assertEquals("Vavo@hotmail.com", found.get().getEmail());
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Customer> v = result.iterator().next();
+        assertEquals("must be a well-formed email address", v.getMessage());
+        assertEquals("email", v.getPropertyPath().toString());
     }
 }
 
