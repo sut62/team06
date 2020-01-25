@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -40,10 +41,11 @@ public class Contact {
     private Long id;
 
     @NotNull
-	@Size(max = 2000,min = 1)
+	@Size(max = 2000,min = 2)
     private String detail;
 
     @NotNull
+    @Email
     private String email;
    
     @NotNull
