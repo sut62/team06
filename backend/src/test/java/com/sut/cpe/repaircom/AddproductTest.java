@@ -40,16 +40,18 @@ public class AddproductTest {
     void b5916962_testProidPattern() {
         Addproduct addproduct = new Addproduct();
 
-        addproduct.setProid("20200001");
+        addproduct.setProid("20200001grgrt");
         addproduct.setProductname("MSI RAM");
         addproduct.setDescription("8GB");
         addproduct.setPrice(800);
-        
+        Set<ConstraintViolation<Addproduct>> result = validator.validate(addproduct);
 
-        addproduct = addproductRepository.saveAndFlush(addproduct);
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
 
-        Optional<Addproduct> found = addproductRepository.findById(addproduct.getId());
-        assertEquals("20200001", found.get().getProid());
+        ConstraintViolation<Addproduct> v = result.iterator().next();
+        assertEquals("must match \"\\d{8}\"", v.getMessage());
+        assertEquals("proid", v.getPropertyPath().toString());
     }
     @Test
     void b5916962_testAddproductSuccess(){
@@ -95,13 +97,15 @@ public class AddproductTest {
         
         addproduct.setProid("20200001");
         addproduct.setProductname("MSI RAM");
-        addproduct.setDescription("8GB");
+        addproduct.setDescription("");
         addproduct.setPrice(800);
+        Set<ConstraintViolation<Addproduct>> result = validator.validate(addproduct);
 
-        addproduct = addproductRepository.saveAndFlush(addproduct);
+        assertEquals(1, result.size());
 
-        Optional<Addproduct> found = addproductRepository.findById(addproduct.getId());
-        assertEquals("8GB", found.get().getDescription());
+       ConstraintViolation<Addproduct> v = result.iterator().next();
+       assertEquals("size must be between 1 and 2000",v.getMessage());
+       assertEquals("description",v.getPropertyPath().toString());
     }
     @Test
      void b5916962_testProidTestUnique() {
