@@ -1,64 +1,119 @@
 <template>
 <v-app id="test" class="my-auto" :style="{ backgroundImage: 'url(' + require('@/assets/receipt.jpeg') + ')' }" >
-      <div class="bn bg-dark">
-                <v-app-bar icon="wrench" color="deep-purple accent-4" dense dark :style="{ backgroundImage: 'url(' + require('@/assets/receipt.jpeg') + ')' }"
-                    >
-                      
+       <nav>
+            <v-toolbar  color="#42A5F5" dark>
+                <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                &nbsp; &nbsp;&nbsp; &nbsp;
+                <v-toolbar-title>
+                    <span> Repair</span>
+                    <span>Computer</span>
+                </v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat color="grey" to="/home">
+                    <span>Sign Out </span>
+                    <v-icon right>exit_to_app</v-icon>
+                </v-btn>
+            </v-toolbar>
 
-                      <v-toolbar-title icons="wrench" class="fond">Receipt System</v-toolbar-title>
+            <v-navigation-drawer v-model="drawer" app
+              absolute
+     color="#42A5F5"
+     height="100%"
+      width="15%"
+             permanent
+              expand-on-hover
+             >
+              <v-list>
+                    <v-list-item>
+                        <v-list-item-content >Receipt MENU</v-list-item-content>
+                        <v-icon left @click="drawer = !drawer">arrow_back</v-icon>
+                    </v-list-item>
+                    <v-list-item to="/receipt">
+                        <v-list-item-action>
+                            <v-icon left>account_box</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Receipt</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                      <v-list-item to="/viewrepairindex">
+                        <v-list-item-action>
+                            <v-icon left>assessment</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>View Adminrepair</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item to="/viewreceipt">
+                        <v-list-item-action>
+                            <v-icon left>assessment</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>View Receipt</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item to="/printreceipt">
+                        <v-list-item-action>
+                            <v-icon left>assessment</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Print Receipt</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </nav>
 
-                      <v-spacer></v-spacer>
-
-                      <v-btn class="fond">
-                           <router-link to="/viewreceipt">View Receipt</router-link>
-                       </v-btn> 
-                      <v-btn class="fond">
-                          <router-link to="/home">Log out</router-link>
-                      </v-btn>
-                       
-
-                  
-
-                  
-                    </v-app-bar>
-        </div>
 
  <b-container class=" h-100 my-0 align-items-center d-flex justify-content-center" >   <!-- edit to mx-auto for biggerscreen -->
   <b-container wrap class=" h-100 my-0 align-items-center d-flex justify-content-center">
     
   <div class="ccc">
-    <b-card dark nowrap fill-height class=" my-2 mx-0 bg-info align-items-stretch d-flex justify-content-center " align-v="center" align-h="center" >
+    <b-card id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/receipt.jpeg') + ')' }">
     <b-row ref="form" nowrap  class="bg align-items-center d-flex justify-content-center"  align-v="center" align-h="center">
      
      
-       <b-col md=4>
+         <v-col cols="9">
+              <v-text-field
+                      outlined
+                       solo
+                      label="หมายเลขใบเสร็จ - TCG0000000"
+                      v-model="receipt.receiptNum"
+                      :rules="[(v) => !!v || 'Item is required']"
+                      required
+              ></v-text-field>
+            </v-col>
+
+
+
+             <b-col md=4>
          <v-text-field
             solo
-            label="ค้นหาIDลูกค้า"
-            v-model="receipt.customerIdent"
+            label="หมายเลขการซ่อม"
+            v-model="receipt.repairwork"
             :rules="[(v) => !!v || 'Item is required']"
             
           ></v-text-field></b-col>
 
 
        <b-col md=4>
-         <v-btn class="ml-12 mb-7" @click="findCustomer" raised large color="primary">SEARCH</v-btn>
+         <v-btn class="ml-12 mb-7" @click="findRepairwork" raised large color="primary">SEARCH</v-btn>
          </b-col> 
 
 
           <b-col md=4>
            <v-flex md12 xs12 lg12 xl3>
-              <p class="font-weight-bold" align = 'center' v-if="customerCheck != ''" >Customer Name : {{customerName}}</p>
+               <p class="grey lighten-5 font-weight-bold" align = 'center' v-if="adminrepairCheck != ''" >Customer Name : {{cusName}}</p>
+               <p class="grey lighten-5 font-weight-bold" align = 'center' v-if="adminrepairCheck != ''" >Customer ID : {{cusIdent}}</p>
               </v-flex>
       </b-col>
-
      
             <v-col cols="4">
               <v-text-field
                       outlined
                        solo
                       type="number"
-                      label="เลขประจำตัวผู้รับ"
+                      label="เลขประจำตัวผู้รับ 13 หลัก"
                       v-model="receipt.receiptCusident"
                       :rules="[(v) => !!v || 'Item is required']"
                       required
@@ -131,140 +186,6 @@
         ></v-select>
       </b-col>
 
-
-
-      <b-col md=4>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่1"
-          v-model="receipt.proId"
-          :items="addproduct"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-        ></v-select>
-      </b-col>
-
-
-       <b-col md=4>
-         <v-btn class="ml-12 mb-7" @click="findPrice" depressed large color="primary">ตรวจสอบราคา</v-btn>
-         </b-col> 
-
-           <b-col md=4>
-           <v-flex md12 xs12 lg12 xl3>
-              <p class="font-weight-bold" align = 'center' v-if="pCheck != ''" >Part Price : {{pPrice}}</p>
-              </v-flex>
-             </b-col>
-
-
-
-       <b-col md=4>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่2"
-          v-model="receipt.proId2"
-          :items="addproduct"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-        ></v-select>
-      </b-col>
-
-
-       <b-col md=4>
-         <v-btn class="ml-12 mb-7" @click="findPrice2" depressed large color="primary">ตรวจสอบราคา</v-btn>
-         </b-col> 
-
-          <b-col md=4>
-      <v-flex md12 xs12 lg12 xl3>
-              <p class="font-weight-bold" align = 'center' v-if="p2Check != ''" >Part Price : {{p2Price}}</p>
-              </v-flex>
-      </b-col>
-
-
-        <b-col md=4>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่3"
-          v-model="receipt.proId3"
-          :items="addproduct"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-        ></v-select>
-      </b-col>
-
-
-       <b-col md=4>
-         <v-btn class="ml-12 mb-7" @click="findPrice3" depressed large color="primary">ตรวจสอบราคา</v-btn>
-         </b-col> 
-
-          <b-col md=4>
-       <v-flex md12 xs12 lg12 xl3>
-              <p class="font-weight-bold" align = 'center' v-if="p3Check != ''" >Part Price : {{p3Price}}</p>
-              </v-flex>
-        </b-col>
-
-
-        <b-col md=4>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่4"
-          v-model="receipt.proId4"
-          :items="addproduct"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-        ></v-select>
-      </b-col>
-
-
-       <b-col md=4>
-         <v-btn class="ml-12 mb-7" @click="findPrice4" depressed large color="primary">ตรวจสอบราคา</v-btn>
-         </b-col> 
-
-           <b-col md=4>
-      <v-flex md12 xs12 lg12 xl3>
-              <p class="font-weight-bold" align = 'center' v-if="p4Check != ''" >Part Price : {{p4Price}}</p>
-              </v-flex>
-      </b-col>
-
-
-        <b-col md=4>
-        <v-select
-          label="อะไหล่ที่เปลี่ยนชิ้นที่5"
-          v-model="receipt.proId5"
-          :items="addproduct"
-          item-text="productname"
-          item-value="id"
-          :rules="[(v) => !!v || 'Item is required']"
-          required
-          solo
-        ></v-select>
-      </b-col>
-
-
-
-       <b-col md=4>
-         <v-btn class="ml-12 mb-7" @click="findPrice5" depressed large color="primary">ตรวจสอบราคา</v-btn>
-         </b-col> 
-
-         <b-col md=4>
-         <v-flex md12 xs12 lg12 xl3>
-              <p class="font-weight-bold" align = 'center' v-if="p5Check != ''" >Part Price : {{p5Price}}</p>
-              </v-flex>
-        </b-col>
-
-       
-         <b-col md=4>
-         <v-flex md12 xs12 lg12 xl3>
-              <p class="font-weight-bold" align = 'center' v-if="p4Check != ''" >Total Price : {{result}}</p>
-              </v-flex>
-        </b-col>
         
 
     </b-row>
@@ -296,45 +217,27 @@
    data() {
     return {
       receipt: {
+        receiptNum: "",
         receiptCusname: "",
         receiptCusident: "",
         receiptCustel: "",
-        customerIdent: "",
+        repairwork: "",
         typeId: "",
-        proId:"",
-        proId2:"",
-        proId3:"",
-        proId4:"",
-        proId5:"",
         employeeId:"",
         branchId: "",
-        receiptPrice: "",
   
       },
         valid: false,
-      customerCheck: false,
-      customerName: "",
-      customerIDent: "",
-      pCheck: false,
-      pPrice: "",
-      p2Check: false,
-      p2Price: "",
-      p3Check: false,
-      p3Price: "",
-      p4Check: false,
-      p4Price: "",
-      p5Check: false,
-      p5Price: "",
+      adminrepairCheck: "",
+      cusName: "",
+      cusIdent: "",
       snaktr: false,
       snactexttrue: "",
       drawer: false
     };
   },
-  computed: {
-    result(){
-      return parseInt(this.pPrice)+parseInt(this.p2Price)+parseInt(this.p3Price)+parseInt(this.p4Price)+parseInt(this.p5Price)
-    }
-  },
+  
+
   methods:{
     getTypes(){
         http
@@ -371,30 +274,20 @@
           console.log(e);
         })
       },
-    getProducts(){
-        http
-        .get("/addproduct")
-        .then(response =>{
-          this.$forceUpdate();
-          this.addproduct = response.data;
-          console.log(response.data);
-        })
-        .catch(e =>{
-          console.log(e);
-        })
-      },
-      
     
-     findCustomer() {
+    
+     
+      findRepairwork() {
           http
-            .get("/customer/"+ this.receipt.customerIdent)
+            .get("/Adminrepairindex/"+ this.receipt.repairwork)
             .then(response => {
               console.log(response);
-              if (response.data.cusName != null) {
-                this.customerName = response.data.cusName;
-                this.customerCheck = response.status;
+              if (response.data.repairwork != null) {
+                this.cusName = response.data.customer.cusName;
+                this.cusIdent = response.data.customer.identification
+                this.adminrepairCheck = response.status;
                 this.snaktr = true;
-                this.snactexttrue =('ค้นหาสำเร็จ '+this.receipt.customerIdent )
+                this.snactexttrue =('ค้นหาสำเร็จ '+this.receipt.repairwork )
                
                      
               } else {
@@ -409,147 +302,19 @@
         },
         clear() {
       this.$refs.form.reset();
-      this.customerCheck = false;
+      this.adminrepairCheck = false;
     },
 
-     findPrice() {
-          http
-            .get("/addproduct/"+ this.receipt.proId)         
-            .then(response => {
-              if (response.data.id != null) {
-                this.pPrice = response.data.price;
-                this.pCheck = response.status;
-                console.log(response.data.proId);
-                console.log(response.status);
-                
-              
-              } else {
-                 this.snaktr = true;
-                 this.snactexttrue =('ไม่พบข้อมูล') 
-                this.clear()
-              }          
-            })
-            .catch(e => {
-              console.log(e);
-            });
-          this.submitted = true;
-        },
-        clear() {
-      this.$refs.form.reset();
-      this.pCheck = false;
-    },
-    findPrice2() {
-          http
-            .get("/addproduct/"+ this.receipt.proId2)         
-            .then(response => {
-              if (response.data.id != null) {
-                this.p2Price = response.data.price;
-                this.p2Check = response.status;
-                console.log(response.data.proId2);
-                console.log(response.status);
-                
-              
-              } else {
-                this.snaktr = true;
-                this.snactexttrue =('ไม่พบข้อมูล') 
-                this.clear()
-              }          
-            })
-            .catch(e => {
-              console.log(e);
-            });
-          this.submitted = true;
-        },
-        clear() {
-      this.$refs.form.reset();
-      this.p2Check = false;
-    },
-    findPrice3() {
-          http
-            .get("/addproduct/"+ this.receipt.proId3)         
-            .then(response => {
-              if (response.data.id != null) {
-                this.p3Price = response.data.price;
-                this.p3Check = response.status;
-                console.log(response.data.proId3);
-                console.log(response.status);
-                
-              
-              } else {
-                this.snaktr = true;
-                this.snactexttrue =('ไม่พบข้อมูล')
-                this.clear()
-              }          
-            })
-            .catch(e => {
-              console.log(e);
-            });
-          this.submitted = true;
-        },
-        clear() {
-      this.$refs.form.reset();
-      this.p3Check = false;
-    },
-    findPrice4() {
-          http
-            .get("/addproduct/"+ this.receipt.proId4)         
-            .then(response => {
-              if (response.data.id != null) {
-                this.p4Price = response.data.price;
-                this.p4Check = response.status;
-                console.log(response.data.proId4);
-                console.log(response.status);
-                
-              
-              } else {
-                this.snaktr = true;
-                this.snactexttrue =('ไม่พบข้อมูล')
-                this.clear()
-              }          
-            })
-            .catch(e => {
-              console.log(e);
-            });
-          this.submitted = true;
-        },
-        clear() {
-      this.$refs.form.reset();
-      this.p4Check = false;
-    },
-    findPrice5() {
-          http
-            .get("/addproduct/"+ this.receipt.proId5)         
-            .then(response => {
-              if (response.data.id != null) {
-                this.p5Price = response.data.price;
-                this.p5Check = response.status;
-                console.log(response.data.proId5);
-                console.log(response.status);
-                console.log(this.result)
-              
-              } else {
-                this.snaktr = true;
-                this.snactexttrue =('ไม่พบข้อมูล')
-                this.clear()
-              }          
-            })
-            .catch(e => {
-              console.log(e);
-            });
-          this.submitted = true;
-        },
-        clear() {
-      this.$refs.form.reset();
-      this.p5Check = false;
-    },
-
+    
     
      saveReceipts(){
           http
         .post(
-        // ("/receipt/{identification}/{receiptCusident}/{receiptCusname}/{receiptCustel}/{type_id}/{pro_id}/{proR2}/{proR3}/{proR4}/{proR5}/{employee_id}/{branch_id}/{receiptPrice}")
+        // ("/receipt/{receiptNum}/{adminrepairNum}/{receiptCusident}/{receiptCusname}/{receiptCustel}/{type_id}/{employee_id}/{branch_id}")
           "/receipt/" +
-            this.receipt.customerIdent +
+            this.receipt.receiptNum +
+            "/" +
+            this.receipt.repairwork +
             "/" +
             this.receipt.receiptCusident +
             "/" +
@@ -559,21 +324,10 @@
             "/" +
             this.receipt.typeId +
             "/" +
-            this.receipt.proId +
-            "/" +
-            this.receipt.proId2 +
-            "/" +
-            this.receipt.proId3 +
-            "/" +
-            this.receipt.proId4 +
-            "/" +
-            this.receipt.proId5 +
-            "/" +
             this.receipt.employeeId +
             "/" +
-            this.receipt.branchId +
-            "/" +
-            this.result ,
+            this.receipt.branchId,
+          
            
             this.receipt,
           console.log(this.receipt),
@@ -607,7 +361,6 @@
       this.getTypes();
       this.getEmployees();
       this.getBranchs();
-      this.getProducts();
       this.saveReceipts();
     },
     
@@ -616,7 +369,6 @@
       this.getTypes();
       this.getEmployees();
       this.getBranchs();
-      this.getProducts();
       this.saveReceipts();
       }
   

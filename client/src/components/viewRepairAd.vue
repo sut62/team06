@@ -41,7 +41,15 @@
                             <v-icon left>assessment</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                            <v-list-item-title>View Addproducts</v-list-item-title>
+                            <v-list-item-title>View Adminrepair</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                     <v-list-item to="/receipt">
+                        <v-list-item-action>
+                            <v-icon left>account_box</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Receipt</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list>
@@ -93,6 +101,7 @@
                 search: '',
            headers: [
         { text: "รหัสงาน", value: "repairwork" },
+        { text: "เลขบัตรลูกค้า", value: "customer.identification" },
         { text: "สาขา", value: "branch.branchname" },
         { text: "พนักงาน", value: "createdBy.empName" },
         { text: "อาการเสีย", value: "breakdown" },

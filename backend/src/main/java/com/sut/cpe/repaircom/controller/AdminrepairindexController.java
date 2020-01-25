@@ -55,6 +55,11 @@ public class AdminrepairindexController {
         public Collection<Adminrepairindex> Adminrepairindexs(){
             return adminrepairindexRepository.findAll().stream().collect(Collectors.toList());
         }
+        @GetMapping("/Adminrepairindex/{repairwork}")
+        public Adminrepairindex Adminrepairindexs(@PathVariable String repairwork) {
+        Adminrepairindex adminrepairindex = adminrepairindexRepository.findByRepairwork(repairwork);
+        return adminrepairindex;
+        }
         @PostMapping("/Adminrepairindex/{breakdown}/{totalrepairprice}/{repairwork}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}")
             public Adminrepairindex newAdminrepairindex(Adminrepairindex newAdminrepairindex,
             @PathVariable String breakdown,
@@ -65,8 +70,8 @@ public class AdminrepairindexController {
             @PathVariable long employee_id,
             @PathVariable String identification,
             @PathVariable long statusrepair_id,
-            @PathVariable long type_id,
-            @PathVariable String useforrepair){
+            @PathVariable long type_id
+        ){
             
      
             Branch branch = branchRepository.findById(branch_id);
