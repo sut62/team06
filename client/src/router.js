@@ -22,6 +22,8 @@ import ViewContact from '@/components/ViewContact.vue'
 import ViewFix from  '@/components/ViewFixData.vue'
 import viewrepairindex from '@/components/viewRepairAd.vue'
 import PrintReceipt from '@/components/PrintReceipt.vue'
+import ViewCustomer from '@/components/ViewCustomer.vue'
+
 
 Vue.use(Router)
 
@@ -138,6 +140,11 @@ export default new Router({
       path: '/viewrepairindex',
       name: 'viewrepairindex',
       component: viewrepairindex
+    },
+    {
+      path: '/viewCustomer',
+      name: 'viewCustomer',
+      component: ViewCustomer
     },
   ]
 })

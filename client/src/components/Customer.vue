@@ -1,26 +1,45 @@
 <template >
   <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/bg10.jpg') + ')' }">
-    <v-app-bar app color="deep-purple darken-1">
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Repair</span>
-        <span class="font-weight-light"> Computer</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <!-- Comment -->
-      <!--<v-btn color="grey lighten-5">
-          <router-link class="mr-1" to="/customer">Add Customer</router-link>
-        </v-btn>&nbsp;
-        <v-btn color="grey lighten-5">
-          <router-link class="mr-1" to="/viewCustomer">Information</router-link>
-        </v-btn>-->&nbsp;
-      <v-btn color="grey lighten-5">
-        <router-link class="mr-1" to="/home">Logout</router-link>
-      </v-btn>
-    </v-app-bar>
+    <nav>
+      <v-toolbar color="#7C4DFF">
+        <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>
+          <span class="font-weight-light">CUSTOMER SYSTEM</span>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn flat color="#EDE7F6" to="/home">
+          <span>Sign Out</span>
+          <v-icon right>exit_to_app</v-icon>
+        </v-btn>
+      </v-toolbar>
+
+      <v-navigation-drawer color="#EDE7F6" v-model="drawer" app>
+        <v-list>
+          <v-list-item>
+            <v-list-item-content class="font-weight-regular">ระบบจัดเก็บข้อมูลลูกค้า</v-list-item-content>
+            <v-icon left @click="drawer = !drawer">arrow_back</v-icon>
+          </v-list-item>
+          <v-list-item to="/customer">
+            <v-list-item-action>
+              <v-icon left>account_box</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-regular">เพิ่มข้อมูลลูกค้า</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/viewCustomer">
+            <v-list-item-action>
+              <v-icon left>assessment</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-regular">ดูข้อมูลลูกค้าทั้งหมด</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+    </nav>
+
     <div class='bcus'>
-      <br />
-      <br />
-      <br />
       <br />
       <div class="text-center">
         <v-avatar>
@@ -28,11 +47,10 @@
         </v-avatar>
         <br/>
       </div>
-      <h1 align='center' class="display-1 font-weight-bold mb-2">Customer Profile</h1>
-      <v-container nowrap  class="justify-center">
+      <h1 align='center' class="display-1 font-weight-light mb-2">เพิ่มข้อมูลลูกค้า</h1>
         <v-form v-model="valid" ref="form">
 
-          <v-layout  row nowrap class="justify-center">
+          <v-layout row nowrap class="justify-center">
             <v-col cols="10">
               <v-text-field
                       outlined
@@ -40,6 +58,7 @@
                       v-model="customer.cusName"
                       :rules="[(v) => !!v || 'กรุณาระบุชื่อ-นามสกุล']"
                       required
+                      background-color="#BDBDBD"
               ></v-text-field>
             </v-col>
           </v-layout>
@@ -53,6 +72,7 @@
                       v-model="customer.identification"
                       :rules="[(v) => !!v || 'กรุณาระบุหมายเลขประจำตัวประชาชน']"
                       required
+                      background-color="#BDBDBD"
               ></v-text-field>
             </v-col>
           </v-layout>
@@ -68,6 +88,7 @@
                       item-value="id"
                       :rules="[(v) => !!v || 'กรุณาระบุเพศ']"
                       required
+                      background-color="#BDBDBD"
               ></v-select>
             </v-col>
 
@@ -79,20 +100,39 @@
                       v-model="customer.age"
                       :rules="[(v) => !!v || 'กรุณาระบุอายุ']"
                       required
+                      background-color="#BDBDBD"
               ></v-text-field>
             </v-col>
-          </v-layout>
 
-          <v-layout  row nowrap class="justify-center">
-            <v-col cols="10">
-              <v-text-field
-                      outlined
-                      placeholder="yyyy-mm-dd"
-                      label="วันเกิด"
-                      v-model="customer.birth"
-                      :rules="[(v) => !!v || 'กรุณาระบุวันเกิด']"
-                      required
-              ></v-text-field>
+            <v-col cols="12" sm="6" md="4">
+              <v-menu
+                      ref="menu"
+                      v-model="menu"
+                      :close-on-content-click="false"
+                      :return-value.sync="date"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                          prepend-icon="event"
+                          readonly
+                          v-on="on"
+                          outlined
+                          label="วันเกิด"
+                          v-model="date"
+                          :rules="[(v) => !!v || 'กรุณาระบุวันเกิด']"
+                          required
+                          background-color="#BDBDBD"
+                  ></v-text-field>
+                </template>
+                <v-date-picker v-model="date" no-title scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                  <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                </v-date-picker>
+              </v-menu>
             </v-col>
           </v-layout>
 
@@ -106,6 +146,7 @@
                       value=""
                       :rules="[(v) => !!v || 'กรุณาระบุรายละเอียดที่อยู่ในการติดต่อ']"
                       required
+                      background-color="#BDBDBD"
               ></v-textarea>
             </v-col>
           </v-layout>
@@ -118,6 +159,7 @@
                       v-model="customer.subDistrict"
                       :rules="[(v) => !!v || 'กรุณาระบุตำบล']"
                       required
+                      background-color="#BDBDBD"
               ></v-text-field>
             </v-col>
 
@@ -128,6 +170,7 @@
                       v-model="customer.district"
                       :rules="[(v) => !!v || 'กรุณาระบุอำเภอ']"
                       required
+                      background-color="#BDBDBD"
               ></v-text-field>
             </v-col>
 
@@ -141,6 +184,7 @@
                       item-value="id"
                       :rules="[(v) => !!v || 'กรุณาระบุจังหวัด']"
                       required
+                      background-color="#BDBDBD"
               ></v-select>
             </v-col>
           </v-layout>
@@ -154,6 +198,16 @@
                       v-model="customer.tel"
                       :rules="[(v) => !!v || 'กรุณาระบุหมายเลขโทรศัทพ์']"
                       required
+                      background-color="#BDBDBD"
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="5">
+              <v-text-field
+                      outlined
+                      label="E-mail"
+                      v-model="customer.email"
+                      background-color="#BDBDBD"
               ></v-text-field>
             </v-col>
 
@@ -166,25 +220,27 @@
                       item-text="empName"
                       item-value="id"
                       :rules="[(v) => !!v || 'กรุณาระบุชื่อพนักงาน']"
+                      background-color="#BDBDBD"
                       required
               ></v-select>
             </v-col>
           </v-layout>
 
           <v-layout  row nowrap class="justify-center">
-            <v-btn  @click="saveCustomer" x-large color="success" dark>SAVE</v-btn>&nbsp;
-            <v-btn  @click="clear" x-large color="blue-grey darken-2" dark>CLEAR</v-btn>
+            <v-btn  @click="saveCustomer" x-large color="success" dark><v-icon left>save</v-icon>บันทึก</v-btn>&nbsp;
+            <v-btn  @click="clear" x-large color="blue-grey darken-2" dark><v-icon left>clear</v-icon>ล้างข้อมูล</v-btn>
           </v-layout>
-
         </v-form>
-      </v-container>
-
-      <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
-        <v-btn text @click="snaktr = false" >CLOSE</v-btn>
-      </v-snackbar>
-
     </div>
+    <v-snackbar  top v-model="snaktr" :timeout="10000">{{snactexttrue}}
+      <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+    </v-snackbar>
+    <v-footer color="#EEEEEE">
+      <v-spacer></v-spacer>
+      <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
+    </v-footer>
   </v-app>
+
 </template>
 
 <script>
@@ -193,6 +249,7 @@
     name: "customer",
     data() {
       return {
+        drawer: false,
         customer: {
           customerId: "",
           cusName: "",
@@ -205,11 +262,13 @@
           subDistrictId: "",
           districts: "",
           provinceId: "",
-          tel: ""
+          tel: "",
+          email:""
         },
         snaktr: false,
-
-        snactexttrue: ""
+        snactexttrue: "",
+        date: new Date().toISOString().substr(0, 10),
+        menu: false
       };
     },
     methods: {
@@ -255,7 +314,7 @@
       },
       saveCustomer() {
         http
-                //"/customer/{sex_id}/{subdistrict_id}/{district_id}/{province_id}/{employee_id}/{cusName}/{identification}/{age}/{address}/{tel}/{birth}"
+                //"/customer/{sex_id}/{subdistrict_id}/{district_id}/{province_id}/{employee_id}/{cusName}/{identification}/{age}/{address}/{tel}"
                 .post(
                         "/customer/" +
                         this.customer.customerId +
@@ -280,7 +339,9 @@
                         "/" +
                         this.customer.tel +
                         "/" +
-                        this.customer.birth,
+                        this.date +
+                        "/" +
+                        this.customer.email,
                         this.customer
                 )
                 .then(response => {
@@ -328,10 +389,9 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 1150px;
+    height: 1015px;
     width: 1000px;
     background-color: #ebecf7;
-    opacity: 0.9;
-
+    opacity: 0.95;
   }
 </style>
