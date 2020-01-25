@@ -1,7 +1,7 @@
 package com.sut.cpe.repaircom;
 
 import com.sut.cpe.repaircom.entity.Fix;
-import com.sut.cpe.repaircom.repository.FixRepository;;
+import com.sut.cpe.repaircom.repository.FixRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class FixTest {
     }
 
     @Test
-    void b5907397_testFixSuccess(){
+    void B5907397_testFixSuccess(){
         Fix fix = new Fix();
       
         fix.setFixname("จอดับบ่อยๆ");
@@ -49,7 +49,7 @@ public class FixTest {
     }  
 
     @Test
-    void b5907397_testQueueMustNotBeNull() {
+    void B5907397_testQueueMustNotBeNull() {
         Fix fix = new Fix();
         
         fix.setFixname("จอดับบ่อยๆ");
@@ -68,7 +68,7 @@ public class FixTest {
     }
 
     @Test
-    void b5907397_testFixnameSize() {
+    void B5907397_testFixnameSize() {
        Fix fix = new Fix();
 
        fix.setFixname("จอดับบ่อยๆ");
@@ -81,7 +81,7 @@ public class FixTest {
     }
 
     @Test
-    void b5907397_testQueuePattern() {
+    void B5907397_testQueuePattern() {
         Fix fix = new Fix();
 
         fix.setFixname("จอดับบ่อยๆ");
@@ -93,6 +93,24 @@ public class FixTest {
         assertEquals("00012020", found.get().getQueue());
     }
    
+    @Test
+    void B5907397_testQueueMustBeUnique() {
+        // สร้าง num_id object
+        Fix f1 = new Fix();
+        f1.setFixname("จอดับบ่อยๆ");
+        f1.setQueue("00012020");
+    fixRepository.saveAndFlush(f1);
+
+        // คาดหวังว่า DataIntegrityViolationException จะถูก throw
+        assertThrows(DataIntegrityViolationException.class, () -> {
+            // สร้าง num_id object ตัวที่ 2
+            Fix f2 = new Fix();
+                f2.setFixname("จอดับบ่อยๆ");
+                f2.setQueue("00012020");
+            fixRepository.saveAndFlush(f2);
+        });
+    }
+
     
 }
 

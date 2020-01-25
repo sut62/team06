@@ -21,6 +21,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import javax.persistence.*;
 @Data
 @Entity
 @Getter
@@ -28,8 +29,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @ToString
 //@NoArgsConstructor
 @EqualsAndHashCode
-@Table(name="FIX")
 
+@Table(
+    name="FIX" , 
+    uniqueConstraints = @UniqueConstraint(columnNames = {"QUEUE"})
+    )
 
 public class Fix{
     @Id
@@ -43,7 +47,7 @@ public class Fix{
     private @NonNull String fixname;
    
     @NotNull
-  
+    @Column(name = "QUEUE")
 	@Pattern(regexp = "\\d{8}")
     private String queue;
         
