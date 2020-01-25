@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.sut.cpe.repaircom.entity.Partfix;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -53,15 +55,18 @@ public class AdminrepairindexController {
         public Collection<Adminrepairindex> Adminrepairindexs(){
             return adminrepairindexRepository.findAll().stream().collect(Collectors.toList());
         }
-        @PostMapping("/Adminrepairindex/{breakdown}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}")
+        @PostMapping("/Adminrepairindex/{breakdown}/{totalrepairprice}/{repairwork}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}/{useforrepair}")
             public Adminrepairindex newAdminrepairindex(Adminrepairindex newAdminrepairindex,
             @PathVariable String breakdown,
+            @PathVariable String totalrepairprice,
+            @PathVariable String repairwork,
             @PathVariable long branch_id,
             @PathVariable long brand_id,
             @PathVariable long employee_id,
             @PathVariable String identification,
             @PathVariable long statusrepair_id,
-            @PathVariable long type_id){
+            @PathVariable long type_id,
+            @PathVariable String useforrepair){
             
      
             Branch branch = branchRepository.findById(branch_id);
@@ -71,7 +76,10 @@ public class AdminrepairindexController {
             Statusrepair statusrepair = statusrepairRepository.findById(statusrepair_id);
             Type type = typeRepository.findById(type_id);
             
+            
             newAdminrepairindex.setBreakdown(breakdown);
+            newAdminrepairindex.setTotalrepairprice(totalrepairprice);
+            newAdminrepairindex.setRepairwork(repairwork);
             newAdminrepairindex.setRepairDate(new Date());
             newAdminrepairindex.setBranch(branch);
             newAdminrepairindex.setBrand(brand);
@@ -79,8 +87,13 @@ public class AdminrepairindexController {
             newAdminrepairindex.setCustomer(customer);
             newAdminrepairindex.setStatusrepair(statusrepair);
             newAdminrepairindex.setType(type);
-        
-
+             
+            List<Partfix> partfixs = new ArrayList<>();
+            Partfix partfix = new Partfix();
+            partfix.setAdminrepairindex(newAdminrepairindex);
+            partfix.setUseforrepair(useforrepair);
+            partfixs.add(partfix);
+            newAdminrepairindex.setPartfix(partfixs);
 
                 return adminrepairindexRepository.save(newAdminrepairindex);
             }
