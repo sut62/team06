@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.sut.cpe.repaircom.entity.Partfix;
+
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -55,7 +55,7 @@ public class AdminrepairindexController {
         public Collection<Adminrepairindex> Adminrepairindexs(){
             return adminrepairindexRepository.findAll().stream().collect(Collectors.toList());
         }
-        @PostMapping("/Adminrepairindex/{breakdown}/{totalrepairprice}/{repairwork}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}/{useforrepair}")
+        @PostMapping("/Adminrepairindex/{breakdown}/{totalrepairprice}/{repairwork}/{branch_id}/{brand_id}/{employee_id}/{identification}/{statusrepair_id}/{type_id}")
             public Adminrepairindex newAdminrepairindex(Adminrepairindex newAdminrepairindex,
             @PathVariable String breakdown,
             @PathVariable String totalrepairprice,
@@ -88,12 +88,7 @@ public class AdminrepairindexController {
             newAdminrepairindex.setStatusrepair(statusrepair);
             newAdminrepairindex.setType(type);
              
-            List<Partfix> partfixs = new ArrayList<>();
-            Partfix partfix = new Partfix();
-            partfix.setAdminrepairindex(newAdminrepairindex);
-            partfix.setUseforrepair(useforrepair);
-            partfixs.add(partfix);
-            newAdminrepairindex.setPartfix(partfixs);
+        
 
                 return adminrepairindexRepository.save(newAdminrepairindex);
             }

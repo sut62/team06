@@ -43,12 +43,16 @@ public class AdminrepairindexTest {
         Adminrepairindex adminrepairindex = new Adminrepairindex();
 
         adminrepairindex.setBreakdown("เปิดไม่ติด");
-
+        adminrepairindex.setTotalrepairprice("123456");
+        adminrepairindex.setRepairwork("R1234567");
+    
 
         adminrepairindex = adminrepairindexRepository.saveAndFlush(adminrepairindex);
         final Optional<Adminrepairindex> found = adminrepairindexRepository.findById(adminrepairindex.getId());
 
         assertEquals("เปิดไม่ติด", found.get().getBreakdown());
+        assertEquals("123456", found.get().getTotalrepairprice());
+        assertEquals("R1234567", found.get().getRepairwork());
 
     }
 
@@ -57,6 +61,8 @@ public class AdminrepairindexTest {
         Adminrepairindex adminrepairindex = new Adminrepairindex();
 
         adminrepairindex.setBreakdown(null);
+        adminrepairindex.setTotalrepairprice("123456");
+        adminrepairindex.setRepairwork("R1234567");
 
         Set<ConstraintViolation<Adminrepairindex>> result = validator.validate(adminrepairindex);
 
@@ -71,7 +77,8 @@ public class AdminrepairindexTest {
      void b5910168_testAdminrepairTestPattern(){
          Adminrepairindex adminrepairindex = new Adminrepairindex();
          adminrepairindex.setBreakdown("@#123$%^!@#$_");
-
+         adminrepairindex.setTotalrepairprice("123456");
+         adminrepairindex.setRepairwork("R1234567");
     
         Set<ConstraintViolation<Adminrepairindex>> result = validator.validate(adminrepairindex);
 
@@ -87,6 +94,8 @@ public class AdminrepairindexTest {
          
          Adminrepairindex adminrepairindex1 = new Adminrepairindex();
          adminrepairindex1.setBreakdown("เปิดไม่ติด");
+         adminrepairindex1.setTotalrepairprice("123456");
+         adminrepairindex1.setRepairwork("R1234567");
          adminrepairindexRepository.saveAndFlush(adminrepairindex1);
  
      
@@ -94,6 +103,8 @@ public class AdminrepairindexTest {
 
          Adminrepairindex adminrepairindex2 = new Adminrepairindex();
          adminrepairindex2.setBreakdown("เปิดไม่ติด");
+         adminrepairindex2.setTotalrepairprice("123456");
+         adminrepairindex2.setRepairwork("R1234567");
          adminrepairindexRepository.saveAndFlush(adminrepairindex2);
          });
      }

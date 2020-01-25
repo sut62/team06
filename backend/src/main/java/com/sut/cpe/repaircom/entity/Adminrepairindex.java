@@ -83,9 +83,7 @@ public class Adminrepairindex{
     @JoinColumn(name = "BRAND_ID", insertable = true)
     private  Brand brand;
 
-    @JsonIgnoreProperties("adminrepairindex")
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "adminrepairindex", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Partfix> partfix = new ArrayList<Partfix>();
+
 
     
     public Adminrepairindex(){}
