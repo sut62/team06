@@ -3,123 +3,225 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>Customer</title>
+	<title>CustomerTest</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">OK</td></tr>
+<tr><td rowspan="1" colspan="3">SUCCESS</td></tr>
 </thead>
 <tbody>
-<tr><td>open</td><td>http://localhost:8080/customer<datalist><option>http://localhost:8080/customer</option></datalist></td><td></td>
+<tr><td>open</td><td>http://localhost:8080/home<datalist><option>http://localhost:8080/home</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-12<datalist><option>id=input-12</option><option>//input[@id='input-12']</option><option>//div[@id='inspire']/div/div/div[2]/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-12</option></datalist></td><td></td>
+<tr><td>click</td><td>id=customer<datalist><option>id=customer</option><option>//a[@id='customer']</option><option>//div[@id='home']/div/div[5]/a</option><option>//a[contains(@href, '/logincustomer')]</option><option>//div[5]/a</option><option>css=#customer</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-12<datalist><option>id=input-12</option><option>//input[@id='input-12']</option><option>//div[@id='inspire']/div/div/div[2]/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-12</option></datalist></td><td>ปลาสลิด ผัดเผ็ด</td>
+<tr><td>click</td><td>id=input-29<datalist><option>id=input-29</option><option>//input[@id='input-29']</option><option>//div[@id='customer']/div/div/div/div[2]/div/div/input</option><option>//input</option><option>css=#input-29</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-15<datalist><option>id=input-15</option><option>//input[@id='input-15']</option><option>//div[@id='inspire']/div/div/div[2]/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-15</option></datalist></td><td></td>
+<tr><td>type</td><td>id=input-29<datalist><option>id=input-29</option><option>//input[@id='input-29']</option><option>//div[@id='customer']/div/div/div/div[2]/div/div/input</option><option>//input</option><option>css=#input-29</option></datalist></td><td>customer</td>
 </tr>
-<tr><td>type</td><td>id=input-15<datalist><option>id=input-15</option><option>//input[@id='input-15']</option><option>//div[@id='inspire']/div/div/div[2]/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-15</option></datalist></td><td>1232155248755</td>
+<tr><td>type</td><td>id=input-33<datalist><option>id=input-33</option><option>//input[@id='input-33']</option><option>//div[@id='customer']/div/div/div[2]/div[2]/div/div/input</option><option>//div[2]/div[2]/div/div/input</option><option>css=#input-33</option></datalist></td><td>12345678</td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]<datalist><option>xpath=(//div[@id='list-18']/div/div)[2]</option><option>//div/div/div/div/div/div</option><option>css=div.v-list-item__content</option><option></option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='customer']/div/div/div[3]/button/span<datalist><option>//div[@id='customer']/div/div/div[3]/button/span</option><option>//span</option><option>css=span.v-btn__content</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>xpath=(//div[@id='list-18']/div/div)[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]</option><option>xpath=(//div[@id='list-18']/div/div)[2]</option><option>//div/div/div/div/div/div</option><option>css=div.v-list-item__content</option><option></option></datalist></td><td></td>
+<tr><td>assertText</td><td>//div[@id='login']/div/div/div/div<datalist><option>//div[@id='login']/div/div/div/div</option><option>//div/div/div/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>login success OK</td>
 </tr>
-<tr><td>click</td><td>id=input-25<datalist><option>id=input-25</option><option>//input[@id='input-25']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-25</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='login']/div/div/div/div/a/span<datalist><option>//div[@id='login']/div/div/div/div/a/span</option><option>//div/div/div/div/a/span</option><option>css=a.v-btn.v-btn--flat.v-btn--router.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-25<datalist><option>id=input-25</option><option>//input[@id='input-25']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-25</option></datalist></td><td>21</td>
+<tr><td>click</td><td>id=input-67<datalist><option>id=input-67</option><option>//input[@id='input-67']</option><option>//div[@id='inspire']/div/div/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-67</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-28<datalist><option>id=input-28</option><option>//input[@id='input-28']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[4]/div/div/div/div/div/input</option><option>//div[4]/div/div/div/div/div/input</option><option>css=#input-28</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]</option></datalist></td><td></td>
+<tr><td>type</td><td>id=input-67<datalist><option>id=input-67</option><option>//input[@id='input-67']</option><option>//div[@id='inspire']/div/div/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-67</option></datalist></td><td>สุรเดช ทองไท</td>
 </tr>
-<tr><td>type</td><td>id=input-28<datalist><option>id=input-28</option><option>//input[@id='input-28']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[4]/div/div/div/div/div/input</option><option>//div[4]/div/div/div/div/div/input</option><option>css=#input-28</option></datalist></td><td>2020-01-11</td>
+<tr><td>click</td><td>id=input-70<datalist><option>id=input-70</option><option>//input[@id='input-70']</option><option>//div[@id='inspire']/div/div/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-70</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-31<datalist><option>id=input-31</option><option>name=input-7-4</option><option>//textarea[@id='input-31']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[5]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-31</option></datalist></td><td></td>
+<tr><td>type</td><td>id=input-70<datalist><option>id=input-70</option><option>//input[@id='input-70']</option><option>//div[@id='inspire']/div/div/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-70</option></datalist></td><td>1718299098765</td>
 </tr>
-<tr><td>type</td><td>id=input-31<datalist><option>id=input-31</option><option>name=input-7-4</option><option>//textarea[@id='input-31']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[5]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-31</option></datalist></td><td>63 หมู่ 7 บ้านหัวเห็ด</td>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'เพศ'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[2]/div/form/div[3]/div/div/div/div/div/div</option><option>//div[3]/div/div/div/div/div/div</option><option>css=div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'เพศ'])[1]/following::div[2]</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-34<datalist><option>id=input-34</option><option>//input[@id='input-34']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-34</option></datalist></td><td></td>
+<tr><td>click</td><td>id=ชาย-list-item-126<datalist><option>id=ชาย-list-item-126</option><option>//div[@id='ชาย-list-item-126']</option><option>xpath=(//div[@id='list-73']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=#ชาย-list-item-126</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-34<datalist><option>id=input-34</option><option>//input[@id='input-34']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-34</option></datalist></td><td>นางรอง</td>
+<tr><td>click</td><td>id=input-80<datalist><option>id=input-80</option><option>//input[@id='input-80']</option><option>//div[@id='inspire']/div[2]/div/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-80</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-37<datalist><option>id=input-37</option><option>//input[@id='input-37']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-37</option></datalist></td><td></td>
+<tr><td>type</td><td>id=input-80<datalist><option>id=input-80</option><option>//input[@id='input-80']</option><option>//div[@id='inspire']/div[2]/div/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-80</option></datalist></td><td>22</td>
 </tr>
-<tr><td>type</td><td>id=input-37<datalist><option>id=input-37</option><option>//input[@id='input-37']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-37</option></datalist></td><td>ร้อยเดียว</td>
+<tr><td>click</td><td>id=input-84<datalist><option>id=input-84</option><option>//input[@id='input-84']</option><option>//div[@id='inspire']/div[2]/div/form/div[3]/div[3]/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-84</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='จังหวัด'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[3]/div/div[2]/form/div[6]/div[3]/div/div/div/div/div</option><option>//div[6]/div[3]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='จังหวัด'])[1]/following::div[2]</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>xpath=(//div[@id='list-40']/div/div)[2]<datalist><option>xpath=(//div[@id='list-40']/div/div)[2]</option><option>//div/div/div/div/div/div</option><option>css=div.v-list-item__content</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-47<datalist><option>id=input-47</option><option>//input[@id='input-47']</option><option>//div[@id='inspire']/div[3]/div/div[2]/form/div[7]/div/div/div/div/div/input</option><option>//div[7]/div/div/div/div/div/input</option><option>css=#input-47</option></datalist></td><td></td>
+<tr><td>doubleClick</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-47<datalist><option>id=input-47</option><option>//input[@id='input-47']</option><option>//div[@id='inspire']/div[3]/div/div[2]/form/div[7]/div/div/div/div/div/input</option><option>//div[7]/div/div/div/div/div/input</option><option>css=#input-47</option></datalist></td><td>0232541548</td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงานที่ทำรายการ'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[4]/div/div[2]/form/div[7]/div[2]/div/div/div/div/div</option><option>//div[7]/div[2]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงาน'])[1]/following::div[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงานที่ทำรายการ'])[1]/following::div[2]</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//div[@id='list-50']/div[2]/div<datalist><option>//div[@id='list-50']/div[2]/div</option><option>//div/div/div[2]/div</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div[2]/table/tbody/tr[2]/td[4]<datalist><option>//div[@id='inspire']/div/div/div/div/div[2]/table/tbody/tr[2]/td[4]</option><option>//tr[2]/td[4]</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//div[@id='inspire']/div[4]/div/div[2]/form/div[8]/button/span<datalist><option>//div[@id='inspire']/div[4]/div/div[2]/form/div[8]/button/span</option><option>//div[8]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--dark.v-size--x-large.success &gt; span.v-btn__content</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div[2]/table/tbody/tr[2]/td[4]/button/div<datalist><option>//div[@id='inspire']/div/div/div/div/div[2]/table/tbody/tr[2]/td[4]/button/div</option><option>//tr[2]/td[4]/button/div</option></datalist></td><td></td>
 </tr>
-<tr><td>assertText</td><td>//div[@id='inspire']/div[4]/div/div[3]/div/div<datalist><option>//div[@id='inspire']/div[4]/div/div[3]/div/div</option><option>//div[4]/div/div[3]/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>บันทึกข้อมูลเสร็จสิ้น CLOSE</td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div[2]/button[2]/span<datalist><option>//div[@id='inspire']/div/div/div[2]/button[2]/span</option><option>//div[2]/button[2]/span</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//div[@id='inspire']/div[4]/div/div[3]/div/div/button/span<datalist><option>//div[@id='inspire']/div[4]/div/div[3]/div/div/button/span</option><option>//div/div/button/span</option><option>css=button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
+<tr><td>click</td><td>id=input-90<datalist><option>id=input-90</option><option>name=input-7-4</option><option>//textarea[@id='input-90']</option><option>//div[@id='inspire']/div[3]/div/form/div[4]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-90</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-90<datalist><option>id=input-90</option><option>name=input-7-4</option><option>//textarea[@id='input-90']</option><option>//div[@id='inspire']/div[3]/div/form/div[4]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-90</option></datalist></td><td>มหาวิทยาลัยเทคโนโลยีสุรนารี</td>
+</tr>
+<tr><td>click</td><td>id=input-93<datalist><option>id=input-93</option><option>//input[@id='input-93']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div/div/div/div/div/input</option><option>//div[5]/div/div/div/div/div/input</option><option>css=#input-93</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-93<datalist><option>id=input-93</option><option>//input[@id='input-93']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div/div/div/div/div/input</option><option>//div[5]/div/div/div/div/div/input</option><option>css=#input-93</option></datalist></td><td>สุรนารี</td>
+</tr>
+<tr><td>click</td><td>id=input-96<datalist><option>id=input-96</option><option>//input[@id='input-96']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div[2]/div/div/div/div/input</option><option>//div[5]/div[2]/div/div/div/div/input</option><option>css=#input-96</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-96<datalist><option>id=input-96</option><option>//input[@id='input-96']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div[2]/div/div/div/div/input</option><option>//div[5]/div[2]/div/div/div/div/input</option><option>css=#input-96</option></datalist></td><td>เมือง</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'จังหวัด'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[4]/div/form/div[5]/div[3]/div/div/div/div/div</option><option>//div[5]/div[3]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'จังหวัด'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=นครราชสีมา-list-item-143<datalist><option>id=นครราชสีมา-list-item-143</option><option>//div[@id='นครราชสีมา-list-item-143']</option><option>xpath=(//div[@id='list-99']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=#นครราชสีมา-list-item-143</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-106<datalist><option>id=input-106</option><option>//input[@id='input-106']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-106</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-106<datalist><option>id=input-106</option><option>//input[@id='input-106']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-106</option></datalist></td><td>0899765445</td>
+</tr>
+<tr><td>click</td><td>id=input-109<datalist><option>id=input-109</option><option>//input[@id='input-109']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-109</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-109<datalist><option>id=input-109</option><option>//input[@id='input-109']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-109</option></datalist></td><td>dom@gmail.com</td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[4]/div/form/div[6]/div[3]<datalist><option>//div[@id='inspire']/div[4]/div/form/div[6]/div[3]</option><option>//div[6]/div[3]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'พนักงานที่ทำรายการ'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[5]/div/form/div[6]/div[3]/div/div/div/div/div</option><option>//div[6]/div[3]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'พนักงานที่ทำรายการ'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=มาม้า-คึกคัก-list-item-147<datalist><option>id=มาม้า-คึกคัก-list-item-147</option><option>//div[@id='มาม้า-คึกคัก-list-item-147']</option><option>//div[@id='list-112']/div[2]/div/div</option><option>//div/div/div[2]/div/div</option><option>css=#มาม้า-คึกคัก-list-item-147</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/div/form/div[7]/button/span<datalist><option>//div[@id='inspire']/div[5]/div/form/div[7]/button/span</option><option>//div[7]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--dark.v-size--x-large.success &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/div[2]/div/div<datalist><option>//div[@id='inspire']/div[5]/div[2]/div/div</option><option>//div[5]/div[2]/div/div</option><option>css=div.v-snack__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/div[2]/div/div/button/span<datalist><option>//div[@id='inspire']/div[5]/div[2]/div/div/button/span</option><option>//div[2]/div/div/button/span</option><option>css=div.v-snack__content &gt; button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/nav/header/div/button/span/i<datalist><option>//div[@id='inspire']/div[5]/nav/header/div/button/span/i</option><option>//header/div/button/span/i</option><option>css=i.v-icon.notranslate.mdi.mdi-menu.theme--light</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/nav/nav/div/div/a[2]/div[2]/div<datalist><option>//div[@id='inspire']/div[5]/nav/nav/div/div/a[2]/div[2]/div</option><option>//a[2]/div[2]/div</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">์Not OK</td></tr>
+<tr><td rowspan="1" colspan="3">Search</td></tr>
 </thead>
 <tbody>
-<tr><td>open</td><td>http://localhost:8080/customer<datalist><option>http://localhost:8080/customer</option></datalist></td><td></td>
+<tr><td>open</td><td>http://localhost:8080/home<datalist><option>http://localhost:8080/home</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-12<datalist><option>id=input-12</option><option>//input[@id='input-12']</option><option>//div[@id='inspire']/div/div/div[2]/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-12</option></datalist></td><td></td>
+<tr><td>click</td><td>id=customer<datalist><option>id=customer</option><option>//a[@id='customer']</option><option>//div[@id='home']/div/div[5]/a</option><option>//a[contains(@href, '/logincustomer')]</option><option>//div[5]/a</option><option>css=#customer</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-12<datalist><option>id=input-12</option><option>//input[@id='input-12']</option><option>//div[@id='inspire']/div/div/div[2]/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-12</option></datalist></td><td>ปลาสลิด ผัดเผ็ด</td>
+<tr><td>click</td><td>id=input-29<datalist><option>id=input-29</option><option>//input[@id='input-29']</option><option>//div[@id='customer']/div/div/div/div[2]/div/div/input</option><option>//input</option><option>css=#input-29</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-15<datalist><option>id=input-15</option><option>//input[@id='input-15']</option><option>//div[@id='inspire']/div/div/div[2]/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-15</option></datalist></td><td></td>
+<tr><td>type</td><td>id=input-29<datalist><option>id=input-29</option><option>//input[@id='input-29']</option><option>//div[@id='customer']/div/div/div/div[2]/div/div/input</option><option>//input</option><option>css=#input-29</option></datalist></td><td>customer</td>
 </tr>
-<tr><td>type</td><td>id=input-15<datalist><option>id=input-15</option><option>//input[@id='input-15']</option><option>//div[@id='inspire']/div/div/div[2]/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-15</option></datalist></td><td>123215524875</td>
+<tr><td>type</td><td>id=input-33<datalist><option>id=input-33</option><option>//input[@id='input-33']</option><option>//div[@id='customer']/div/div/div[2]/div[2]/div/div/input</option><option>//div[2]/div[2]/div/div/input</option><option>css=#input-33</option></datalist></td><td>12345678</td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]</option><option>xpath=(//div[@id='list-18']/div/div)[2]</option><option>//div/div/div/div/div/div</option><option>css=div.v-list-item__content</option><option></option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='customer']/div/div/div[3]/button/span<datalist><option>//div[@id='customer']/div/div/div[3]/button/span</option><option>//span</option><option>css=span.v-btn__content</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>xpath=(//div[@id='list-18']/div/div)[2]<datalist><option>xpath=(//div[@id='list-18']/div/div)[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]</option><option>//div/div/div/div/div/div</option><option>css=div.v-list-item__content</option><option></option></datalist></td><td></td>
+<tr><td>assertText</td><td>//div[@id='login']/div/div/div/div<datalist><option>//div[@id='login']/div/div/div/div</option><option>//div/div/div/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>login success OK</td>
 </tr>
-<tr><td>click</td><td>id=input-25<datalist><option>id=input-25</option><option>//input[@id='input-25']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-25</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='login']/div/div/div/div/a/span<datalist><option>//div[@id='login']/div/div/div/div/a/span</option><option>//div/div/div/div/a/span</option><option>css=a.v-btn.v-btn--flat.v-btn--router.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-25<datalist><option>id=input-25</option><option>//input[@id='input-25']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-25</option></datalist></td><td>21</td>
+<tr><td>click</td><td>//div[@id='inspire']/div/nav/header/div/button/span<datalist><option>//div[@id='inspire']/div/nav/header/div/button/span</option><option>//span</option><option>css=span.v-btn__content</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-28<datalist><option>id=input-28</option><option>//input[@id='input-28']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[4]/div/div/div/div/div/input</option><option>//div[4]/div/div/div/div/div/input</option><option>css=#input-28</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='เพศ'])[1]/following::div[2]</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='inspire']/div/nav/nav/div/div/a[2]/div[2]/div<datalist><option>//div[@id='inspire']/div/nav/nav/div/div/a[2]/div[2]/div</option><option>//a[2]/div[2]/div</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-28<datalist><option>id=input-28</option><option>//input[@id='input-28']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[4]/div/div/div/div/div/input</option><option>//div[4]/div/div/div/div/div/input</option><option>css=#input-28</option></datalist></td><td>2020-01-11</td>
+<tr><td>click</td><td>id=input-145<datalist><option>id=input-145</option><option>//input[@id='input-145']</option><option>//div[@id='inspire']/div/div/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-145</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-31<datalist><option>id=input-31</option><option>name=input-7-4</option><option>//textarea[@id='input-31']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[5]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-31</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/div/div/div[2]/div/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/div/div/div[2]/div/i</option><option>//div[2]/div/i</option><option>css=i.v-icon.notranslate.material-icons.theme--light.primary--text</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-31<datalist><option>id=input-31</option><option>name=input-7-4</option><option>//textarea[@id='input-31']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[5]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-31</option></datalist></td><td>63 หมู่ 7 บ้านหัวเห็ด</td>
+<tr><td>type</td><td>id=input-145<datalist><option>id=input-145</option><option>//input[@id='input-145']</option><option>//div[@id='inspire']/div/div/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-145</option></datalist></td><td>1319800215244</td>
 </tr>
-<tr><td>click</td><td>id=input-34<datalist><option>id=input-34</option><option>//input[@id='input-34']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-34</option></datalist></td><td></td>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">FAIL</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8080/home<datalist><option>http://localhost:8080/home</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-34<datalist><option>id=input-34</option><option>//input[@id='input-34']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-34</option></datalist></td><td>นางรอง</td>
+<tr><td>click</td><td>id=customer<datalist><option>id=customer</option><option>//a[@id='customer']</option><option>//div[@id='home']/div/div[5]/a</option><option>//a[contains(@href, '/logincustomer')]</option><option>//div[5]/a</option><option>css=#customer</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-37<datalist><option>id=input-37</option><option>//input[@id='input-37']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-37</option></datalist></td><td></td>
+<tr><td>click</td><td>id=input-29<datalist><option>id=input-29</option><option>//input[@id='input-29']</option><option>//div[@id='customer']/div/div/div/div[2]/div/div/input</option><option>//input</option><option>css=#input-29</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=input-37<datalist><option>id=input-37</option><option>//input[@id='input-37']</option><option>//div[@id='inspire']/div[2]/div/div[2]/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-37</option></datalist></td><td>ร้อยเดียว</td>
+<tr><td>type</td><td>id=input-29<datalist><option>id=input-29</option><option>//input[@id='input-29']</option><option>//div[@id='customer']/div/div/div/div[2]/div/div/input</option><option>//input</option><option>css=#input-29</option></datalist></td><td>customer</td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='จังหวัด'])[1]/following::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='จังหวัด'])[1]/following::div[2]</option><option>//div[@id='inspire']/div[3]/div/div[2]/form/div[6]/div[3]/div/div/div/div/div</option><option>//div[6]/div[3]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option></datalist></td><td></td>
+<tr><td>type</td><td>id=input-33<datalist><option>id=input-33</option><option>//input[@id='input-33']</option><option>//div[@id='customer']/div/div/div[2]/div[2]/div/div/input</option><option>//div[2]/div[2]/div/div/input</option><option>css=#input-33</option></datalist></td><td>12345678</td>
 </tr>
-<tr><td>click</td><td>xpath=(//div[@id='list-40']/div/div)[2]<datalist><option>xpath=(//div[@id='list-40']/div/div)[2]</option><option>//div/div/div/div/div/div</option><option>css=div.v-list-item__content</option></datalist></td><td></td>
+<tr><td>click</td><td>//div[@id='customer']/div/div/div[3]/button/span<datalist><option>//button[@type='button']</option><option>//div[@id='customer']/div/div/div[3]/button</option><option>//button</option><option>css=button.v-btn.v-btn--contained.theme--light.v-size--default</option><option>//div[@id='customer']/div/div/div[3]/button/span</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>id=input-47<datalist><option>id=input-47</option><option>//input[@id='input-47']</option><option>//div[@id='inspire']/div[3]/div/div[2]/form/div[7]/div/div/div/div/div/input</option><option>//div[7]/div/div/div/div/div/input</option><option>css=#input-47</option></datalist></td><td></td>
+<tr><td>assertText</td><td>//div[@id='login']/div/div/div/div<datalist><option>//div[@id='login']/div/div/div/div</option></datalist></td><td>login success OK</td>
 </tr>
-<tr><td>type</td><td>id=input-47<datalist><option>id=input-47</option><option>//input[@id='input-47']</option><option>//div[@id='inspire']/div[3]/div/div[2]/form/div[7]/div/div/div/div/div/input</option><option>//div[7]/div/div/div/div/div/input</option><option>css=#input-47</option></datalist></td><td>0232541548</td>
+<tr><td>click</td><td>//div[@id='login']/div/div/div/div/a/span<datalist><option>//div[@id='login']/div/div/div/div/a/span</option><option>//div/div/div/div/a/span</option><option>css=a.v-btn.v-btn--flat.v-btn--router.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงานที่ทำรายการ'])[1]/following::div[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงานที่ทำรายการ'])[1]/following::div[2]</option><option>//div[@id='inspire']/div[4]/div/div[2]/form/div[7]/div[2]/div/div/div/div/div</option><option>//div[7]/div[2]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--single-line.v-text-field--solo.v-text-field--is-booted.v-text-field--enclosed.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='พนักงาน'])[1]/following::div[2]</option></datalist></td><td></td>
+<tr><td>click</td><td>id=input-67<datalist><option>id=input-67</option><option>//input[@id='input-67']</option><option>//div[@id='inspire']/div/div/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-67</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//div[@id='list-50']/div[2]/div<datalist><option>//div[@id='list-50']/div[2]/div</option><option>//div/div/div[2]/div</option></datalist></td><td></td>
+<tr><td>type</td><td>id=input-67<datalist><option>id=input-67</option><option>//input[@id='input-67']</option><option>//div[@id='inspire']/div/div/form/div/div/div/div/div/div/input</option><option>//input</option><option>css=#input-67</option></datalist></td><td>วรเมธ เมฆสุวรรณ</td>
 </tr>
-<tr><td>click</td><td>//div[@id='inspire']/div[4]/div/div[2]/form/div[8]/button/span<datalist><option>//div[@id='inspire']/div[4]/div/div[2]/form/div[8]/button/span</option><option>//div[8]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--dark.v-size--x-large.success &gt; span.v-btn__content</option></datalist></td><td></td>
+<tr><td>click</td><td>id=input-70<datalist><option>id=input-70</option><option>//input[@id='input-70']</option><option>//div[@id='inspire']/div/div/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-70</option></datalist></td><td></td>
 </tr>
-<tr><td>assertText</td><td>//div[@id='inspire']/div[4]/div/div[3]/div/div<datalist><option>//div[@id='inspire']/div[4]/div/div[3]/div/div</option><option>//div[4]/div/div[3]/div/div</option><option>css=div.v-snack__content</option></datalist></td><td>กรุณากรอกข้อมูลให้ครบถ้วน CLOSE</td>
+<tr><td>type</td><td>id=input-70<datalist><option>id=input-70</option><option>//input[@id='input-70']</option><option>//div[@id='inspire']/div/div/form/div[2]/div/div/div/div/div/input</option><option>//div[2]/div/div/div/div/div/input</option><option>css=#input-70</option></datalist></td><td>152637784675</td>
 </tr>
-<tr><td>click</td><td>//div[@id='inspire']/div[4]/div/div[3]/div/div/button/span<datalist><option>//div[@id='inspire']/div[4]/div/div[3]/div/div/button/span</option><option>//div/div/button/span</option><option>css=button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'เพศ'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[2]/div/form/div[3]/div/div/div/div/div/div[2]/div/i</option><option>//div[2]/div/i</option><option>css=i.v-icon.notranslate.mdi.mdi-menu-down.theme--light.primary--text</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'เพศ'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=ชาย-list-item-126<datalist><option>id=ชาย-list-item-126</option><option>//div[@id='ชาย-list-item-126']</option><option>xpath=(//div[@id='list-73']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=#ชาย-list-item-126</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-80<datalist><option>id=input-80</option><option>//input[@id='input-80']</option><option>//div[@id='inspire']/div[2]/div/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-80</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-80<datalist><option>id=input-80</option><option>//input[@id='input-80']</option><option>//div[@id='inspire']/div[2]/div/form/div[3]/div[2]/div/div/div/div/input</option><option>//div[2]/div/div/div/div/input</option><option>css=#input-80</option></datalist></td><td>3</td>
+</tr>
+<tr><td>click</td><td>id=input-84<datalist><option>id=input-84</option><option>//input[@id='input-84']</option><option>//div[@id='inspire']/div[2]/div/form/div[3]/div[3]/div/div[2]/div/div/input</option><option>//div[2]/div/div/input</option><option>css=#input-84</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
+</tr>
+<tr><td>doubleClick</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div/button/span/i<datalist><option>//div[@id='inspire']/div/div/div/div/div/button/span/i</option><option>//i</option><option>css=i.v-icon.notranslate.mdi.mdi-chevron-left.theme--light</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div/div/div[2]/table/tbody/tr[2]/td[2]/button/div<datalist><option>//div[@id='inspire']/div/div/div/div/div[2]/table/tbody/tr[2]/td[2]/button/div</option><option>//tr[2]/td[2]/button/div</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div/div/div[2]/button[2]/span<datalist><option>//div[@id='inspire']/div/div/div[2]/button[2]/span</option><option>//div[2]/button[2]/span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-90<datalist><option>id=input-90</option><option>name=input-7-4</option><option>//textarea[@id='input-90']</option><option>//div[@id='inspire']/div[3]/div/form/div[4]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-90</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-90<datalist><option>id=input-90</option><option>name=input-7-4</option><option>//textarea[@id='input-90']</option><option>//div[@id='inspire']/div[3]/div/form/div[4]/div/div/div/div/div/textarea</option><option>//textarea</option><option>css=#input-90</option></datalist></td><td>มหาวิทยาลัยเทคโนโลยีสุรนารี</td>
+</tr>
+<tr><td>click</td><td>id=input-93<datalist><option>id=input-93</option><option>//input[@id='input-93']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div/div/div/div/div/input</option><option>//div[5]/div/div/div/div/div/input</option><option>css=#input-93</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-93<datalist><option>id=input-93</option><option>//input[@id='input-93']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div/div/div/div/div/input</option><option>//div[5]/div/div/div/div/div/input</option><option>css=#input-93</option></datalist></td><td>สุรนารี</td>
+</tr>
+<tr><td>click</td><td>id=input-96<datalist><option>id=input-96</option><option>//input[@id='input-96']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div[2]/div/div/div/div/input</option><option>//div[5]/div[2]/div/div/div/div/input</option><option>css=#input-96</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-96<datalist><option>id=input-96</option><option>//input[@id='input-96']</option><option>//div[@id='inspire']/div[3]/div/form/div[5]/div[2]/div/div/div/div/input</option><option>//div[5]/div[2]/div/div/div/div/input</option><option>css=#input-96</option></datalist></td><td>เมือง</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'จังหวัด'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[4]/div/form/div[5]/div[3]/div/div/div/div/div</option><option>//div[5]/div[3]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'จังหวัด'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=นครราชสีมา-list-item-143<datalist><option>id=นครราชสีมา-list-item-143</option><option>//div[@id='นครราชสีมา-list-item-143']</option><option>xpath=(//div[@id='list-99']/div/div/div)[2]</option><option>//div/div/div/div/div/div/div</option><option>css=#นครราชสีมา-list-item-143</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input-106<datalist><option>id=input-106</option><option>//input[@id='input-106']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-106</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-106<datalist><option>id=input-106</option><option>//input[@id='input-106']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div/div/div/div/div/input</option><option>//div[6]/div/div/div/div/div/input</option><option>css=#input-106</option></datalist></td><td>0988767890</td>
+</tr>
+<tr><td>click</td><td>id=input-109<datalist><option>id=input-109</option><option>//input[@id='input-109']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-109</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input-109<datalist><option>id=input-109</option><option>//input[@id='input-109']</option><option>//div[@id='inspire']/div[4]/div/form/div[6]/div[2]/div/div/div/div/input</option><option>//div[6]/div[2]/div/div/div/div/input</option><option>css=#input-109</option></datalist></td><td>jozaloveu@gmail.com</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'พนักงานที่ทำรายการ'])[1]/following::div[2]<datalist><option>//div[@id='inspire']/div[5]/div/form/div[6]/div[3]/div/div/div/div/div</option><option>//div[6]/div[3]/div/div/div/div/div</option><option>css=div.v-input.v-input--is-focused.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined.v-select.v-select--is-menu-active.primary--text &gt; div.v-input__control &gt; div.v-input__slot &gt; div.v-select__slot &gt; div.v-select__selections</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.) = 'พนักงานที่ทำรายการ'])[1]/following::div[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=มาม้า-คึกคัก-list-item-147<datalist><option>id=มาม้า-คึกคัก-list-item-147</option><option>//div[@id='มาม้า-คึกคัก-list-item-147']</option><option>//div[@id='list-112']/div[2]/div/div</option><option>//div/div/div[2]/div/div</option><option>css=#มาม้า-คึกคัก-list-item-147</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/div/form/div[7]/button/span<datalist><option>//div[@id='inspire']/div[5]/div/form/div[7]/button/span</option><option>//div[7]/button/span</option><option>css=button.v-btn.v-btn--contained.theme--dark.v-size--x-large.success &gt; span.v-btn__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/div[2]/div/div<datalist><option>//div[@id='inspire']/div[5]/div[2]/div/div</option><option>//div[5]/div[2]/div/div</option><option>css=div.v-snack__content</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='inspire']/div[5]/div[2]/div/div/button/span<datalist><option>//div[@id='inspire']/div[5]/div[2]/div/div/button/span</option><option>//div[2]/div/div/button/span</option><option>css=div.v-snack__content &gt; button.v-btn.v-btn--flat.v-btn--text.theme--light.v-size--default &gt; span.v-btn__content</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 </body>
