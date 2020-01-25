@@ -1,4 +1,4 @@
-﻿<template>
+<template>
     <v-app id="inspire" :style="{ backgroundImage: 'url(' + require('@/assets/addpro.jpeg') + ')' }">
         <nav>
             <v-toolbar color="#C62828" dark>
@@ -9,7 +9,7 @@
                     <span>Computer</span>
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn flat color="grey" to="/home">
+                <v-btn flat color='primary' to="/home">
                     <span>Sign Out </span>
                     <v-icon right>exit_to_app</v-icon>
                 </v-btn>
@@ -55,7 +55,7 @@
     <br><br>
     <div class="text-center">
     <v-avatar>
-      <img src="https://image.flaticon.com/icons/png/512/187/187503.png" alt="avatar">
+      <img src="http://3.bp.blogspot.com/-eAUofSpwfbI/VXKEcXJGFdI/AAAAAAAAAAg/bgN6NFGW1s8/s1600/256-256-251c205de6105b216e43f280285d959d.png" alt="avatar">
     </v-avatar>
   </div>
     
@@ -179,17 +179,10 @@
             
               
               
-              <v-layout  row  class="justify-center">
-            <v-col cols="3">   
-                <v-row justify="center">
-              <v-col cols="12">  
-                <v-btn @click="saveAddproducts" :class="{ red: !valid, green: valid }">save</v-btn>
-                <v-btn style="margin-left: 15px;" @click="clear">clear</v-btn>
-              </v-col>
-            </v-row>
-            </v-col>
-            </v-layout>
-
+             <v-layout  row nowrap class="justify-center">
+             <v-btn @click="saveAddproducts" :class="{ red: !valid, green: valid }">save</v-btn> &nbsp;
+             <v-btn @click="clear" :class="{ white: !valid, white: valid }">clear</v-btn>
+          </v-layout>
             
       </v-form>   
     </v-container>

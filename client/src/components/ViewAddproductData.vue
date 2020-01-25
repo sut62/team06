@@ -9,7 +9,7 @@
                     <span>Computer</span>
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn flat color="grey" to="/home">
+                <v-btn flat color="primary" to="/home">
                     <span>Sign Out </span>
                     <v-icon right>exit_to_app</v-icon>
                 </v-btn>

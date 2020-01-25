@@ -343,7 +343,7 @@
         
         .catch(e => {
           console.log(e);
-          if(e = true){
+          if(e = false){
            this.snaktr = true;
            this.snactexttrue ="กรุณาใส่ข้อมูลให้ถูกต้อง"
           }
