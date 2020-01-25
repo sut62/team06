@@ -2,61 +2,50 @@
   <v-app id="login"  :style="{ backgroundImage: 'url(' + require('@/assets/BGLOG.jpg') + ')' }">
     <v-content>
       <v-container
-        fluid
-        class="hbg"
-        id="customer"  :style="{ backgroundImage: 'url(' + require('@/assets/lcontact.png') + ')' }"
+              fluid
+              class="hbg"
+              id="customer"  :style="{ backgroundImage: 'url(' + require('@/assets/lcontact.png') + ')' }"
       >
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <v-row
-          align="center"
-          justify="center"
+                align="center"
+                justify="center"
         >
           <v-col
-            cols="12"
-            sm="8"
-            md="6"
+                  cols="12"
+                  sm="8"
+                  md="6"
           >
-            <v-card class="elevation-12">
-              <v-toolbar
-                color="#F9A825"
-                dark
-                dense
-              >
-                <v-toolbar-title></v-toolbar-title>
-                
-                <div class="flex-grow-3"></div>
-               
-               
-              </v-toolbar>
-              <v-card-text>
-                <v-form v-model="valid" ref="form">
-                  <v-text-field
+            <v-text-field
                     label="Username"
                     prepend-icon="person"
                     v-model="login.username"
                     type="text"
-                  ></v-text-field>
+                    solo
+            ></v-text-field>
 
-                  <v-text-field
+            <v-text-field
                     label="Password"
                     prepend-icon="lock"
                     v-model="login.password"
                     type="password"
-                  ></v-text-field>
-                </v-form>
-              </v-card-text>
-              
-              <v-card-actions>
-                <div class="flex-grow-1"></div>
-                <v-btn color="#64DD17" @click="UserValidate">LOGIN</v-btn>
-                <v-btn color="primary" to ="/Home">Back</v-btn>
-              </v-card-actions>
-            </v-card>
+                    solo
+            ></v-text-field>
+            <v-card-actions>
+              <div class="flex-grow-1"></div>
+              <v-btn color="#64DD17" @click="UserValidate">LOGIN</v-btn>
+              <v-btn color="primary" to ="/Home">Back</v-btn>
+            </v-card-actions>
           </v-col>
         </v-row>
       </v-container>
     </v-content>
-
+    <v-snackbar  top v-model="snaktr" :timeout="10000">{{snactexttrue}}
+      <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+    </v-snackbar>
+    <v-snackbar  top v-model="snaktn" :timeout="10000">{{snactexttrue}}
+      <v-btn text @click="snaktn = false" to="/contact">OK</v-btn>
+    </v-snackbar>
     <v-footer color="#EEEEEE">
       <v-spacer></v-spacer>
       <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
@@ -66,22 +55,25 @@
 </template>
 
 <script>
-import http from "../http-common";
+  import http from "../http-common";
   export default {
     props: {
       source: String,
     },
     name: "login",
-   data() {
-    return {
-      localStorageSupport: true,
-      login: {
-        username:'',
-        password:''
+    data() {
+      return {
+        localStorageSupport: true,
+        login: {
+          username:'',
+          password:''
         },
-        valid: false
-    };
-  },
+        valid: false,
+        snaktr: false,
+        snaktn: false,
+        snactexttrue: "",
+      };
+    },
 
     methods:{
       /* eslint-disable */
@@ -102,19 +94,22 @@ import http from "../http-common";
                   console.log(response);
                   this.message = JSON.stringify(response.data);
                   if(this.message == '{"contact":"true"}'){
-                    alert('login success')
-                    this.$router.push({ path: `/contact` })
+                    this.snaktn = true;
+                    this.snactexttrue ="login success"
                   }
                   else if(this.message == '{"massage":"false"}'){
-                    alert('wrong password')
+                    this.snaktr = true;
+                    this.snactexttrue ="wrong password"
                     this.clear()
                   }
                   else if (this.message == '{"message":"test"}'){
-                    alert('wrong username')
+                    this.snaktr = true;
+                    this.snactexttrue ="wrong username"
                     this.clear()
                   }
                   else if(this.message == '{"contact":"false"}'){
-                    alert('login false')
+                    this.snaktr = true;
+                    this.snactexttrue ="login fail"
                     this.clear()
                   }
                   else{
@@ -134,7 +129,7 @@ import http from "../http-common";
     },
 
   };
-  
+
 </script>
 
 <style>
