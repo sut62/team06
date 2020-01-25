@@ -75,38 +75,6 @@ public class ReceiptTest {
         assertEquals("receiptCusident", v.getPropertyPath().toString());
     }
 
-    
-    @Test
-    void b5914760_testIdentificationSize() {
-        Receipt receipt = new Receipt();
-        
-        receipt.setReceiptNum("TCG0000001");
-        receipt.setReceiptCusname("tanaka mana");
-        receipt.setReceiptCusident("1234567890123");
-        receipt.setReceiptCustel("0812345678");
-      
-        receipt = receiptRepository.saveAndFlush(receipt);
-
-        Optional<Receipt> found = receiptRepository.findById(receipt.getId());
-        assertEquals("1234567890123", found.get().getReceiptCusident());
-    }
-  
-    @Test
-    void b5914760_testTelPatternReceiptNum() {
-        Receipt receipt = new Receipt();
-
-        receipt.setReceiptNum("TCG0000001");
-        receipt.setReceiptCusname("tanaka mana");
-        receipt.setReceiptCusident("1234567890123");
-        receipt.setReceiptCustel("0812345678");
-      
-
-        receipt = receiptRepository.saveAndFlush(receipt);
-
-        Optional<Receipt> found = receiptRepository.findById(receipt.getId());
-        assertEquals("TCG0000001", found.get().getReceiptNum());
-    }
-
    
     @Test
     void b5914760_testReceiptNumMustBeUnique() {
@@ -132,8 +100,75 @@ public class ReceiptTest {
             receipt2.setReceiptCustel("0812345678");
           
             receiptRepository.saveAndFlush(receipt2);
-        });
+        }
+        );
     }
+
+    @Test
+    void b5914760_testSize_ReceiptCusident_MustNotBe12digit(){
+        Receipt receipt = new Receipt();
+
+        receipt.setReceiptNum("TCG0000001");
+        receipt.setReceiptCusname("tanaka mana");
+        receipt.setReceiptCusident("123456789012");
+        receipt.setReceiptCustel("0123456789");
+      
+
+
+        Set<ConstraintViolation<Receipt>> result = validator.validate(receipt);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Receipt> v = result.iterator().next();
+        assertEquals("size must be between 13 and 13",v.getMessage());
+        assertEquals("receiptCusident",v.getPropertyPath().toString());
+    } 
+
+    @Test
+    void b5914760_testSize_ReceiptCusident_MustNotBe14digit(){
+        Receipt receipt = new Receipt();
+
+        receipt.setReceiptNum("TCG0000001");
+        receipt.setReceiptCusname("tanaka mana");
+        receipt.setReceiptCusident("12345678901234");
+        receipt.setReceiptCustel("0123456789");
+      
+
+
+        Set<ConstraintViolation<Receipt>> result = validator.validate(receipt);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Receipt> v = result.iterator().next();
+        assertEquals("size must be between 13 and 13",v.getMessage());
+        assertEquals("receiptCusident",v.getPropertyPath().toString());
+    } 
+
+    @Test
+    void b5914760_testReceiptNumMatPattern(){
+        Receipt receipt = new Receipt();
+      
+
+        receipt.setReceiptNum("TC000000fdgfd");
+        receipt.setReceiptCusname("tanaka mana");
+        receipt.setReceiptCusident("1234567890123");
+        receipt.setReceiptCustel("0123456789");
+      
+
+        
+
+        Set<ConstraintViolation<Receipt>> result = validator.validate(receipt);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Receipt> v = result.iterator().next();
+        assertEquals("must match \"[T][C][G]\\d{7}\"", v.getMessage());
+        assertEquals("receiptNum", v.getPropertyPath().toString());
+    }
+
 
 }
 
