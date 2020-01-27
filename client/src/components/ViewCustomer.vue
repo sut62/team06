@@ -27,6 +27,14 @@
                             <v-list-item-title class="font-weight-regular">เพิ่มข้อมูลลูกค้า</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
+                    <v-list-item to="/searchCustomer">
+                        <v-list-item-action>
+                            <v-icon left>search</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title class="font-weight-regular">ค้นหาข้อมูลลูกค้า</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
                     <v-list-item to="/viewCustomer">
                         <v-list-item-action>
                             <v-icon left>assessment</v-icon>
@@ -40,20 +48,15 @@
         </nav>
         <br>
         <div class="cbg">
-            <v-card class="sbg" color="#EDE7F6">
-                <v-card-title>
-                    <v-text-field
-                            v-model="search"
-                            label="ค้นหา"
-                            single-line
-                            hide-details
-                            solo
-                            append-icon="search"
-                    ></v-text-field>
-                </v-card-title>
-            </v-card>
-            <br>
             <v-card>
+                <br>
+                <div class="text-center">
+                    <v-avatar>
+                        <img src="https://image.flaticon.com/icons/png/512/260/260816.png" alt="avatar">
+                    </v-avatar>
+                    <br>
+                </div>
+                <h1 align="center" class="display-1 font-weight-regular mb-2">ข้อมูลลูกค้า</h1>
                 <v-data-table
                         :headers="headers"
                         :items="items"
@@ -139,12 +142,17 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        height: 950px;
+        height: 845px;
         width: 1800px;
         background-color: #0000;
     }
     .sbg{
         margin-right: auto;
+        margin-left: auto;
         width: 500px;
+        background-color: #0000;
+    }
+    .fond {
+        font-family: Kulachat;
     }
 </style>

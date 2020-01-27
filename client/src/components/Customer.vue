@@ -27,6 +27,14 @@
               <v-list-item-title class="font-weight-regular">เพิ่มข้อมูลลูกค้า</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item to="/searchCustomer">
+            <v-list-item-action>
+              <v-icon left>search</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-regular">ค้นหาข้อมูลลูกค้า</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item to="/viewCustomer">
             <v-list-item-action>
               <v-icon left>assessment</v-icon>
@@ -47,7 +55,7 @@
         </v-avatar>
         <br/>
       </div>
-      <h1 align='center' class="display-1 font-weight-light mb-2">เพิ่มข้อมูลลูกค้า</h1>
+      <h1 align='center' class="display-1 font-weight-regular mb-2">เพิ่มข้อมูลลูกค้า</h1>
         <v-form v-model="valid" ref="form">
 
           <v-layout row nowrap class="justify-center">
@@ -232,8 +240,11 @@
           </v-layout>
         </v-form>
     </div>
-    <v-snackbar  top v-model="snaktr" :timeout="10000">{{snactexttrue}}
-      <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+    <v-snackbar  color="#64DD17" top v-model="snackpass" :timeout="10000">{{snactexttrue}}
+      <v-btn text @click="snackpass = false" >CLOSE</v-btn>
+    </v-snackbar>
+    <v-snackbar  color="#D50000" top v-model="snackfail" :timeout="10000">{{snactexttrue}}
+      <v-btn text @click="snackfail = false" >CLOSE</v-btn>
     </v-snackbar>
     <v-footer color="#EEEEEE">
       <v-spacer></v-spacer>
@@ -265,7 +276,8 @@
           tel: "",
           email:""
         },
-        snaktr: false,
+        snackpass: false,
+        snackfail: false,
         snactexttrue: "",
         date: new Date().toISOString().substr(0, 10),
         menu: false
@@ -346,14 +358,14 @@
                 )
                 .then(response => {
                   console.log(response);
-                  this.snaktr = true;
+                  this.snackpass = true;
                   this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
                   this.$refs.form.reset();
                   this.$router.push("/customer");
                 })
                 .catch(e => {
                   console.log(e);
-                  this.snaktr = true;
+                  this.snackfail = true;
                   this.snactexttrue ="กรุณากรอกข้อมูลให้ครบถ้วน"
                 });
         this.submitted = true;
@@ -393,5 +405,8 @@
     width: 1000px;
     background-color: #ebecf7;
     opacity: 0.95;
+  }
+  .fond {
+    font-family: Kulachat;
   }
 </style>
