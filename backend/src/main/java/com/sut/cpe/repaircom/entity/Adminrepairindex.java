@@ -66,26 +66,32 @@ public class Adminrepairindex{
     @Column(name="REPAIR_DATE")
     private Date repairDate;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Statusrepair.class)
     @JoinColumn(name = "STATUSREPAIR_ID", insertable = true)
     private Statusrepair statusrepair;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
     @JoinColumn(name = "TYPE_ID", insertable = true)
     private Type type;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Branch.class)
     @JoinColumn(name = "BRANCH_ID", insertable = true)
     private Branch branch;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID", insertable = true)
     private Employee createdBy;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Customer.class)
     @JoinColumn(name = "Customer_ID", insertable = true)
     private Customer customer;
-	
+    
+    @NotNull
 	@ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
     @JoinColumn(name = "BRAND_ID", insertable = true)
     private  Brand brand;
