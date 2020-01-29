@@ -75,7 +75,7 @@
      
         
 
-       <b-col md=4>
+       <b-col lg=4>
          <v-text-field
             solo
             label="หมายเลขใบเสร็จ - TCG0000000"
@@ -85,12 +85,12 @@
           ></v-text-field></b-col>
 
 
-       <b-col md=4>
+       <b-col lg=4>
          <v-btn class="ml-12 mb-7" @click="findReceipt" raised large color="primary">Show Receipt</v-btn>
          </b-col> 
 
 
-          <b-col md=12 >
+          <b-col lg=12 >
            <v-flex md12 xs12 lg12 xl3>
               <p class="font-weight-bold" align = 'center' v-if="receiptCheck != ''" >Receipt Number : {{receiptName}}</p>
               <p class="font-weight-bold" align = 'center' v-if="receiptCheck != ''" >ประเภท : {{typename}} , {{brandname}} , อาการเสีย : {{breakdown}}</p>
@@ -102,11 +102,16 @@
               <p class="font-weight-bold" align = 'center' v-if="receiptCheck != ''" >พนักงานออกใบเสร็จ : {{empName}}</p>
               <p class="font-weight-bold" align = 'center' v-if="receiptCheck != ''" >สาขา : {{branchname}}</p>
               <p class="font-weight-bold" align = 'center' v-if="receiptCheck != ''" >ราคา : {{totalrepairprice}}</p>
-               
+             
               </v-flex>
       </b-col>
-      
 
+             <b-col lg=12 class="text-center"> 
+               <v-btn @click="Print" depressed large color="green darken-1" v-if="receiptCheck != ''" >PRINT</v-btn>
+              </b-col>
+
+     
+        
     </b-row>
 
       
@@ -157,6 +162,11 @@
   },
   
   methods:{
+
+    Print(){
+      window.print()
+
+    },
     
      findReceipt() {
           http
