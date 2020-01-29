@@ -86,7 +86,7 @@
 
 
 
-             <b-col md=4>
+             <b-col lg=4>
          <v-text-field
             solo
             label="หมายเลขการซ่อม"
@@ -96,12 +96,12 @@
           ></v-text-field></b-col>
 
 
-       <b-col md=4>
+       <b-col lg=4>
          <v-btn class="ml-12 mb-7" @click="findRepairwork" raised large color="primary">SEARCH</v-btn>
          </b-col> 
 
 
-          <b-col md=4>
+          <b-col lg=4>
            <v-flex md12 xs12 lg12 xl3>
                <p class="grey lighten-5 font-weight-bold" align = 'center' v-if="adminrepairCheck != ''" >Customer Name : {{cusName}}</p>
                <p class="grey lighten-5 font-weight-bold" align = 'center' v-if="adminrepairCheck != ''" >Customer ID : {{cusIdent}}</p>
@@ -147,7 +147,7 @@
       
       
 
-       <b-col md=4>
+       <b-col lg=4>
         <v-select
           label="ประเภทอุปกรณ์"
           v-model="receipt.typeId"
@@ -160,7 +160,7 @@
         ></v-select>
       </b-col>
 
-      <b-col md=4>
+      <b-col lg=4>
         <v-select
           label="พนักงาน"
           v-model="receipt.employeeId"
@@ -173,7 +173,7 @@
         ></v-select>
       </b-col>
 
-      <b-col md=4>
+      <b-col lg=4>
         <v-select
           label="สาขา"
           v-model="receipt.branchId"
@@ -190,7 +190,7 @@
 
     </b-row>
 
-    <b-col md=12 class="text-center"> 
+    <b-col lg=12 class="text-center"> 
                <v-btn @click="saveReceipts" depressed large color="green darken-2">save</v-btn>
       </b-col>
       
@@ -201,6 +201,7 @@
 <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
    <v-btn text @click="snaktr = false" >CLOSE</v-btn>
  </v-snackbar>
+ 
     
 
    
@@ -337,13 +338,13 @@
           console.log(response);
           this.snaktr = true;
           this.snactexttrue =('บันทึกข้อมูลเสร็จสิ้น')
-
         
+          
         })
         
         .catch(e => {
           console.log(e);
-          if(e = false){
+          if(e = true){
            this.snaktr = true;
            this.snactexttrue ="กรุณาใส่ข้อมูลให้ถูกต้อง"
           }
@@ -351,17 +352,14 @@
       this.submitted = true;
      
     },
-    clear() {
-      this.$refs.form.reset();
-      this.customerCheck = false;
-    },
+  
 
  
     refreshList() {
       this.getTypes();
       this.getEmployees();
       this.getBranchs();
-      this.saveReceipts();
+      
     },
     
   },
@@ -369,7 +367,7 @@
       this.getTypes();
       this.getEmployees();
       this.getBranchs();
-      this.saveReceipts();
+      
       }
   
 };
