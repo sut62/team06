@@ -18,13 +18,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import com.sut.cpe.repaircom.entity.*;
 
 import java.util.Collection;
 import java.util.Date;
-
-
 
 @Data
 @Entity
@@ -43,7 +43,8 @@ public class Customer {
 	@Pattern(regexp = "\\d{13}")
 	private String identification;
 
-	private @NotNull int age;
+	private @PositiveOrZero int age;
+
 	private @NotNull Date birth;
 	private @NotNull String address;
 	private @NotNull String subDistrict;
@@ -51,7 +52,6 @@ public class Customer {
 
 	@NotNull
 	@Size(min = 10, max = 10)
-	@Pattern(regexp = "[0-9]*")
 	private String tel;
 
 	@NotNull

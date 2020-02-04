@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+import javax.validation.constraints.NotNull;
+
 import java.util.Collection;
 
 @Data
@@ -25,7 +27,7 @@ public class Province {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="PROVINCE_SEQ")
     @Column(name="PROVINCE_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String province;
+    private @NotNull String province;
 
     @OneToMany(fetch = FetchType.EAGER)
     // mappedBy  = "customerProvince"
