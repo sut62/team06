@@ -32,7 +32,7 @@
                             <v-icon left>search</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                            <v-list-item-title class="font-weight-regular">ค้นหาข้อมูลลูกค้า</v-list-item-title>
+                            <v-list-item-title class="font-weight-regular">แสดงข้อมูลลูกค้า</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item to="/viewCustomer">
@@ -57,7 +57,7 @@
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsEXXyDZ8f1D32PqH3W--4E58hQIkAZZQqxAu6RUP7_UdXEQuZ&s" alt="avatar">
                         </v-avatar>
                     </div>
-                    <h1 align='center' class="display-1 font-weight-regular mb-2">ค้นหาข้อมูลลูกค้า</h1>
+                    <h1 align='center' class="display-1 font-weight-regular mb-2">แสดงข้อมูลลูกค้า</h1>
                     <v-card>
                         <v-row>
                             <v-spacer ></v-spacer>

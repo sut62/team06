@@ -58,6 +58,12 @@ public class RepaircomApplication {
                 customer.setDistrict("บางพลี");
                 customer.setTel("0321254551");
                 customer.setEmail("caco@gmail.com");
+                Sex customerSex = sexRepository.findById(1);
+                customer.setCustomerSex(customerSex);
+                Province customerProvince = provinceRepository.findById(2);
+                customer.setCustomerProvince(customerProvince);
+                Employee createdBy = employeeRepository.findById(3);
+                customer.setCreatedBy(createdBy);
                 customerRepository.save(customer);
             });
 
@@ -77,6 +83,12 @@ public class RepaircomApplication {
                 customer.setDistrict("บางพลี");
                 customer.setTel("0212549548");
                 customer.setEmail("babo@hotmail.com");
+                Sex customerSex = sexRepository.findById(1);
+                customer.setCustomerSex(customerSex);
+                Province customerProvince = provinceRepository.findById(2);
+                customer.setCustomerProvince(customerProvince);
+                Employee createdBy = employeeRepository.findById(3);
+                customer.setCreatedBy(createdBy);
                 customerRepository.save(customer);
             });
 

@@ -32,7 +32,7 @@
               <v-icon left>search</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title class="font-weight-regular">ค้นหาข้อมูลลูกค้า</v-list-item-title>
+              <v-list-item-title class="font-weight-regular">แสดงข้อมูลลูกค้า</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item to="/viewCustomer">
