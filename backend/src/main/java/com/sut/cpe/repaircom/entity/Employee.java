@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+import javax.validation.constraints.NotNull;
+
 import java.util.Collection;
 
 @Data
@@ -25,7 +27,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="EMPLOYEE_SEQ")
     @Column(name="EMPLOYEE_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String empName;
+    private @NotNull String empName;
 
     @OneToMany(fetch = FetchType.EAGER)
     // mappedBy  = "createdBy"
