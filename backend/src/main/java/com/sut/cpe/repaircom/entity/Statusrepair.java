@@ -1,4 +1,5 @@
 package com.sut.cpe.repaircom.entity;
+
 import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -10,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @Data
@@ -25,10 +28,15 @@ public class Statusrepair {
  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="STATUSREPAIR_SEQ")
  @Column(name="STATUSREPAIR_ID",unique = true, nullable = true)
  private @NonNull Long id;
- private @NonNull String currentstatus;
+
+ @NotNull
+ @Pattern(regexp = "รับเรื่องแล้ว|กำลังดำเนินการ|รออะไหล่|ดำเนินการเสร็จสิ้น")
+ private String currentstatus;
+
+ 
  @OneToMany(fetch = FetchType.EAGER)
  private Collection<Adminrepairindex> adminrepairindexs;
-    protected Statusrepair(){}
+    public Statusrepair(){}
     public Statusrepair(String currentstatus ){
         this.currentstatus = currentstatus;
         }

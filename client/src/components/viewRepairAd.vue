@@ -60,12 +60,13 @@
                 <v-card>
                     <v-card-title>
                         <v-text-field
-                                v-model="search"
-                                append-icon="search"
+                                v-model="searche"
                                 label="Search"
                                 single-line
                                 hide-details
                         ></v-text-field>
+                        <v-btn @click="searchAo" ref="atbtn"> <v-icon>search</v-icon></v-btn>
+                     
                     </v-card-title>
                 </v-card>
                 <br>
@@ -74,7 +75,7 @@
                             :headers="headers"
                             :items="items"
                             :search="search"
-                            
+            
                     >
                     </v-data-table>
                 </v-card>
@@ -98,7 +99,8 @@
         data() {
             return {
                 drawer: false,
-                search: '',
+                search: "",
+                searche:"",
            headers: [
         { text: "รหัสงาน", value: "repairwork" },
         { text: "เลขบัตรลูกค้า", value: "customer.identification" },
@@ -116,8 +118,22 @@
             };
         },
         methods: {
-            /* eslint-disable no-console */
-            // ดึงข้อมูล Addproduct ใส่ combobox
+            /* eslint-disable */
+            
+            searchAo($event){
+                const elem = this.$refs.atbtn
+                if (this.searche != null) {
+                    this.search = this.searche
+                    elem.click()
+                }
+                else {
+                    this.searche = null
+                    if(this.searche = null){
+                        this.search == null
+                        elem.click()
+                    }
+                }
+            },
             getAdminrep() {
                 http
                     .get("/Adminrepairindex")
@@ -136,6 +152,9 @@
         },
         mounted() {
             this.getAdminrep();
+            this.$refs.atbtn.click()
+            console.log(this.$refs);
+            console.log(this.$refs.atbtn.click())
         }
     };
 </script>

@@ -292,7 +292,7 @@ public class AdminrepairindexTest {
          
        }
        @Test 
-       void b5910168_testAdminrepairLinkwBranchMustBenull(){
+       void b5910168_testAdminrepairLinkwBranchMustnotBenull(){
            Adminrepairindex adminrepairindex = new Adminrepairindex();
            Date date = new Date();
       
@@ -318,7 +318,7 @@ public class AdminrepairindexTest {
          }
 
          @Test 
-         void b5910168_testAdminrepairLinkwTypeMustBenull(){
+         void b5910168_testAdminrepairLinkwTypeMustnotBenull(){
              Adminrepairindex adminrepairindex = new Adminrepairindex();
              Date date = new Date();
         
@@ -343,7 +343,7 @@ public class AdminrepairindexTest {
              
            }
            @Test 
-           void b5910168_testAdminrepairLinkwEmployeeMustBenull(){
+           void b5910168_testAdminrepairLinkwEmployeeMustnotBenull(){
                Adminrepairindex adminrepairindex = new Adminrepairindex();
                Date date = new Date();
           
@@ -370,7 +370,7 @@ public class AdminrepairindexTest {
              }
              
              @Test 
-             void b5910168_testAdminrepairLinkwCustomerMustBenull(){
+             void b5910168_testAdminrepairLinkwCustomerMustnotBenull(){
                  Adminrepairindex adminrepairindex = new Adminrepairindex();
                  Date date = new Date();
             
@@ -395,7 +395,7 @@ public class AdminrepairindexTest {
                  
                }
                @Test 
-               void b5910168_testAdminrepairLinkwBrandMustBenull(){
+               void b5910168_testAdminrepairLinkwBrandMustnotBenull(){
                    Adminrepairindex adminrepairindex = new Adminrepairindex();
                    Date date = new Date();
               
@@ -419,6 +419,30 @@ public class AdminrepairindexTest {
                    assertEquals("brand", v.getPropertyPath().toString());
                    
                  }
+                 
+                 @Test 
+                 void b5910168_testAdminrepairTotalrepairpriceMustnotBenull(){
+                     Adminrepairindex adminrepairindex = new Adminrepairindex();
+                     Date date = new Date();
+                     adminrepairindex.setBreakdown("จอติดแต่ไม่บูท");
+                     adminrepairindex.setTotalrepairprice(null);
+                     adminrepairindex.setRepairwork("R1234567");
+                     adminrepairindex.setRepairDate(date);
+                     adminrepairindex.setStatusrepair(statusrepairRepository.findById(1L));
+                     adminrepairindex.setBranch(branchRepository.findById(1L));
+                     adminrepairindex.setType(typeRepository.findById(1L));
+                     adminrepairindex.setCreatedBy(employeeRepository.findById(1L));
+                     adminrepairindex.setCustomer(customerRepository.findById(1L));
+                     adminrepairindex.setBrand(brandRepository.findById(1L));
+                     Set<ConstraintViolation<Adminrepairindex>> result = validator.validate(adminrepairindex);
+             
+                     assertEquals(1, result.size());
+             
+                     ConstraintViolation<Adminrepairindex> v = result.iterator().next();
+                     assertEquals("must not be null",v.getMessage());
+                     assertEquals("totalrepairprice", v.getPropertyPath().toString());
+                     
+                   }
 }
 
 
