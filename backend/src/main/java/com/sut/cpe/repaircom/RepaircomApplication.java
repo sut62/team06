@@ -22,9 +22,16 @@ public class RepaircomApplication {
     }
 
     @Bean
-    ApplicationRunner init(EmployeeRepository employeeRepository,ProvinceRepository provinceRepository,SexRepository sexRepository,AddproductRepository addproductRepository,TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,BranchRepository branchRepository,FixtypeRepository fixtypeRepository,CustomerRepository customerRepository,StatusrepairRepository statusrepairRepository,HeadingRepository headingRepository,CommunicationRepository communicationRepository,MachinecolorRepository machinecolorRepository,ProfileloginRepository profileloginRepository) {
+    ApplicationRunner init(EmployeeRepository employeeRepository,ProvinceRepository provinceRepository,
+                           SexRepository sexRepository,AddproductRepository addproductRepository,
+                           TypeRepository typeRepository,BrandRepository brandRepository,PartRepository partRepository,
+                           BranchRepository branchRepository,FixtypeRepository fixtypeRepository,
+                           CustomerRepository customerRepository,StatusrepairRepository statusrepairRepository,
+                           HeadingRepository headingRepository,CommunicationRepository communicationRepository,
+                           MachinecolorRepository machinecolorRepository,ProfileloginRepository profileloginRepository,
+                           AdminrepairindexRepository adminrepairindexRepository) {
         return args -> {
-            Stream.of("กอกา มอนี", "มาม้า คึกคัก", "สอเสือ เขี้ยวใหญ่").forEach(name -> {
+            Stream.of("ลอลิง พายไป", "มอม้า คึกคัก", "สอเสือ เขี้ยวใหญ่").forEach(name -> {
                 Employee employee = new Employee();
                 employee.setEmpName(name);
                 employeeRepository.save(employee);
@@ -83,11 +90,11 @@ public class RepaircomApplication {
                 customer.setDistrict("บางพลี");
                 customer.setTel("0212549548");
                 customer.setEmail("babo@hotmail.com");
-                Sex customerSex = sexRepository.findById(1);
+                Sex customerSex = sexRepository.findById(2);
                 customer.setCustomerSex(customerSex);
-                Province customerProvince = provinceRepository.findById(2);
+                Province customerProvince = provinceRepository.findById(1);
                 customer.setCustomerProvince(customerProvince);
-                Employee createdBy = employeeRepository.findById(3);
+                Employee createdBy = employeeRepository.findById(2);
                 customer.setCreatedBy(createdBy);
                 customerRepository.save(customer);
             });
@@ -137,9 +144,6 @@ public class RepaircomApplication {
             headingRepository.save(new Heading("แจ้งเรื่องร้องเรียน"));//ระบบติดต่อสอบถาม
             headingRepository.save(new Heading("สอบถามเรื่องอื่นๆ"));//ระบบติดต่อสอบถาม
 
-            
-
-
             machinecolorRepository.save(new Machinecolor("Red"));
             machinecolorRepository.save(new Machinecolor("Green"));
             machinecolorRepository.save(new Machinecolor("Blue"));
@@ -155,6 +159,36 @@ public class RepaircomApplication {
             profileloginRepository.save(new Profilelogin("addproduct","12345678"));
             profileloginRepository.save(new Profilelogin("receipt","12345678"));
             profileloginRepository.save(new Profilelogin("contact","12345678"));
+
+
+            Stream.of("จอไม่ติด").forEach(name -> {
+                Adminrepairindex adminrepairindex = new Adminrepairindex();
+                adminrepairindex.setBreakdown("จอไม่ติด");
+                adminrepairindex.setRepairwork("R7654321");
+                adminrepairindex.setTotalrepairprice(320.00);
+                try {
+                    adminrepairindex.setRepairDate(new SimpleDateFormat("yyyy-MM-dd").parse("2010-05-20"));
+                }
+                catch (Exception e) {
+                    System.out.println("wrong time format");
+                }
+               
+              
+                Statusrepair statusrepair = statusrepairRepository.findById(1);
+                adminrepairindex.setStatusrepair(statusrepair);
+                Type type = typeRepository.findById(1);
+                adminrepairindex.setType(type);
+                Employee createdBy = employeeRepository.findById(1);
+                adminrepairindex.setCreatedBy(createdBy);
+                Branch branch = branchRepository.findById(1);
+                adminrepairindex.setBranch(branch);
+                Customer customer = customerRepository.findById(1);
+                adminrepairindex.setCustomer(customer);
+                Brand brand = brandRepository.findById(1);
+                adminrepairindex.setBrand(brand);
+                
+                adminrepairindexRepository.save(adminrepairindex);
+            });
             
             
 
