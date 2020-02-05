@@ -32,7 +32,8 @@ public class Receipt{
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="RECEIPT_SEQ")
     @Column(name="RECEIPT_ID ",unique = true , nullable = true )
     private @NonNull Long id;
-    private @NonNull String receiptCusname;
+
+    private @NotNull String receiptCusname;
 
     @NotNull
     @Column(name = "QUEUE")
@@ -48,28 +49,26 @@ public class Receipt{
 	private String receiptCustel;
 
 
-  
-
     @Column(name="RECEIPT_DATE")
-    private @NonNull Date receiptDate;
+    private @NotNull Date receiptDate;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Branch.class)
     @JoinColumn(name = "BRANCH_ID", insertable = true)
-    private @NonNull Branch branch;
+    private @NotNull Branch branch;
 
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID",insertable = true)
-    private @NonNull Employee employee;
+    private @NotNull Employee employee;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
     @JoinColumn(name ="TYPE_ID",insertable = true)
-    private @NonNull Type type;
+    private @NotNull Type type;
 
     
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Adminrepairindex.class)
     @JoinColumn(name ="ADMINREPAIRINDEX_ID",insertable = true)
-    private @NonNull Adminrepairindex adminrepairindex;
+    private @NotNull Adminrepairindex adminrepairindex;
 
 
 
