@@ -64,14 +64,14 @@ public class FixController {
     
     {
     //Fix newFix = new Fix();
-    Employee employee = employeeRepository.findById(employee_id);
+    Employee createdBy = employeeRepository.findById(employee_id);
     Customer customer = customerRepository.findById(customer_id);
     Fixtype fixtype = fixtypeRepository.findById(fixtype_id);
     Machinecolor machinecolor = machinecolorRepository.findById(machinecolor_id);
     Brand brand = brandRepository.findById(brand_id);
     
     
-    newFix.setEmployee(employee);
+    newFix.setCreatedBy(createdBy);
     newFix.setCustomer(customer);
     newFix.setFixtype(fixtype);
     newFix.setMachinecolor(machinecolor);

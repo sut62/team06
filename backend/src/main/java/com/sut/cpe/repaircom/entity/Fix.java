@@ -55,7 +55,7 @@ public class Fix{
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID",insertable = true)
-    private Employee employee;
+    private Employee createdBy;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMER_ID",insertable = true)

@@ -7,6 +7,7 @@ import javax.persistence.Table;
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,14 +26,14 @@ public class Machinecolor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="MACHINECOLOR_SEQ")
     @Column(name="MACHINECOLOR_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String machinecolor;
+    private @NotNull String machinecolor;
 
     @OneToMany(fetch = FetchType.EAGER)
     
     private Collection<Fix> data;
 
 	
-    protected Machinecolor(){}
+    public Machinecolor(){}
     public Machinecolor(String machinecolor ){
         this.machinecolor = machinecolor;
         }	
