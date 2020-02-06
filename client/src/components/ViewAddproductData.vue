@@ -49,17 +49,6 @@
         </nav>
         <div class="addpro">
             <v-container>
-                <v-card>
-                    <v-card-title>
-                        <v-text-field
-                                v-model="search"
-                                append-icon="search"
-                                label="Search"
-                                single-line
-                                hide-details
-                        ></v-text-field>
-                    </v-card-title>
-                </v-card>
                 <br>
                 <v-card color="#7C4DFF">
                     <v-data-table

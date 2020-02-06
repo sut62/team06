@@ -1,22 +1,33 @@
 package com.sut.cpe.repaircom;
 
-import com.sut.cpe.repaircom.entity.Addproduct;
-import com.sut.cpe.repaircom.repository.AddproductRepository;
+import net.bytebuddy.utility.RandomString;
+
+
+import com.sut.cpe.repaircom.entity.*;
+import com.sut.cpe.repaircom.repository.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.annotation.CreatedBy;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.*;
+
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 
 
@@ -72,6 +83,26 @@ public class AddproductTest {
         
     }
     @Test
+    void b5916962_testProductIDMustNotBeNull() {
+        Addproduct addproduct = new Addproduct();
+        
+        addproduct.setProid(null);
+        addproduct.setProductname("MSI RAM");
+        addproduct.setDescription("8GB");
+        addproduct.setPrice(800);
+
+      
+        Set<ConstraintViolation<Addproduct>> result = validator.validate(addproduct);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Addproduct> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("proid", v.getPropertyPath().toString());
+    }
+    @Test
     void b5916962_testProductnameMustNotBeNull() {
         Addproduct addproduct = new Addproduct();
         
@@ -91,6 +122,44 @@ public class AddproductTest {
         assertEquals("must not be null", v.getMessage());
         assertEquals("productname", v.getPropertyPath().toString());
     }
+    @Test
+    void b5916962_testDescriptionMustNotBeNull() {
+        Addproduct addproduct = new Addproduct();
+        
+        addproduct.setProid("20200001");
+        addproduct.setProductname("MSI RAM");
+        addproduct.setDescription(null);
+        addproduct.setPrice(800);
+
+      
+        Set<ConstraintViolation<Addproduct>> result = validator.validate(addproduct);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Addproduct> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("description", v.getPropertyPath().toString());
+    }
+    @Test
+     void b5910168_testAdminrepairTotalpriceNonNegativeValue(){
+        Addproduct addproduct = new Addproduct();
+        
+        addproduct.setProid("20200001");
+        addproduct.setProductname("MSI RAM");
+        addproduct.setDescription("8GB");
+        addproduct.setPrice(-12);
+
+        Set<ConstraintViolation<Addproduct>> result = validator.validate(addproduct);
+
+
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Addproduct> v = result.iterator().next();
+        assertEquals("must be greater than or equal to 0", v.getMessage());
+        assertEquals("price", v.getPropertyPath().toString());
+     }
     @Test
     void b5916962_testDescriptionSize() {
         Addproduct addproduct = new Addproduct();

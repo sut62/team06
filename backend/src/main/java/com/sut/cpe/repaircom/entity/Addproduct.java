@@ -16,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.PositiveOrZero;
+import com.fasterxml.jackson.core.io.DataOutputAsStream;
 
 @Data
 @Entity
@@ -37,11 +39,13 @@ public class Addproduct{
     @Pattern(regexp = "\\d{8}")
     @Column(name = "proid")
     private String proid;
-    @NotNull 
+    @NotNull
     private String productname;
     @NotNull
     @Size(max = 2000,min = 1)
     private  String description;
+    @NotNull
+    @PositiveOrZero
     private int price;
 
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)

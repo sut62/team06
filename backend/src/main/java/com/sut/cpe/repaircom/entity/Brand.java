@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -24,13 +25,14 @@ public class Brand {
  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="BRAND_SEQ")
  @Column(name="BRAND_ID",unique = true, nullable = true)
  private @NonNull Long id;
- private @NonNull String brandname;
+ @NotNull
+ private String brandname;
 
  @OneToMany(fetch = FetchType.EAGER)
     
  private Collection<Addproduct> data;
 
- protected Brand(){}
+ public Brand(){}
  public Brand(String brandname ){
      this.brandname = brandname;
      }
