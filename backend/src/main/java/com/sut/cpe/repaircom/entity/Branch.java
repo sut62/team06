@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -25,7 +26,8 @@ public class Branch {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="BRANCH_SEQ")
     @Column(name="BRANCH_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String branchname;
+    @NotNull
+    private String branchname;
 
     @OneToMany(fetch = FetchType.EAGER)
     
@@ -38,7 +40,7 @@ public class Branch {
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Receipt> receipts;
 
-	protected Branch(){}
+	public Branch(){}
     public Branch(String branchname){
         this.branchname = branchname;
         }

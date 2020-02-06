@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -25,7 +26,8 @@ public class Part {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="PART_SEQ")
     @Column(name="PART_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String partname;
+    @NotNull 
+    private String partname;
     
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -35,7 +37,7 @@ public class Part {
 
 
 	
-    protected Part(){}
+    public Part(){}
     public Part(String partname ){
         this.partname = partname;
         }

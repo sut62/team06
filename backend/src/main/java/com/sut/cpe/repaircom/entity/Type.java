@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -17,6 +18,7 @@ import javax.persistence.GenerationType;
 @Setter
 @ToString
 @EqualsAndHashCode
+
 @Table(name="TYPE")
 public class Type {
 
@@ -25,7 +27,8 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="TYPE_SEQ")
     @Column(name="TYPE_ID",unique = true, nullable = true)
     private @NonNull Long id;
-    private @NonNull String typename;
+    @NotNull 
+    private String typename;
 
     @OneToMany(fetch = FetchType.EAGER)
     
@@ -38,7 +41,7 @@ public class Type {
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Receipt> receipts;
 	
-    protected Type(){}
+    public Type(){}
     public Type(String typename ){
         this.typename = typename;
         }	
