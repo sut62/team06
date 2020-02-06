@@ -39,22 +39,21 @@
                     </v-list-item>
                     <v-list-item to="/fix">
                         <v-list-item-action>
-                            <v-icon left>home</v-icon>
+                            <v-icon left>account_box</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                            <v-list-item-title>Add Fix</v-list-item-title>
+                            <v-list-item-title>เพิ่มข้อมูลการแจ้งซ่อม</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-
-                    <v-list-item to="/viewfix">
+                     <v-list-item to="/searchfix">
                         <v-list-item-action>
-                            <v-icon left>dashboard</v-icon>
+                            <v-icon left>search</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                            <v-list-item-title>View Fix</v-list-item-title>
+                            <v-list-item-title>ค้นหาข้อมูลการแจ้งซ่อม</v-list-item-title>
                         </v-list-item-content>
-               
                     </v-list-item>
+          
                 </v-list>
        <template v-slot:append>
         <div class="pa-2">
@@ -115,7 +114,7 @@ export default {
       
       headers: [
           { text: "Queue", value: "queue" },
-        { text: "พนักงาน", value: "employee.empName" },
+        { text: "พนักงาน", value: "createdBy.empName" },
         { text: "ลูกค้า", value: "customer.cusName" },
         { text: "Machinecolor", value: "machinecolor.machinecolor" },
         { text: "ประเภทอุปกรณ์ที่นำมาซ่อม", value: "fixtype.fixtypename" },

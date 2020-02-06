@@ -24,7 +24,7 @@
       <br>
       <br>
     <v-avatar>
-      <img src="https://cdn.icon-icons.com/icons2/1090/PNG/512/settings_78352.png" alt="avatar">
+      <img src="@/assets/fix.jpg" alt="avatar">
     </v-avatar>
   </div>
       <h1 align='center'>แจ้งซ่อม</h1>

@@ -6,4 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface FixRepository extends JpaRepository<Fix,Long>{
+    Fix findById(long id);
+    Fix findByQueue(String queue);
 }

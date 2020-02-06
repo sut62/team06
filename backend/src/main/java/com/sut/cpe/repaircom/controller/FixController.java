@@ -50,6 +50,13 @@ public class FixController {
     public Collection<Fix> fixs() {
         return fixRepository.findAll().stream().collect(Collectors.toList());
     }
+    @GetMapping("/fix/{queue}")
+        public Fix Fixs(@PathVariable String queue) {
+        Fix fix = fixRepository.findByQueue(queue);
+        return fix;
+        }
+
+   
 
     @PostMapping("/fix/{employee_id}/{customer_id}/{fixtype_id}/{machinecolor_id}/{brand_id}/{queue}/{fixname}")
     public Fix newFix(Fix newFix,

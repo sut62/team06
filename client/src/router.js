@@ -23,6 +23,7 @@ import ViewFix from  '@/components/ViewFixData.vue'
 import viewrepairindex from '@/components/viewRepairAd.vue'
 import PrintReceipt from '@/components/PrintReceipt.vue'
 import ViewCustomer from '@/components/ViewCustomer.vue'
+import searchFIX from '@/components/searchFIX.vue'
 import SearchCustomer from '@/components/searchCustomer.vue'
 
 
@@ -151,6 +152,11 @@ export default new Router({
       path: '/searchCustomer',
       name: 'searchCustomer',
       component: SearchCustomer
+    },
+    {
+      path: '/searchfix',
+      name: 'searchfix',
+      component: searchFIX
     },
   ]
 })
