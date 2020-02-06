@@ -1,7 +1,7 @@
 package com.sut.cpe.repaircom;
 
-import com.sut.cpe.repaircom.entity.Fix;
-import com.sut.cpe.repaircom.repository.FixRepository;
+import com.sut.cpe.repaircom.entity.*;
+import com.sut.cpe.repaircom.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,15 @@ public class FixTest {
 
     @Autowired
     private FixRepository fixRepository;
+    
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private BrandRepository brandRepository;
     @BeforeEach
     public void setup() {
         final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -38,6 +46,9 @@ public class FixTest {
       
         fix.setFixname("จอดับบ่อยๆ");
         fix.setQueue("00012020");
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
        
 
         fix = fixRepository.saveAndFlush(fix);
@@ -45,8 +56,32 @@ public class FixTest {
       
         assertEquals("จอดับบ่อยๆ", found.get().getFixname());
         assertEquals("00012020", found.get().getQueue());
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
     
     }  
+
+    @Test
+    void B5907397_testFixnameMustNotBeNull() {
+        Fix fix = new Fix();
+        
+        fix.setFixname(null);
+        fix.setQueue("00012020");
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
+      
+        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Fix> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("fixname", v.getPropertyPath().toString());
+    }
 
     @Test
     void B5907397_testQueueMustNotBeNull() {
@@ -54,7 +89,9 @@ public class FixTest {
         
         fix.setFixname("จอดับบ่อยๆ");
         fix.setQueue(null);
-     
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
       
         Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
@@ -73,6 +110,9 @@ public class FixTest {
 
        fix.setFixname("");
        fix.setQueue("00012020");
+       fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
        // result ต้องมี error 1 ค่าเท่านั้น
@@ -89,6 +129,9 @@ public class FixTest {
 
         fix.setFixname("จอดับบ่อยๆ");
         fix.setQueue("00012020yljh");
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
 
        
         Set<ConstraintViolation<Fix>> result = validator.validate(fix);
@@ -107,6 +150,9 @@ public class FixTest {
         Fix f1 = new Fix();
         f1.setFixname("จอดับบ่อยๆ");
         f1.setQueue("00012020");
+        f1.setCreatedBy(employeeRepository.findById(1L));
+        f1.setCustomer(customerRepository.findById(1L));
+        f1.setBrand(brandRepository.findById(1L));
     fixRepository.saveAndFlush(f1);
 
         // คาดหวังว่า DataIntegrityViolationException จะถูก throw
@@ -115,6 +161,9 @@ public class FixTest {
             Fix f2 = new Fix();
                 f2.setFixname("จอดับบ่อยๆ");
                 f2.setQueue("00012020");
+                f2.setCreatedBy(employeeRepository.findById(1L));
+                f2.setCustomer(customerRepository.findById(1L));
+                f2.setBrand(brandRepository.findById(1L));
             fixRepository.saveAndFlush(f2);
         });
     }
