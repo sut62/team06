@@ -25,6 +25,7 @@ import PrintReceipt from '@/components/PrintReceipt.vue'
 import ViewCustomer from '@/components/ViewCustomer.vue'
 import searchFIX from '@/components/searchFIX.vue'
 import SearchCustomer from '@/components/searchCustomer.vue'
+import SearchAddproduct from '@/components/searchAddproduct.vue'
 
 
 Vue.use(Router)
@@ -157,6 +158,11 @@ export default new Router({
       path: '/searchfix',
       name: 'searchfix',
       component: searchFIX
+    },
+    {
+      path: '/searchAddproduct',
+      name: 'searchAddproduct',
+      component: SearchAddproduct
     },
   ]
 })
