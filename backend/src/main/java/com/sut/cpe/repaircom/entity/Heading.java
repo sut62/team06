@@ -1,9 +1,12 @@
 package com.sut.cpe.repaircom.entity;
+
 import lombok.*;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,10 +28,12 @@ public class Heading {
  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="HEADING_SEQ")
  @Column(name="HEADING_ID",unique = true, nullable = true)
  private @NonNull Long id;
- private @NonNull String headingName;
+ private @NotNull String headingName;
  @OneToMany(fetch = FetchType.EAGER)
  private Collection<Contact> contact;
-    protected Heading(){}
+
+
+    public Heading(){}
     public Heading(String headingName ){
         this.headingName = headingName;
         }
