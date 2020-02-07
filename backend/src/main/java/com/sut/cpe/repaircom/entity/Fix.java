@@ -52,26 +52,30 @@ public class Fix{
     private String queue;
         
     
-
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Employee.class)
     @JoinColumn(name = "EMPLOYEE_ID",insertable = true)
     private Employee createdBy;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMER_ID",insertable = true)
     private Customer customer;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Fixtype.class)
     @JoinColumn(name = "FIXTYPE_ID", insertable = true)
     private Fixtype fixtype;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
     @JoinColumn(name = "BRAND_ID", insertable = true)
     private Brand brand;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Machinecolor.class)
     @JoinColumn(name = "MACCHINECOLOR_ID", insertable = true)
-    private Machinecolor Machinecolor;
+    private Machinecolor machinecolor;
 
     public Fix(){}
     public Fix(String fixname,String queue){
@@ -92,7 +96,5 @@ public class Fix{
     public String getQueue() {
         return queue;
    }
-	
-
 	
 }
