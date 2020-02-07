@@ -3,28 +3,28 @@
 
         <nav>
             <v-toolbar class="bar">
-                <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                 <v-app-bar-nav-icon @click.native.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 &nbsp; &nbsp;&nbsp; &nbsp;
                 <v-toolbar-title dark>
-                    <span> <font color="#FFFFFF"> CONTACT </font></span>
+                <span> <font color="#FFFFFF"> CONTACT </font></span>
                     
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn flat color="#EDE7F6" to="/home">
-                    <span>Sign Out</span>
-                    <v-icon right>exit_to_app</v-icon>
+                <span>Sign Out</span>
+                <v-icon right>exit_to_app</v-icon>
                 </v-btn>
             </v-toolbar>
 
             <v-navigation-drawer v-model="drawer" app
-              absolute
-              dark
-              class="colornav"
-              width="15%"
-              height="100%"
+                 absolute
+                 dark
+                 class="colornav"
+                 width="15%"
+                 height="100%"
 
-              permanent     
-              expand-on-hover
+                 permanent     
+                 expand-on-hover
             >
                 <v-list>
                     <v-list-item>
@@ -33,33 +33,24 @@
                     </v-list-item>
                     <v-list-item to="/contact">
                         <v-list-item-action>
-                            <v-icon left>email</v-icon>
+                        <v-icon left>email</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                            <v-list-item-title>ติดต่อสอบถาม</v-list-item-title>
+                        <v-list-item-title>ติดต่อสอบถาม</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item to="/ViewContact">
                         <v-list-item-action>
-                            <v-icon left>list</v-icon>
+                        <v-icon left>list</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                            <v-list-item-title>รายการคำถาม</v-list-item-title>
+                        <v-list-item-title>รายการคำถาม</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
         </nav>
  
-
-
-
-
-
-
-
-
-
 
 
 
@@ -80,122 +71,117 @@
               </v-flex>
             </v-layout>
 
-          <v-row justify="center">
+      <v-row justify="center">
           <v-col cols="15">
-          <v-form v-model="valid" ref="form">
-          <v-row justify="center"> 
-            <v-col cols="8">
-              <v-text-field
-                solo
-                label="เลขบัตรประชาชน"
-                v-model="contact.customerIdent"
-                :rules="[(v) => !!v || 'Item is required']"
-                required
-              ></v-text-field>
-              <p v-if="customerCheck != ''">ชื่อ : {{customerName}}<br>
-  
-              </p>
-            </v-col>
-            <v-col cols="2">
-              <div class="my-2">
-                <v-btn @click="findCustomer" depressed large color="primary">ค้นหา</v-btn>
-              </div>
-            </v-col>
-           </v-row>  
+             <v-form v-model="valid" ref="form">
+                 <v-row justify="center"> 
+                     <v-col cols="8">
+                        <v-text-field
+                           solo
+                           label="เลขบัตรประชาชน"
+                           v-model="contact.customerIdent"
+                           :rules="[(v) => !!v || 'Item is required']"
+                           required
+                        ></v-text-field>
+                           <p v-if="customerCheck != ''">ชื่อ : {{customerName}}<br></p>
+                      </v-col>
+                      <v-col cols="2">
+                         <div class="my-2">
+                         <v-btn @click="findCustomer" depressed large color="primary">ค้นหา</v-btn>
+                         </div>
+                      </v-col>
+                  </v-row>  
 
-                         <v-row justify="center">
-                          <v-col cols="10">
-                           <v-select
-                             label="เลือกช่องทางการติดต่อกลับ"
-                             solo
-                             v-model="contact.communicationId"
-                            :items="communications"
-                            item-text="communicationName"
-                            item-value="id"
-                            :rules="[(v) => !!v || 'Item is required']"
-                            required
-                          ></v-select>
-                          </v-col>
-                        </v-row>
 
-                        <v-row justify="center">
-                          <v-col cols="20" sm="6" md="3">
-                            <v-text-field
-                              label="กรอก เบอร์โทรศัพท์"
-                              solo
-                              v-model="contact.phone"
-                            ></v-text-field>
-                          </v-col>
-
-                          <v-col cols="12" sm="6" md="7">
-                           <v-text-field
-                            label="กรอก อีเมล"
-                            solo
-                            v-model="contact.email"
-                          ></v-text-field>
-                          </v-col>
-                        </v-row>
-           
-                        <v-row justify="center">
-                          <v-col cols="10">
-                           <v-select
-                            label="เลือกสาขาที่ต้องการติดต่อ"
-                            solo
-                            v-model="contact.branchId"
-                            :items="branchs"
-                            item-text="branchname"
-                            item-value="id"
-                            :rules="[(v) => !!v || 'Item is required']"
-                            required
-                           ></v-select>
-                          </v-col>
-                        </v-row> 
-
-                        <v-row justify="center">
-                          <v-col cols="10">
-                           <v-select
-                            label="เลือกเรื่องที่ต้องการติดต่อ"
-                            solo
-                            v-model="contact.headingId"
-                            :items="headings"
-                            item-text="headingName"
-                            item-value="id"
-                            :rules="[(v) => !!v || 'Item is required']"
-                             required
-                           ></v-select>
-                          </v-col>
-                        </v-row> 
-
-                        <v-row justify="center">
-                          <v-col cols="20" md="10">
-                            <v-textarea
-                              solo
-                              v-model="contact.detail"
-                              name="input-7-4"
-                              label="กรอก รายละเอียดที่ต้องการติดต่อ"
-                              value=""
-                            ></v-textarea>
-                          </v-col>
-                        </v-row>
-
-                        <v-row justify="center">
-                          <v-btn @click="saveContact" :class="{ red: !valid, primary: valid }">submit</v-btn>
-                        </v-row>
-                        <br>
-                      </v-form>
-                    </v-col>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
+                  <v-row justify="center">
+                      <v-col cols="10">
+                        <v-select
+                          label="เลือกช่องทางการติดต่อกลับ"
+                          solo
+                          v-model="contact.communicationId"
+                          :items="communications"
+                          item-text="communicationName"
+                          item-value="id"
+                          :rules="[(v) => !!v || 'Item is required']"
+                          required
+                        ></v-select>
+                      </v-col>
                   </v-row>
-                </v-container>
-                
-                      <v-snackbar  v-model="snaktr" :timeout="10000">{{snactexttrue}}
-                      <v-btn text @click="snaktr = false" >CLOSE</v-btn>
-                     </v-snackbar>
 
-              </div>
+                  <v-row justify="center">
+                      <v-col cols="20" sm="6" md="3">
+                        <v-text-field
+                          label="กรอก เบอร์โทรศัพท์"
+                          solo
+                          v-model="contact.phone"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12" sm="6" md="7">
+                        <v-text-field
+                          label="กรอก อีเมล"
+                          solo
+                          v-model="contact.email"
+                        ></v-text-field>
+                      </v-col>
+                  </v-row>
+           
+                  <v-row justify="center">
+                      <v-col cols="10">
+                        <v-select
+                          label="เลือกสาขาที่ต้องการติดต่อ"
+                          solo
+                          v-model="contact.branchId"
+                          :items="branchs"
+                          item-text="branchname"
+                          item-value="id"
+                          :rules="[(v) => !!v || 'Item is required']"
+                          required
+                        ></v-select>
+                      </v-col>
+                  </v-row> 
+
+                  <v-row justify="center">
+                      <v-col cols="10">
+                        <v-select
+                          label="เลือกเรื่องที่ต้องการติดต่อ"
+                          solo
+                          v-model="contact.headingId"
+                          :items="headings"
+                          item-text="headingName"
+                          item-value="id"
+                          :rules="[(v) => !!v || 'Item is required']"
+                          required
+                        ></v-select>
+                      </v-col>
+                  </v-row> 
+
+                  <v-row justify="center">
+                      <v-col cols="20" md="10">
+                        <v-textarea
+                          solo
+                          v-model="contact.detail"
+                          name="input-7-4"
+                          label="กรอก รายละเอียดที่ต้องการติดต่อ"
+                          value=""
+                        ></v-textarea>
+                      </v-col>
+                  </v-row>
+
+                  <v-row justify="center">
+                      <v-btn @click="saveContact" :class="{ red: !valid, primary: valid }">submit</v-btn>
+                  </v-row>
+
+                          <br>
+             </v-form>
+                    </v-col>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+          </v-row>
+            </v-container>               
+       </div>
                   <br>
                   <br>
                   <br>
@@ -206,14 +192,17 @@
                   <br>
    
 
+                    <v-snackbar  top v-model="snaktr" :timeout="10000">{{snactexttrue}}
+                       <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+                    </v-snackbar>
 
 
-           <div>
+            <div>
             <v-toolbar flat short color="#EEEEEE">
                 <v-spacer></v-spacer>
                 <span>COPYRIGHT © 2020 REPAIR COMPUTER. BY TEAM06 OF SOFTWARE ENGINEERING.</span>
             </v-toolbar>
-        </div>
+            </div>
 </v-app>
 </template>
 
@@ -340,10 +329,13 @@ import http from "../http-common";
         )
                 .then(response => {
                   console.log(response);
-                  this.snaktr = true;
-                  this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
+                  this.snaktn = true;
+
                   this.$refs.form.reset();
                   this.$router.push("/contact");
+                  this.customerName = null;
+                  this.snaktr = true;
+                  this.snactexttrue ="บันทึกข้อมูลเสร็จสิ้น"
                    
                 })
                 .catch(e => {
@@ -352,13 +344,15 @@ import http from "../http-common";
                   this.snactexttrue ="กรุณากรอกข้อมูลให้ถูกต้องครบถ้วน"
                 });
         this.submitted = true;
-        window.location.reload();
+   
        
-    },
+     },
           clear() {
         this.$refs.form.reset();
-        this.contactCheck = null;
+        this.contactCheck = false;
       },
+
+       
 
     refreshList() {
       this.getCommunication();

@@ -53,31 +53,30 @@
  
  
 
+              <v-container>
+                <v-layout text-center wrap>
+                  <v-flex mb-4>
+                    <br />
+                    <h1 class="display-2 font-weight-bold mb-3 color=white "><font color=ebecf7>ข้อมูลที่ติดต่อสอบถาม</font></h1>
+                  </v-flex>
+                </v-layout>
+
+                <v-row >
+                  <v-col cols="18" >
+                    <v-data-table :headers="headers"
+                                  :items="items" 
+                                  :items-per-page="10"
+                                  class="elevation-1">
+                    </v-data-table>
+                  </v-col>
+                </v-row>
+              </v-container>
 
 
 
-
-
-
-
-  <v-container>
-    <v-layout text-center wrap>
-      <v-flex mb-4>
-        <br />
-        <h1 class="display-2 font-weight-bold mb-3 color=white "><font color=ebecf7>ข้อมูลที่ติดต่อสอบถาม</font></h1>
-      </v-flex>
-    </v-layout>
-
-    <v-row >
-      <v-col cols="18" >
-        <v-data-table :headers="headers"
-                      :items="items" 
-                      :items-per-page="10"
-                       class="elevation-1">
-        </v-data-table>
-      </v-col>
-    </v-row>
-  </v-container>
+                    <v-snackbar  top v-model="snaktr" :timeout="10000">{{snactexttrue}}
+                       <v-btn text @click="snaktr = false" >CLOSE</v-btn>
+                    </v-snackbar>
 
                   <br>
                   <br>
@@ -119,8 +118,11 @@ export default {
         { text: "เรื่อง", value: "heading.headingName" },
         { text: "รายละเอียด", value: "detail" }
       ],
-      items: []
+        items: [],
+        snaktr: false,
+        snactexttrue: ""
     };
+
   },
   methods: {
     /* eslint-disable no-console */
@@ -131,6 +133,21 @@ export default {
         .then(response => {
           this.items = response.data;
           console.log(this.items);
+            this.itemsCheck = response.status;
+            if (response.data != null) {
+            this.itemsCheck = response.status;
+            this.snaktr = true;
+            this.snactexttrue =('แสดงรายการข้อมูลคำถาม')
+
+
+          } else {
+              this.snaktr = true;
+              this.snactexttrue =('ไม่พบ รายการข้อมูลคำถาม' ) 
+              this.clear()
+          }
+
+
+
         })
         .catch(e => {
           console.log(e);
@@ -143,6 +160,7 @@ export default {
   },
   mounted() {
     this.getContacts();
+
   }
 };
 </script>
