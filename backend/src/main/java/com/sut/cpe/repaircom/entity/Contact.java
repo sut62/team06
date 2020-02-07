@@ -52,22 +52,25 @@ public class Contact {
 	@Pattern(regexp = "\\d{10}")
 	private String phone;
    
-
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Branch.class)
     @JoinColumn(name = "BRANCH_ID", insertable = true, nullable = true)
-    private @NonNull Branch branch;
+    private  Branch branch;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Communication.class)
     @JoinColumn(name = "COMMUNICATION_ID", insertable = true, nullable = true)
-    private @NonNull Communication communication;
+    private  Communication communication;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMER_ID", insertable = true, nullable = true)
-    private @NonNull Customer createdBy;
+    private  Customer createdBy;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Heading.class)
     @JoinColumn(name = "HEADING_ID", insertable = true, nullable = true)
-    private @NonNull Heading heading;
+    private  Heading heading;
 
         public void setDetail(String detail) {
         this.detail = detail;
@@ -92,6 +95,8 @@ public class Contact {
         public String getPhone() {
         return phone;
         }
+
+	
 
 
 

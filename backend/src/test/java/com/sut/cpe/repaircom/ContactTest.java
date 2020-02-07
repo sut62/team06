@@ -1,7 +1,9 @@
 package com.sut.cpe.repaircom;
 
-import com.sut.cpe.repaircom.entity.Contact;
-import com.sut.cpe.repaircom.repository.ContactRepository;
+import com.sut.cpe.repaircom.entity.*;
+import com.sut.cpe.repaircom.repository.*;
+
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,21 @@ public class ContactTest {
     @Autowired
     private ContactRepository contactRepository;
 
+    @Autowired
+    private CommunicationRepository communicationRepository;
+
+
+    @Autowired
+    private BranchRepository branchRepository;
+
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+
+    @Autowired
+    private HeadingRepository headingRepository;
+
     @BeforeEach
     public void setup() {
         final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -42,6 +59,10 @@ public class ContactTest {
         contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
         contact.setEmail("dom@gmail.com");
         contact.setPhone("0611308986");
+        contact.setCreatedBy(customerRepository.findById(1L));
+        contact.setCommunication(communicationRepository.findById(1L));
+        contact.setBranch(branchRepository.findById(1L));
+        contact.setHeading(headingRepository.findById(1L));
     
         contact = contactRepository.saveAndFlush(contact);
         final Optional<Contact> found = contactRepository.findById(contact.getId());
@@ -49,6 +70,10 @@ public class ContactTest {
         assertEquals("เพิ่ม RAM ประมานราคากี่บาท", found.get().getDetail());
         assertEquals("dom@gmail.com", found.get().getEmail());
         assertEquals("0611308986", found.get().getPhone());
+        assertEquals(1L, found.get().getCreatedBy().getId());
+        assertEquals(1L, found.get().getCommunication().getId());
+        assertEquals(1L, found.get().getBranch().getId());
+        assertEquals(1L, found.get().getHeading().getId());
     }
 
 
@@ -59,6 +84,10 @@ public class ContactTest {
         contact.setPhone("0123456789");
         contact.setEmail("testmail");
         contact.setDetail("ราคาเปลี่ยนจอ");
+        contact.setCreatedBy(customerRepository.findById(1L));
+        contact.setCommunication(communicationRepository.findById(1L));
+        contact.setBranch(branchRepository.findById(1L));
+        contact.setHeading(headingRepository.findById(1L));
 
 
         Set<ConstraintViolation<Contact>> result = validator.validate(contact);
@@ -79,6 +108,10 @@ public class ContactTest {
         contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
         contact.setEmail(null);
         contact.setPhone("0611308986");
+        contact.setCreatedBy(customerRepository.findById(1L));
+        contact.setCommunication(communicationRepository.findById(1L));
+        contact.setBranch(branchRepository.findById(1L));
+        contact.setHeading(headingRepository.findById(1L));
 
       
          Set<ConstraintViolation<Contact>> result = validator.validate(contact);
@@ -100,6 +133,10 @@ public class ContactTest {
         contact.setDetail("a");
         contact.setEmail("dom@gmail.com");
         contact.setPhone("0611308986");
+        contact.setCreatedBy(customerRepository.findById(1L));
+        contact.setCommunication(communicationRepository.findById(1L));
+        contact.setBranch(branchRepository.findById(1L));
+        contact.setHeading(headingRepository.findById(1L));
 
 
         Set<ConstraintViolation<Contact>> result = validator.validate(contact);
@@ -121,6 +158,10 @@ public class ContactTest {
         contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
         contact.setEmail("dom@gmail.com");
         contact.setPhone("1");
+        contact.setCreatedBy(customerRepository.findById(1L));
+        contact.setCommunication(communicationRepository.findById(1L));
+        contact.setBranch(branchRepository.findById(1L));
+        contact.setHeading(headingRepository.findById(1L));
       
 
         
@@ -134,6 +175,111 @@ public class ContactTest {
         assertEquals("phone", v.getPropertyPath().toString());
     
     }
+
+
+
+    //Test combobox Branch
+
+
+    @Test 
+    void  b5907113_BranchMustnotBenull(){
+        Contact contact = new Contact();
+
+        contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
+        contact.setEmail("dom@gmail.com");
+        contact.setPhone("0611308986");
+        contact.setCreatedBy(customerRepository.findById(1L));
+        contact.setCommunication(communicationRepository.findById(1L));
+        contact.setBranch(null);
+        contact.setHeading(headingRepository.findById(1L));
+
+        Set<ConstraintViolation<Contact>> result = validator.validate(contact);
+
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Contact> v = result.iterator().next();
+        assertEquals("must not be null",v.getMessage());
+        assertEquals("branch", v.getPropertyPath().toString());
+        
+      }
+
+
+
+      //Test combobox Communication
+      @Test 
+      void  b5907113_CommunicationMustnotBenull(){
+          Contact contact = new Contact();
+  
+          contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
+          contact.setEmail("dom@gmail.com");
+          contact.setPhone("0611308986");
+          contact.setCreatedBy(customerRepository.findById(1L));
+          contact.setCommunication(null);
+          contact.setBranch(branchRepository.findById(1L));
+          contact.setHeading(headingRepository.findById(1L));
+  
+          Set<ConstraintViolation<Contact>> result = validator.validate(contact);
+  
+          assertEquals(1, result.size());
+  
+          ConstraintViolation<Contact> v = result.iterator().next();
+          assertEquals("must not be null",v.getMessage());
+          assertEquals("communication", v.getPropertyPath().toString());
+          
+        }
+
+
+
+        
+      //Test combobox Heading
+      @Test 
+      void  b5907113_HeadingMustnotBenull(){
+          Contact contact = new Contact();
+  
+          contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
+          contact.setEmail("dom@gmail.com");
+          contact.setPhone("0611308986");
+          contact.setCreatedBy(customerRepository.findById(1L));
+          contact.setCommunication(communicationRepository.findById(1L));
+          contact.setBranch(branchRepository.findById(1L));
+          contact.setHeading(null);
+  
+          Set<ConstraintViolation<Contact>> result = validator.validate(contact);
+  
+          assertEquals(1, result.size());
+  
+          ConstraintViolation<Contact> v = result.iterator().next();
+          assertEquals("must not be null",v.getMessage());
+          assertEquals("heading", v.getPropertyPath().toString());
+          
+        }
+
+
+
+              //Test findByiden Customer
+      @Test 
+      void  b5907113_CustomerMustnotBenull555(){
+          Contact contact = new Contact();
+
+          contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
+          contact.setEmail("dom@gmail.com");
+          contact.setPhone("0611308986");
+          contact.setCreatedBy(null);
+          contact.setCommunication(communicationRepository.findById(1L));
+          contact.setBranch(branchRepository.findById(1L));
+          contact.setHeading(headingRepository.findById(1L));
+  
+          Set<ConstraintViolation<Contact>> result = validator.validate(contact);
+  
+          assertEquals(1, result.size());
+  
+          ConstraintViolation<Contact> v = result.iterator().next();
+          assertEquals("must not be null",v.getMessage());
+          assertEquals("createdBy", v.getPropertyPath().toString());
+          
+        }
+
+
 
 
 }
