@@ -64,11 +64,13 @@ public class FixTest {
       
         assertEquals("จอดับบ่อยๆ", found.get().getFixname());
         assertEquals("00012020", found.get().getQueue());
-        fix.setCreatedBy(employeeRepository.findById(1L));
-        fix.setCustomer(customerRepository.findById(1L));
-        fix.setBrand(brandRepository.findById(1L));
-        fix.setFixtype(fixtypeRepository.findById(1L));
-        fix.setMachinecolor(machinecolorRepository.findById(1L));
+        assertEquals(1L, found.get().getCreatedBy().getId());
+        assertEquals(1L, found.get().getCustomer().getId());
+        assertEquals(1L, found.get().getBrand().getId());
+        assertEquals(1L, found.get().getFixtype().getId());
+        assertEquals(1L, found.get().getMachinecolor().getId());
+        
+        
     
     }  
 
@@ -93,6 +95,7 @@ public class FixTest {
         ConstraintViolation<Fix> v = result.iterator().next();
         assertEquals("must not be null", v.getMessage());
         assertEquals("fixname", v.getPropertyPath().toString());
+        
     }
 
     @Test
