@@ -48,18 +48,22 @@ public class Addproduct{
     @PositiveOrZero
     private int price;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Type.class)
     @JoinColumn(name = "TYPE_ID",insertable = true)
     private Type type;
-
+    
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Brand.class)
     @JoinColumn(name = "BRAND_ID",insertable = true)
     private Brand brand;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Part.class)
     @JoinColumn(name = "PART_ID", insertable = true)
     private Part part;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER,targetEntity = Branch.class)
     @JoinColumn(name = "BRANCH_ID",insertable = true)
     private Branch branch;

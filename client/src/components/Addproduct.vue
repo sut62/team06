@@ -38,6 +38,14 @@
                             <v-list-item-title>Add Product</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
+                    <v-list-item to="/searchAddproduct">
+                        <v-list-item-action>
+                            <v-icon left>search</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Search Product</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
                     <v-list-item to="/viewAddproduct">
                         <v-list-item-action>
                             <v-icon left>assessment</v-icon>
