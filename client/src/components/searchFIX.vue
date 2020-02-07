@@ -5,6 +5,7 @@
             dark 
                src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
             </v-toolbar>
+            
             <v-navigation-drawer v-model="drawer" app
               absolute
       dark
@@ -147,7 +148,7 @@
                  this.fixname = response.data.fixname;
                 this.fixCheck = response.status;
                 this.snaktr = true;
-                 this.snactexttrue =('ค้นหาสำเร็จ '+this.fix.queue )
+                 this.snactexttrue =('ค้นหาสำเร็จ')
                
                      
               } else {
