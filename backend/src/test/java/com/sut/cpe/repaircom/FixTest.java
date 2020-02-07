@@ -34,6 +34,12 @@ public class FixTest {
 
     @Autowired
     private BrandRepository brandRepository;
+
+    @Autowired
+    private FixtypeRepository fixtypeRepository;
+
+    @Autowired
+    private MachinecolorRepository machinecolorRepository;
     @BeforeEach
     public void setup() {
         final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -49,6 +55,8 @@ public class FixTest {
         fix.setCreatedBy(employeeRepository.findById(1L));
         fix.setCustomer(customerRepository.findById(1L));
         fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
        
 
         fix = fixRepository.saveAndFlush(fix);
@@ -59,6 +67,8 @@ public class FixTest {
         fix.setCreatedBy(employeeRepository.findById(1L));
         fix.setCustomer(customerRepository.findById(1L));
         fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
     
     }  
 
@@ -71,6 +81,8 @@ public class FixTest {
         fix.setCreatedBy(employeeRepository.findById(1L));
         fix.setCustomer(customerRepository.findById(1L));
         fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
       
         Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
@@ -92,6 +104,8 @@ public class FixTest {
         fix.setCreatedBy(employeeRepository.findById(1L));
         fix.setCustomer(customerRepository.findById(1L));
         fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
       
         Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
@@ -113,6 +127,8 @@ public class FixTest {
        fix.setCreatedBy(employeeRepository.findById(1L));
         fix.setCustomer(customerRepository.findById(1L));
         fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
        // result ต้องมี error 1 ค่าเท่านั้น
@@ -132,6 +148,8 @@ public class FixTest {
         fix.setCreatedBy(employeeRepository.findById(1L));
         fix.setCustomer(customerRepository.findById(1L));
         fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
 
        
         Set<ConstraintViolation<Fix>> result = validator.validate(fix);
@@ -153,6 +171,8 @@ public class FixTest {
         f1.setCreatedBy(employeeRepository.findById(1L));
         f1.setCustomer(customerRepository.findById(1L));
         f1.setBrand(brandRepository.findById(1L));
+        f1.setFixtype(fixtypeRepository.findById(1L));
+        f1.setMachinecolor(machinecolorRepository.findById(1L));
     fixRepository.saveAndFlush(f1);
 
         // คาดหวังว่า DataIntegrityViolationException จะถูก throw
@@ -164,10 +184,124 @@ public class FixTest {
                 f2.setCreatedBy(employeeRepository.findById(1L));
                 f2.setCustomer(customerRepository.findById(1L));
                 f2.setBrand(brandRepository.findById(1L));
+                f2.setFixtype(fixtypeRepository.findById(1L));
+                f2.setMachinecolor(machinecolorRepository.findById(1L));
             fixRepository.saveAndFlush(f2);
         });
     }
+    @Test
+    void B5907397_testEmployeeMustNotBeNull() {
+        Fix fix = new Fix();
+        
+        fix.setFixname("จอดับบ่อยๆ");
+        fix.setQueue("00012020");
+        fix.setCreatedBy(null);
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
+      
+        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
 
-    
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Fix> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("createdBy", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void B5907397_testCustomerMustNotBeNull() {
+        Fix fix = new Fix();
+        
+        fix.setFixname("จอดับบ่อยๆ");
+        fix.setQueue("00012020");
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(null);
+        fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
+      
+        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Fix> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("customer", v.getPropertyPath().toString());
+    }
+
+    @Test
+    void B5907397_testBrandMustNotBeNull() {
+        Fix fix = new Fix();
+        
+        fix.setFixname("จอดับบ่อยๆ");
+        fix.setQueue("00012020");
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(null);
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
+      
+        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Fix> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("brand", v.getPropertyPath().toString());
+    }
+    @Test
+    void B5907397_testFixtypeMustNotBeNull() {
+        Fix fix = new Fix();
+        
+        fix.setFixname("จอดับบ่อยๆ");
+        fix.setQueue("00012020");
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(null);
+        fix.setMachinecolor(machinecolorRepository.findById(1L));
+      
+        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Fix> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("fixtype", v.getPropertyPath().toString());
+    }
+@Test
+    void B5907397_testMachinecolorMustNotBeNull() {
+        Fix fix = new Fix();
+        
+        fix.setFixname("จอดับบ่อยๆ");
+        fix.setQueue("00012020");
+        fix.setCreatedBy(employeeRepository.findById(1L));
+        fix.setCustomer(customerRepository.findById(1L));
+        fix.setBrand(brandRepository.findById(1L));
+        fix.setFixtype(fixtypeRepository.findById(1L));
+        fix.setMachinecolor(null);
+      
+        Set<ConstraintViolation<Fix>> result = validator.validate(fix);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Fix> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("machinecolor", v.getPropertyPath().toString());
+    }
+
+
 }
 
