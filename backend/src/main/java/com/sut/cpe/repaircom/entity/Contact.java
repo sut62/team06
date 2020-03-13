@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -31,13 +32,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Table(name = "CONTACT")
+@Table(name = "CONTACT",
+      uniqueConstraints = @UniqueConstraint(columnNames = {"CONTACTCODE"})
+)
 
 public class Contact {
     @Id
     @SequenceGenerator(name = "CONTACT_SEQ", sequenceName = "CONTACT_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CONTACT_SEQ")
     @Column(name = "CONTACT_ID ", unique = true, nullable = true)
+    
     private Long id;
 
     @NotNull
@@ -50,7 +54,12 @@ public class Contact {
    
     @NotNull
 	@Pattern(regexp = "\\d{10}")
-	private String phone;
+    private String phone;
+    
+    @NotNull
+    @Column(name = "CONTACTCODE")
+	@Pattern(regexp = "[C]\\d{4}")
+    private String contactcode;
    
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Branch.class)
@@ -95,6 +104,14 @@ public class Contact {
         public String getPhone() {
         return phone;
         }
+
+        public void setContactcode(String contactcode) {
+            this.contactcode = contactcode;
+            }
+    
+            public String getContactcode() {
+            return contactcode;
+            }
 
 	
 

@@ -20,7 +20,7 @@
               absolute
               dark
               class="colornav"
-              width="13%"
+              width="18%"
               height="100%"
 
               permanent     
@@ -45,6 +45,15 @@
                         </v-list-item-action>
                         <v-list-item-content>
                             <v-list-item-title>รายการคำถาม</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+
+                    <v-list-item to="/searchcontact">
+                        <v-list-item-action>
+                            <v-icon left>search</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>ค้นหาข้อมูลการติดต่อสอบถาม</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list>
@@ -73,10 +82,6 @@
               </v-container>
 
 
-
-                    <v-snackbar  top v-model="snaktr" :timeout="10000">{{snactexttrue}}
-                       <v-btn text @click="snaktr = false" >CLOSE</v-btn>
-                    </v-snackbar>
 
                   <br>
                   <br>
@@ -110,13 +115,16 @@ export default {
   data() {
     return {
       headers: [
+        { text: "ลำดับ", value: "id" },
+        { text: "Contact_Code", value: "contactcode" },
         { text: "ชื่อ", value: "createdBy.cusName" },
-        { text: "ช่องทางการติดต่อกลับ", value: "communication.communicationName" },
+        { text: "ช่องทางการติดต่อกลับ ", value: "communication.communicationName" },
         { text: "เบอร์โทรศัพท์", value: "phone" },
         { text: "อีเมลล์", value: "email" },
-        { text: "สาขาที่ต้องการติดต่อ", value: "branch.branchname" },
+        { text: "สาขาที่ต้องการติดต่อ ", value: "branch.branchname" },
         { text: "เรื่อง", value: "heading.headingName" },
         { text: "รายละเอียด", value: "detail" }
+       
       ],
         items: [],
         snaktr: false,
@@ -137,12 +145,11 @@ export default {
             if (response.data != null) {
             this.itemsCheck = response.status;
             this.snaktr = true;
-            this.snactexttrue =('แสดงรายการข้อมูลคำถาม')
+ 
 
 
           } else {
               this.snaktr = true;
-              this.snactexttrue =('ไม่พบ รายการข้อมูลคำถาม' ) 
               this.clear()
           }
 

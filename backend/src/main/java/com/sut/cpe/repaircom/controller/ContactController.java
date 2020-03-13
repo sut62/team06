@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.NoArgsConstructor;
+
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -19,6 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.net.URLDecoder;
+
 import com.sut.cpe.repaircom.entity.*;
 import com.sut.cpe.repaircom.repository.*;
 
@@ -46,11 +49,13 @@ public class ContactController {
     public Collection<Contact> Contacts() {
         return contactRepository.findAll().stream().collect(Collectors.toList());
     }
-
-               
+    @GetMapping("/contact/{contactcode}")
+    public Contact Contacts(@PathVariable String contactcode) {
+        Contact contact = contactRepository.findByContactcode(contactcode);
+    return contact;
+    }
   
-   
-    @PostMapping("/contact/{identification}/{communication_id}/{email}/{phone}/{branch_id}/{heading_id}/{detail}")
+    @PostMapping("/contact/{identification}/{communication_id}/{email}/{phone}/{branch_id}/{heading_id}/{detail}/{contactcode}")
     public Contact newContact(Contact newContact,
         @PathVariable String identification,   
         @PathVariable long communication_id,
@@ -58,7 +63,8 @@ public class ContactController {
         @PathVariable String phone,
         @PathVariable long branch_id, 
         @PathVariable long heading_id,
-        @PathVariable String detail)
+        @PathVariable String detail,
+        @PathVariable String contactcode)
     {
         
         Customer createdBy = customerRepository.findByIdentification(identification);
@@ -73,6 +79,7 @@ public class ContactController {
         newContact.setBranch(branch);
         newContact.setHeading(heading);
         newContact.setDetail(detail);
+        newContact.setContactcode(contactcode);
         
         return contactRepository.save(newContact);
     }

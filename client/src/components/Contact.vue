@@ -169,6 +169,16 @@
                   </v-row>
 
                   <v-row justify="center">
+                      <v-col cols="20" sm="6" md="3">
+                        <v-text-field
+                          label="กรอก Contact Code"
+                          solo
+                          v-model="contact.contactcode"
+                        ></v-text-field>
+                      </v-col>
+                      </v-row>
+
+                  <v-row justify="center">
                       <v-btn @click="saveContact" :class="{ red: !valid, primary: valid }">submit</v-btn>
                   </v-row>
 
@@ -226,7 +236,8 @@ import http from "../http-common";
         phone:"",
         branchId: "",
         headingId: "",
-        detail: ""
+        detail: "",
+        contactcode: "",
 
         
       },
@@ -309,8 +320,8 @@ import http from "../http-common";
       console.log(this.contact.headingId);
       http
         .post(
-          //("/contact/{identification}/{communication_id}/{email}/{phone}/{branch_id}/{heading_id}/{detail}")
-          "/contact/" +
+          //("/contact/{identification}/{communication_id}/{email}/{phone}/{branch_id}/{heading_id}/{detail}/{contactcode}")
+            "/contact/" +
           this.contact.customerIdent +
           "/" +
           this.contact.communicationId +
@@ -323,9 +334,12 @@ import http from "../http-common";
           "/" +
           this.contact.headingId+
           "/" +
-          this.contact.detail,
-        this.contact,
-           console.log(this.contact),
+          this.contact.detail+
+          "/" +
+          this.contact.contactcode,
+
+        this.contact
+           
         )
                 .then(response => {
                   console.log(response);
@@ -411,8 +425,8 @@ import http from "../http-common";
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 1000px;
-    width: 800px; 
+    height: 1020px;
+    width: 1000px; 
     background-color: #ebecf7;
     opacity: 5;
     -moz-box-shadow:inset 0 0 10px #000000;
