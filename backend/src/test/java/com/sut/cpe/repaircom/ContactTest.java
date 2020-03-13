@@ -59,6 +59,7 @@ public class ContactTest {
         contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
         contact.setEmail("dom@gmail.com");
         contact.setPhone("0611308986");
+        contact.setContactcode("C0001");
         contact.setCreatedBy(customerRepository.findById(1L));
         contact.setCommunication(communicationRepository.findById(1L));
         contact.setBranch(branchRepository.findById(1L));
@@ -70,6 +71,7 @@ public class ContactTest {
         assertEquals("เพิ่ม RAM ประมานราคากี่บาท", found.get().getDetail());
         assertEquals("dom@gmail.com", found.get().getEmail());
         assertEquals("0611308986", found.get().getPhone());
+        assertEquals("C0001", found.get().getContactcode());
         assertEquals(1L, found.get().getCreatedBy().getId());
         assertEquals(1L, found.get().getCommunication().getId());
         assertEquals(1L, found.get().getBranch().getId());
@@ -77,13 +79,15 @@ public class ContactTest {
     }
 
 
+
     @Test
-    void b6000035_testEmailForm(){
+    void B5907113_testEmailForm(){
         Contact contact = new Contact();
 
         contact.setPhone("0123456789");
         contact.setEmail("testmail");
         contact.setDetail("ราคาเปลี่ยนจอ");
+        contact.setContactcode("C0001");
         contact.setCreatedBy(customerRepository.findById(1L));
         contact.setCommunication(communicationRepository.findById(1L));
         contact.setBranch(branchRepository.findById(1L));
@@ -108,6 +112,7 @@ public class ContactTest {
         contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
         contact.setEmail(null);
         contact.setPhone("0611308986");
+        contact.setContactcode("C0001");
         contact.setCreatedBy(customerRepository.findById(1L));
         contact.setCommunication(communicationRepository.findById(1L));
         contact.setBranch(branchRepository.findById(1L));
@@ -125,6 +130,7 @@ public class ContactTest {
          assertEquals("email", v.getPropertyPath().toString());
      }
 
+
     
     @Test
     void b5907113_testSize_Detail(){
@@ -133,6 +139,7 @@ public class ContactTest {
         contact.setDetail("a");
         contact.setEmail("dom@gmail.com");
         contact.setPhone("0611308986");
+        contact.setContactcode("C0001");
         contact.setCreatedBy(customerRepository.findById(1L));
         contact.setCommunication(communicationRepository.findById(1L));
         contact.setBranch(branchRepository.findById(1L));
@@ -158,6 +165,7 @@ public class ContactTest {
         contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
         contact.setEmail("dom@gmail.com");
         contact.setPhone("1");
+        contact.setContactcode("C0001");
         contact.setCreatedBy(customerRepository.findById(1L));
         contact.setCommunication(communicationRepository.findById(1L));
         contact.setBranch(branchRepository.findById(1L));
@@ -178,6 +186,87 @@ public class ContactTest {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //test MustNotBeNull contactcode
+
+    @Test
+    void b5907113_test_contactcode_MustNotBeNull() {
+       Contact contact = new Contact();
+
+       contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
+       contact.setEmail("dom@gmail.com");
+       contact.setPhone("0611308986");
+       contact.setContactcode(null);
+       contact.setCreatedBy(customerRepository.findById(1L));
+       contact.setCommunication(communicationRepository.findById(1L));
+       contact.setBranch(branchRepository.findById(1L));
+       contact.setHeading(headingRepository.findById(1L));
+
+        Set<ConstraintViolation<Contact>> result = validator.validate(contact);
+
+         //result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        // error message ตรงชนิด และถูก field
+        ConstraintViolation<Contact> v = result.iterator().next();
+        assertEquals("must not be null", v.getMessage());
+        assertEquals("contactcode", v.getPropertyPath().toString());
+    }
+
+
+
+
+    //test pattern contactcode
+    @Test
+    void b5907113_test_Contactcode_Pattern(){
+        Contact contact = new Contact();
+
+        contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
+        contact.setEmail("dom@gmail.com");
+        contact.setPhone("0123456789");
+        contact.setContactcode("A1");
+        contact.setCreatedBy(customerRepository.findById(1L));
+        contact.setCommunication(communicationRepository.findById(1L));
+        contact.setBranch(branchRepository.findById(1L));
+        contact.setHeading(headingRepository.findById(1L));
+      
+        Set<ConstraintViolation<Contact>> result = validator.validate(contact);
+
+        // result ต้องมี error 1 ค่าเท่านั้น
+        assertEquals(1, result.size());
+
+        ConstraintViolation<Contact> v = result.iterator().next();
+        assertEquals("must match \"[C]\\d{4}\"", v.getMessage());
+        assertEquals("contactcode", v.getPropertyPath().toString());
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Test combobox Branch
 
 
@@ -188,6 +277,7 @@ public class ContactTest {
         contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
         contact.setEmail("dom@gmail.com");
         contact.setPhone("0611308986");
+        contact.setContactcode("C0001");
         contact.setCreatedBy(customerRepository.findById(1L));
         contact.setCommunication(communicationRepository.findById(1L));
         contact.setBranch(null);
@@ -213,6 +303,7 @@ public class ContactTest {
           contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
           contact.setEmail("dom@gmail.com");
           contact.setPhone("0611308986");
+          contact.setContactcode("C0001");
           contact.setCreatedBy(customerRepository.findById(1L));
           contact.setCommunication(null);
           contact.setBranch(branchRepository.findById(1L));
@@ -239,6 +330,7 @@ public class ContactTest {
           contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
           contact.setEmail("dom@gmail.com");
           contact.setPhone("0611308986");
+          contact.setContactcode("C0001");
           contact.setCreatedBy(customerRepository.findById(1L));
           contact.setCommunication(communicationRepository.findById(1L));
           contact.setBranch(branchRepository.findById(1L));
@@ -264,6 +356,7 @@ public class ContactTest {
           contact.setDetail("เพิ่ม RAM ประมานราคากี่บาท");
           contact.setEmail("dom@gmail.com");
           contact.setPhone("0611308986");
+          contact.setContactcode("C0001");
           contact.setCreatedBy(null);
           contact.setCommunication(communicationRepository.findById(1L));
           contact.setBranch(branchRepository.findById(1L));
@@ -282,7 +375,7 @@ public class ContactTest {
 
 
 
-}
+ }
 
 
 
