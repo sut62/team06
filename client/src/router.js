@@ -26,6 +26,7 @@ import ViewCustomer from '@/components/ViewCustomer.vue'
 import searchFIX from '@/components/searchFIX.vue'
 import SearchCustomer from '@/components/searchCustomer.vue'
 import SearchAddproduct from '@/components/searchAddproduct.vue'
+import SearchContact from '@/components/searchContact.vue'
 
 
 Vue.use(Router)
@@ -35,7 +36,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/repairindex',
+      path: '/;',
       name: 'RPCP1',
       component: RepairAd
     },
@@ -163,6 +164,11 @@ export default new Router({
       path: '/searchAddproduct',
       name: 'searchAddproduct',
       component: SearchAddproduct
+    },
+    {
+      path: '/searchcontact',
+      name: 'searchcontact',
+      component: SearchContact
     },
   ]
 })
